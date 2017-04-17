@@ -1,0 +1,287 @@
+@img: "http://leon.source.kakehotels.com/kake-frontend/img";
+
+/*
+ * Generic
+ */
+@typeface: PingFang-SC-Regular;
+.margin-top(@top) {
+  margin-top: @top;
+}
+
+.font-size(@size) {
+  font-size: @size;
+}
+
+body {
+  font-family: "PingFang SC", "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-weight: 100;
+
+  input, button, select, textarea, input:focus, span:focus {
+    outline: none;
+  }
+
+  button[disabled] {
+    opacity: .4;
+    cursor: default !important;
+    pointer-events: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+  i {
+    font-style: normal;
+  }
+
+  ul, li {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+/*
+ * header
+ */
+header {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-family: @typeface;
+  .font-size(18px);
+  background-color: #ffcc00;
+  position: relative;
+  .return {
+    width: 12px;
+    height: 16px;
+    position: absolute;
+    left: 15px;
+    top: 12px;
+  }
+  .detail {
+    width: 19px;
+    height: 13px;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+/*
+ * footer
+ */
+footer {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  line-height: 50px;
+  border-top: 1px solid #cfcfcf;
+  .price {
+    flex: 2;
+    background-color: #ffffff;
+    color: #ffcc00;
+    font-family: PingFang-SC-Bold;
+    p {
+      margin-left: 15px;
+      span {
+        font-weight: bold;
+        .font-size(20px);
+      }
+    }
+  }
+  .buy {
+    flex: 1;
+    background-color: #ffcc00;
+    text-align: center;
+    .font-size(20px);
+    color: #222222;
+  }
+}
+/*
+*blank 分割块
+*/
+.blank {
+  height: 5px;
+  background-color: #eeeeee;
+}
+/*
+*左边分类detail-hotel-1
+*/
+.detail-hotel-1 {
+    .font-size(17px);
+    color: #010101;
+    .margin-top(23px);
+    span {
+      width: 8px;
+      height: 18px;
+      display: inline-block;
+      margin-right: 3px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+/*
+ * Loading
+ */
+div.loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 998;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, .3);
+
+  .loading-bar {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    z-index: 999;
+    margin: 38% auto 0;
+
+    &.loading-bounce {
+      @keyframes bounce {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0);
+        }
+      }
+      div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #ffd914;
+        opacity: .5;
+        animation: bounce 2s infinite ease-in-out;
+        &.in {
+          animation-delay: -1s;
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Message
+ */
+.message {
+  @height: 80px;
+  @padding: 15px;
+  @color: #333;
+  width: 290px;
+  height: @height;
+  padding: @padding;
+  border-radius: 5px;
+  border: 1px @color solid;
+  color: @color;
+  background-color: rgba(255, 217, 20, .9);
+  text-align: center;
+  line-height: @height - @padding * 2;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 999;
+  font-size: 16px;
+
+  button.close {
+    @length-px: 20px;
+    @margin-px: 5px;
+    width: @length-px;
+    height: @length-px;
+    position: absolute;
+    right: @margin-px;
+    top: @margin-px;
+    color: @color;
+    line-height: @length-px;
+  }
+}
+
+/*
+ * Animation
+ */
+.kk-animate {
+
+  // big scale to small
+  @keyframes big-to-small {
+    0% {
+      transform: scale(1.2, 1.2);
+      opacity: 0
+    }
+
+    100% {
+      transform: scale(1, 1);
+      opacity: 1
+    }
+  }
+
+  &.kk-b2s {
+    animation: big-to-small .5s 1;
+  }
+
+  // top move to bottom (show)
+  @keyframes top-to-bottom-show {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &.kk-t2b-show {
+    animation: top-to-bottom-show .5s 1;
+  }
+
+  // top move to bottom (show) for message
+  @keyframes top-to-bottom-show-message {
+    0% {
+      transform: translate(-50%, -50px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+  }
+
+  &.kk-t2b-show-message {
+    animation: top-to-bottom-show-message .5s 1;
+  }
+
+  // bottom move to top (hide)
+  @keyframes bottom-to-top-hide {
+    0% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(0, -50px);
+      opacity: 0;
+    }
+  }
+
+  &.kk-b2t-hide {
+    animation: top-to-bottom-hide .5s 1;
+  }
+}

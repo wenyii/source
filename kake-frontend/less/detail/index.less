@@ -1,0 +1,149 @@
+@import "../main";
+
+body {
+  max-width: 700px;
+  margin: auto;
+  font-family: PingFang-SC-Medium;
+  color: #000000;
+  position: relative;
+}
+
+.body {
+  margin-bottom: 50px;
+}
+
+.banner {
+  img {
+    height: 235px;
+  }
+}
+
+.hotel-detail {
+  height: 92px;
+  position: relative;
+  .hotel-detail-price {
+    width: 85px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background-color: #ffcc00;
+    .font-size(13px);
+    color: #fafafa;
+    text-align: center;
+    line-height: 30px;
+    font-family: PingFang-SC-Bold;
+    span {
+      .font-size(18px);
+    }
+  }
+  .hotel-detail-1 {
+    .font-size(20px);
+    margin-left: 13px;
+    .margin-top(10px);
+  }
+  .hotel-detail-2 {
+    .margin-top(3px);
+    .hotel-detail-2-1 {
+      .font-size(12px);
+      color: #757575;
+      margin-left: 13px;
+      img {
+        width: 9px;
+        height: 13px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.detail-hotel_1 {
+  padding-bottom: 80px;
+}
+
+.classify {
+  height: 38px;
+  border-bottom: 1px solid #cdcdcd;
+  padding-top: 7px;
+  .classify-1 {
+    display: flex;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    .font-size(17px);
+    span {
+      display: inline-block;
+      height: 30px;
+    }
+    .classify-1-1 {
+      flex: 1;
+      border-right: 1px solid #cdcdcd;
+    }
+    .classify-1-2 {
+      flex: 1;
+    }
+  }
+}
+
+.cur-1 {
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
+}
+
+.detail-hotel {
+  margin: 0 15px;
+  .detail-hotel-2 {
+    .margin-top(12px);
+    margin-bottom: 23px;
+    .font-size(15px);
+    font-family: @typeface;
+    line-height: 30px;
+    .detail-hotel-2-1 {
+      height: 190px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.notice {
+  padding-bottom: 80px;
+  display: none;
+  .notice-money {
+    font-family: @typeface;
+    line-height: 30px;
+    .font-size(15px);
+    padding-top: 5px;
+    padding-bottom: 20px;
+  }
+  .back-change {
+    padding-bottom: 0;
+  }
+}
+
+.service {
+  width: 38px;
+  height: 34px;
+  position: absolute;
+  bottom: 56px;
+  left: 15px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.back-top {
+  width: 34px;
+  height: 33px;
+  position: absolute;
+  bottom: 56px;
+  right: 15px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+

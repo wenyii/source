@@ -1,0 +1,166 @@
+@import "../main";
+
+@typeface: PingFang-SC-Regular;
+.margin-top(@top) {
+  margin-top: @top;
+}
+
+.font-size(@size) {
+  font-size: @size;
+}
+
+body {
+  color: #000000;
+  font-family: PingFang-SC-Medium;
+  max-width: 768px;
+  margin: auto;
+}
+
+.banner {
+  img {
+    height: 251px;
+  }
+  position: relative;
+  .menu {
+    line-height: 36px;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    z-index: 20;
+    img {
+      width: 21px;
+      height: 16px;
+    }
+  }
+}
+
+.experience {
+  height: 328px;
+  margin-left: 15px;
+  .experience-1 {
+    font-family: PingFang-SC-Medium;
+    padding: 32px 15px 13px 0;
+    .font-size(20px);
+    color: #010101;
+    span {
+      width: 10px;
+      height: 19px;
+      display: inline-block;
+      img {
+        width: 100%;
+        height: 100%;
+        margin-top: -3px;
+      }
+    }
+    .experience-1-more {
+      float: right;
+      display: inline;
+      color: #333333;
+      .font-size(18px);
+      img {
+        margin-left: 5px;
+        display: inline-block;
+        width: 13px;
+        height: 22px;
+        margin-top: -2px;
+      }
+    }
+  }
+}
+
+#scroll-near {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+  .carousel-scroller {
+    width: 1280px;
+    position: relative;
+    white-space: nowrap;
+    div {
+      margin-right: 15px;
+      width: 305px;
+      float: left;
+      p {
+        .font-size(18px);
+        color: #3c3c3c;
+        .margin-top(11px);
+      }
+    }
+    .none-right {
+      margin-right: 0;
+    }
+
+  }
+}
+
+.activity {
+  margin: 15px 0;
+}
+
+.recommend {
+  margin: 0 15px;
+  p {
+    height: 30px;
+    text-align: center;
+    border-bottom: 1px solid #acacac;
+    position: relative;
+    margin-bottom: 30px;
+    .recommend2 {
+      .font-size(20px);
+      font-family: PingFang-SC-Bold;
+      display: inline-block;
+      width: 88px;
+      height: 30px;
+      background-color: white;
+      color: #3c3c3c;
+      position: relative;
+      top: 15px;
+    }
+  }
+  .recommend3 {
+    .margin-top(30px);
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 27px;
+    .recommend3-1 {
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .recommend3-1-1 {
+        width: 104px;
+        height: 27px;
+        font-family: PingFang-SC-Bold;
+        text-align: center;
+        line-height: 27px;
+        color: #fafafa;
+        .font-size(14px);
+        background-color: rgba(34, 34, 34, 0.8);
+        position: absolute;
+        bottom: 23px;
+        span {
+          .font-size(24px);
+          font-family: Helvetica-Bold;
+        }
+      }
+    }
+    .recommend3-2 {
+      font-family: PingFang-SC-Bold;
+      .font-size(20px);
+      color: #303030;
+      .margin-top(20px);
+    }
+    .recommend3-3 {
+      padding-left: 5px;
+      .font-size(15px);
+      color: #505050;
+      .margin-top(10px);
+    }
+  }
+}
+
