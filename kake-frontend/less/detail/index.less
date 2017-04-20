@@ -14,13 +14,83 @@ body {
 
 .banner {
   img {
-    height: 235px;
+    height: 251px;
+  }
+  position: relative;
+  .arrows{
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 20;
+     img {
+      width: 21px;
+      height: 16px;
+      margin-left: 7px;
+    }
+  }
+  .menu {
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 20;
+    img {
+      width: 21px;
+      height: 16px;
+      margin-left: 7px;
+    }
+    .menu-1 {
+      position: absolute;
+      display: none;
+      right: 0px;
+      top: 45px;
+      width: 126px;
+      height: 135px;
+      padding: 0 10px;
+      background-color: rgba(0, 0, 0, 0.82);
+      border-radius: 5px;
+      b {
+        position: absolute;
+        top: -10px;
+        right: 17px;
+        img {
+          width: 21px;
+          height: 10px;
+        }
+      }
+
+      li {
+        line-height: 45px;
+        .font-size(15px);
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+        img {
+          margin-left: 0;
+          margin-right: 5px;
+          width: 19px;
+          height: 20px;
+        }
+      }
+      .menu-order-center {
+        border: none;
+      }
+    }
   }
 }
 
 .hotel-detail {
-  height: 92px;
+  height: 100px;
   position: relative;
+  padding-top: 20px;
   .hotel-detail-price {
     width: 85px;
     height: 30px;
@@ -40,19 +110,13 @@ body {
   .hotel-detail-1 {
     .font-size(20px);
     margin-left: 13px;
-    .margin-top(10px);
   }
   .hotel-detail-2 {
-    .margin-top(3px);
+    .margin-top(10px);
     .hotel-detail-2-1 {
-      .font-size(12px);
+      .font-size(15px);
       color: #757575;
       margin-left: 13px;
-      img {
-        width: 9px;
-        height: 13px;
-        display: inline-block;
-      }
     }
   }
 }
@@ -63,6 +127,7 @@ body {
 
 .classify {
   height: 38px;
+  border-top:1px solid #cdcdcd ;
   border-bottom: 1px solid #cdcdcd;
   padding-top: 7px;
   .classify-1 {
@@ -94,10 +159,11 @@ body {
   margin: 0 15px;
   .detail-hotel-2 {
     .margin-top(12px);
-    margin-bottom: 23px;
+    padding-bottom: 23px;
     .font-size(15px);
     font-family: @typeface;
     line-height: 30px;
+     border-bottom: 1px solid #cdcdcd;
     .detail-hotel-2-1 {
       height: 190px;
     }
@@ -106,9 +172,15 @@ body {
       height: 100%;
     }
   }
+  .detail-hotel_2{
+    border:none;
+  }
 }
 
 .notice {
+  .detail-hotel {
+     border-bottom: 1px solid #cdcdcd;
+  }
   padding-bottom: 80px;
   display: none;
   .notice-money {

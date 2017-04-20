@@ -52,24 +52,63 @@ header {
   background-color: #ffcc00;
   position: relative;
   .return {
-    width: 12px;
-    height: 16px;
+    width: 13px;
+    height: 19px;
     position: absolute;
     left: 15px;
     top: 12px;
   }
   .detail {
-    width: 19px;
-    height: 13px;
+    width: 21px;
+    height: 16px;
     position: absolute;
     right: 15px;
     top: 12px;
-    img{
+    img {
       width: 100%;
       height: 100%;
     }
+    .menu-1 {
+      position: absolute;
+      display: none;
+      z-index: 30;
+      right: 0px;
+      top: 25px;
+      width: 126px;
+      height: 135px;
+      padding: 0 10px;
+      background-color: rgba(0, 0, 0, 0.82);
+      border-radius: 5px;
+      b {
+        position: absolute;
+        top: -10px;
+        right: 17px;
+        img {
+          width: 21px;
+          height: 10px;
+        }
+      }
+
+      li {
+        line-height: 45px;
+        .font-size(15px);
+        text-align: left;
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+        img {
+          margin-left: 0;
+          margin-right: 5px;
+          width: 19px;
+          height: 20px;
+        }
+      }
+      .menu-order-center {
+        border: none;
+      }
+    }
   }
 }
+
 /*
  * footer
  */
@@ -104,6 +143,7 @@ footer {
     color: #222222;
   }
 }
+
 /*
 *blank 分割块
 */
@@ -111,24 +151,29 @@ footer {
   height: 5px;
   background-color: #eeeeee;
 }
+
 /*
 *左边分类detail-hotel-1
 */
 .detail-hotel-1 {
-    .font-size(17px);
-    color: #010101;
-    .margin-top(23px);
-    span {
+  .font-size(18px);
+  color: #323232;
+  .margin-top(23px);
+  text-align: center;
+  font-family: PingFang-SC-Bold;
+  span {
       width: 8px;
-      height: 18px;
+      height: 19px;
       display: inline-block;
-      margin-right: 3px;
+    margin-right: 3px;
       img {
         width: 100%;
         height: 100%;
+        margin-top: -3px;
       }
     }
-  }
+}
+
 /*
  * Loading
  */
