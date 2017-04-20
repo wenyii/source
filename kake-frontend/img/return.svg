@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="41" height="28" viewBox="0 0 41 28">
+<svg xmlns="http://www.w3.org/2000/svg" width="22.656" height="39" viewBox="0 0 22.656 39">
   <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -30,10 +30,12 @@
 <defs>
     <style>
       .cls-1 {
-        fill: #ffffff;
+        fill: none;
+        stroke: #333;
+        stroke-width: 2px;
         fill-rule: evenodd;
       }
     </style>
   </defs>
-  <path id="矩形_31_拷贝_5" data-name="矩形 31 拷贝 5" class="cls-1" d="M677.988,174H709v2.531H677.988V174Zm0,12.719H709v2.562H677.988v-2.562Zm0,12.75H709V202H677.988v-2.531Zm-9.988,0h6.639V202H668v-2.531Zm0-12.75h6.639v2.562H668v-2.562ZM668,174h6.639v2.531H668V174Z" transform="translate(-668 -174)"/>
+  <path id="矩形_30" data-name="矩形 30" class="cls-1" d="M44.27,188L25,169.5,44.27,151" transform="translate(-24 -150)"/>
 </svg>
