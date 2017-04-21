@@ -79,8 +79,8 @@
                     '    <div class="intro">' +
                     '        <div class="title">' + lang.show + '</div>' +
                     '        <select>' +
-                    '            <option value="link">' + lang.linkType + '</option>' +
                     '            <option value="img">' + lang.showType + '</option>' +
+                    '            <option value="link">' + lang.linkType + '</option>' +
                     '        </select>' +
                     '    </div>' +
                     '</div>'
@@ -105,7 +105,7 @@
 
                 var file = null;
                 if (isImage(url) && selectObj.val() == 'img') {
-                    file = '<img attachment-id="' + attachmentId + '" alt="' + intro + '" src="' + url + '"/>';
+                    file = '<img style="width: 100%;" attachment-id="' + attachmentId + '" alt="' + intro + '" src="' + url + '"/>';
                 } else {
                     file = '<a attachment-id="' + attachmentId + '" href="' + url + '">' + intro + '</a>';
                 }

@@ -664,12 +664,12 @@ CKEDITOR.lang['en'] = {
         'toolbarTitle' : 'Upload',
         'tabTitle' : 'Upload File',
         'upload' : 'upload',
-        'fileLink' : 'Attachment Link',
-        'fileUrlIsEmpty' : 'Attachment Link Cann`t Be Empty',
+        'fileLink' : 'Attachment',
+        'fileUrlIsEmpty' : 'Attachment Link Cannot Be Empty',
         'describe' : 'Info',
         'show' : 'Show',
         'linkType' : 'Link Model',
-        'showType' : 'Chartlet Model'
+        'showType' : 'Chart Let Model'
     },
     'images' : {
         'toolbarTitle' : 'Insert Images',
