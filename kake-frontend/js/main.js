@@ -709,19 +709,3 @@ app.controller('generic', function ($scope, $q, $timeout, generic) {
         });
     };
 });
-    /**
-     * 菜单点击展开关闭
-     */
-$(document).ready(function () {
-    var menu = true;
-    $(".menu").on("touchstart", function () {
-        if (menu == true) {
-            $(".menu-1").css('display', 'block');
-            menu = !menu;
-        }
-        else {
-             $(".menu-1").hide(1000);
-            menu = !menu;
-        }
-    });
-});
