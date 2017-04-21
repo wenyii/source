@@ -1047,12 +1047,14 @@ $(function () {
     $('#get-captcha').click(function () {
         var phone = $('input[name="phone"]').val();
 
-        $.checkPhone(phone);
+        if (!$.checkPhone(phone)) {
+            return false;
+        }
 
         // 组织请求数据
         var postData = {
             phone: phone,
-            type: 'backend-login'
+            type: 1
         };
         postData[csrfKey] = csrfToken;
 
