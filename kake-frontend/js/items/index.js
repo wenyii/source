@@ -20,7 +20,7 @@ app.controller('items', function ($scope, $controller) {
                 },
                 success: function (res) {
                     $('.recommend').append(res.data.html);
-                    $('.recommend').attr('data-page', page + 1);
+                    $('.recommend').attr('data-page', parseInt(page) + 1);
                 }
             });
         });
