@@ -6,12 +6,12 @@
  */
 var app = angular.module('kkApp', []);
 app.controller('myCtrl', function ($scope) {
-    $scope.count = 0;
-    $scope.add = function(){
-    	$scope.count = Math.min(++$scope.count,3);
+    $scope.count = 1;
+    $scope.add = function () {
+        $scope.count = Math.min(++$scope.count, 3);
     }
-    $scope.reduce = function(){
-    	 $scope.count = Math.max(--$scope.count,0);
+    $scope.reduce = function () {
+        $scope.count = Math.max(--$scope.count, 0);
     }
 });
 
@@ -19,14 +19,12 @@ app.controller('myCtrl', function ($scope) {
  * 套餐点击展开
  */
 $(document).ready(function () {
-    $('.combo_1').on("touchstart", function () {
-        $('.combo_1 .combo-2').css('display', 'block');
-        $('.combo_1 b').css('background-color', '#ffcc00');
-        $('.combo_1 .combo-1 span').css('color', '#ffcc00');
-    });
-    $('.combo_2').on("touchstart", function () {
-        $('.combo_2 .combo-2').css('display', 'block');
-        $('.combo_2 b').css('background-color', '#ffcc00');
-        $('.combo_2 .combo-1 span').css('color', '#ffcc00');
+    $('.combo ul li .combo-1').on("touchstart", function () {
+        $(".combo-1 span").css('color', '');
+        $(".combo-1 b").css('background-color', '');
+        $('.combo-2').css('display', 'none');
+        $(this).next().css('display', 'block');
+        $(this).find("span").css('color', '#ffcc00');
+        $(this).find("b").css('background-color', '#ffcc00');
     });
 });
