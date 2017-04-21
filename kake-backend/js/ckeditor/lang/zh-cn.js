@@ -664,7 +664,7 @@ CKEDITOR.lang['zh-cn'] = {
         'toolbarTitle' : '上传功能',
         'tabTitle' : '上传附件',
         'upload' : '上传',
-        'fileLink' : '附件链接',
+        'fileLink' : '附件',
         'fileUrlIsEmpty' : '附件链接不能为空',
         'describe' : '描述',
         'show' : '显示',
