@@ -18,12 +18,9 @@ app.controller('items', function ($scope, $controller) {
                     page: page
                 },
                 success: function (res) {
-<<<<<<< Updated upstream
-                    $('.recommend').append(res.data.html);
-                    $('.recommend').attr('data-page', parseInt(page) + 1);
-=======
+
                     $('.recommend').append(res.data.html).attr('data-page', parseInt(page) + 1);
->>>>>>> Stashed changes
+
                 }
             });
         });
