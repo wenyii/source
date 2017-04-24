@@ -289,7 +289,7 @@ app.directive('kkTap', ['$parse', function ($parse) {
         restrict: 'A'
     };
 
-    command.cmpile = function ($element, attr) {
+    command.compile = function ($element, attr) {
         var fn = $parse(attr.kkTap);
         return function ngEventHandler(scope, element) {
             var alloy = {};
@@ -568,7 +568,7 @@ app.directive('kkLoading', function () {
         restrict: 'E',
         template: '' +
         '<div class="loading" ng-if="loading">' +
-        '   <div class="loading-bar loading-bounce kk-animate" ng-class="{ \'kk-t2b-show\': loading}">' +
+        '   <div class="loading-bar loading-bounce kk-animate" ng-class="{\'kk-t2b-show\': loading}">' +
         '       <div class="in"></div>' +
         '       <div class="out"></div>' +
         '   </div>' +
@@ -585,15 +585,42 @@ app.directive('kkMessage', function () {
         scope: true,
         restrict: 'E',
         template: '' +
-        '<div class="message kk-animate" ng-show="message" ng-class="{ \'kk-t2b-show-message\': $parent.message}">' +
+        '<div class="message kk-animate" ng-show="message" ng-class="{\'kk-t2b-show-message\': $parent.message}">' +
         '   <p ng-bind="message"></p>' +
         '   <button class="close">' +
-        '       <span aria-hidden="true" ng-click="$parent.message=null">&times;</span>' +
+        '       <span aria-hidden="true" ng-tap="$parent.message=null">&times;</span>' +
         '   </button>' +
         '</div>',
         replace: true
     }
 });
+
+/**
+ * Directive menu
+ */
+app.directive('kkMenu', ['generic', function (generic) {
+
+    var command = {
+        scope: {},
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+        var menu = $(attrs.kkMenu);
+        var pos = generic.offset(elem[0]);
+
+        menu.css({
+            left: pos.left - parseInt(menu.attr('margin-left')),
+            top: pos.top + pos.height + 10
+        });
+
+        elem[0].click(function () {
+            menu.slideToggle();
+        });
+    };
+
+    return command;
+}]);
 
 /**
  * Directive input cancel
