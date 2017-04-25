@@ -3,7 +3,7 @@ var app = angular.module('kkApp', []);
 /**
  * Service
  */
-app.service('generic', function ($http, $q) {
+app.service('genericService', function ($http, $q) {
 
     var that = this;
 
@@ -112,6 +112,7 @@ app.service('generic', function ($http, $q) {
         return this.bigHump(split).lcFirst();
     };
 
+    // Is array
     this.isArray = function (val) {
         if (null === val) {
             return false;
@@ -119,6 +120,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'object' && val.constructor === Array;
     };
 
+    // Is object
     this.isObject = function (val) {
         if (null === val) {
             return false;
@@ -126,6 +128,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'object' && val.constructor === Object;
     };
 
+    // Is json
     this.isJson = function (val) {
         if (null === val) {
             return false;
@@ -133,6 +136,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'object' && Object.prototype.toString.call(val).toLowerCase() === '[object object]';
     };
 
+    // Is string
     this.isString = function (val) {
         if (null === val) {
             return false;
@@ -140,6 +144,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'string' && val.constructor === String;
     };
 
+    // Is numeric
     this.isNumeric = function (val) {
         if (null === val || '' === val) {
             return false;
@@ -147,6 +152,7 @@ app.service('generic', function ($http, $q) {
         return !isNaN(val);
     };
 
+    // Is boolean
     this.isBoolean = function (val) {
         if (null === val) {
             return false;
@@ -154,6 +160,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'boolean' && val.constructor === Boolean;
     };
 
+    // Is function
     this.isFunction = function (val) {
         if (null === val) {
             return false;
@@ -161,6 +168,7 @@ app.service('generic', function ($http, $q) {
         return typeof val === 'function' && Object.prototype.toString.call(val).toLowerCase() === '[object function]';
     };
 
+    // Is empty
     this.isEmpty = function (val, outNumZero) {
         if (typeof val === 'undefined' || val === null) {
             return true;
@@ -193,6 +201,7 @@ app.service('generic', function ($http, $q) {
         return length;
     };
 
+    // Get document offset
     this.offset = function (obj) {
         return {
             left: obj.offsetLeft,
@@ -202,7 +211,47 @@ app.service('generic', function ($http, $q) {
         };
     };
 
-    // 发送 POST AJAX 请求
+    // Listen scroll reach to bottom
+    this.reachBottom = function (callback, prefixHeight) {
+
+        $(window).scroll(function () {
+
+            var scrollTop = $(window).scrollTop();
+            var documentHeight = $(document).height();
+            var windowHeight = $(window).height();
+
+            prefixHeight = parseInt(prefixHeight) || 0;
+
+            if ((prefixHeight + scrollTop) >= (documentHeight - windowHeight)) {
+                callback(scrollTop, documentHeight, windowHeight);
+            }
+        });
+    };
+
+    // Listen scroll for to top
+    this.goToTop = function (button, screenNum, time) {
+
+        button = $(button);
+        button.click(function () {
+            $('body, html').animate({scrollTop: 0}, time || 500);
+        });
+
+        $(window).scroll(function () {
+
+            var scrollTop = $(window).scrollTop();
+            var windowHeight = $(window).height();
+
+            screenNum = parseInt(screenNum) || 1;
+
+            if (scrollTop >= (windowHeight * screenNum)) {
+                button.fadeIn();
+            } else {
+                button.fadeOut();
+            }
+        });
+    };
+
+    // Send post base on ajax
     this.ajaxPost = function (uri, params) {
 
         var defer = $q.defer();
@@ -225,6 +274,16 @@ app.service('generic', function ($http, $q) {
         });
 
         return defer.promise;
+    };
+
+    // Validate
+    this.check = function (param, type) {
+
+        var items = {
+            phone: /^[\d]([\d\-\ ]+)?[\d]$/
+        };
+
+        return !!items[type].test(param);
     };
 });
 
@@ -335,80 +394,9 @@ app.directive('kkAnimation', function () {
 });
 
 /**
- * Directive sms
- */
-app.directive('kkSms', function () {
-
-    var command = {
-        scope: true,
-        restrict: 'A'
-    };
-
-    command.link = function (scope, elem, attrs) {
-
-        var time = attrs.smsTime || 60;
-        var type = attrs.smsAction || 'frontend-register';
-        var uri = 'general/ajax-sms';
-
-        var alloy = {};
-
-        alloy.tap = function () {
-
-            // disabled
-            if (typeof elem.attr('disabled') !== 'undefined') {
-                return null;
-            }
-
-            scope.loading = true;
-
-            var data = {
-                api: uri,
-                post: {
-                    phone: attrs.kkSms,
-                    type: type
-                }
-            };
-
-            data.success = function () {
-                scope.loading = false;
-                elem.attr('disabled', 'disabled');
-
-                var oldText = elem.html();
-                var newText = '<i>' + time + '</i>秒后可重发';
-
-                elem.html(newText);
-
-                var obj = elem.find('i');
-                var smsTime = setInterval(function () {
-                    var sec = parseInt(obj.text());
-                    if (sec <= 1) {
-                        clearInterval(smsTime);
-                        elem.html(oldText);
-                        elem.removeAttr('disabled');
-
-                        return null;
-                    }
-                    obj.text(sec - 1);
-                }, 1000);
-            };
-
-            data.fail = function (result) {
-                scope.loading = false;
-                scope.$parent.message = result.info;
-            };
-
-            scope.request(data);
-        };
-        new AlloyFinger(elem[0], alloy);
-    };
-
-    return command;
-});
-
-/**
  * Directive focus
  */
-app.directive('kkFocus', ['generic', function (generic) {
+app.directive('kkFocus', ['genericService', function (genericService) {
 
     var command = {
         scope: {},
@@ -434,7 +422,7 @@ app.directive('kkFocus', ['generic', function (generic) {
         this.scrollWidth = this.imageObject.width();
 
         if (!attrs.id) {
-            return generic.message('[kk-focus] Current element must has attribute `id`!');
+            return genericService.message('[kk-focus] Current element must has attribute `id`!');
         }
 
         Transform(this.scrollObject[0]);
@@ -513,7 +501,7 @@ app.directive('kkFocus', ['generic', function (generic) {
 /**
  * Directive scroll
  */
-app.directive('kkScroll', ['generic', function (generic) {
+app.directive('kkScroll', ['genericService', function (genericService) {
 
     var command = {
         scope: {},
@@ -525,16 +513,16 @@ app.directive('kkScroll', ['generic', function (generic) {
         var that = this;
 
         if (!attrs.id) {
-            return generic.message('[kk-scroll] Current element must has attribute `id`!');
+            return genericService.message('[kk-scroll] Current element must has attribute `id`!');
         }
 
         this.scrollObject = elem.children();
         this.imageObject = this.scrollObject.children();
 
         this.marginAndPadding = parseInt(this.scrollObject.css('marginLeft')) * 2
-        + parseInt(this.scrollObject.css('paddingLeft')) * 2
-        + parseInt(this.imageObject.find('img').css('marginLeft'))
-        + parseInt(this.imageObject.find('img').css('paddingLeft'));
+            + parseInt(this.scrollObject.css('paddingLeft')) * 2
+            + parseInt(this.imageObject.find('img').css('marginLeft'))
+            + parseInt(this.imageObject.find('img').css('paddingLeft'));
 
         Transform(this.scrollObject[0]);
         new AlloyTouch({
@@ -564,10 +552,12 @@ app.directive('kkScroll', ['generic', function (generic) {
  */
 app.directive('kkLoading', function () {
     return {
-        scope: true,
+        scope: {
+            loading: '='
+        },
         restrict: 'E',
         template: '' +
-        '<div class="loading" ng-if="loading">' +
+        '<div class="loading" ng-show="loading">' +
         '   <div class="loading-bar loading-bounce kk-animate" ng-class="{\'kk-t2b-show\': loading}">' +
         '       <div class="in"></div>' +
         '       <div class="out"></div>' +
@@ -582,23 +572,103 @@ app.directive('kkLoading', function () {
  */
 app.directive('kkMessage', function () {
     return {
-        scope: true,
+        scope: {
+            message: '='
+        },
         restrict: 'E',
         template: '' +
-        '<div class="message kk-animate" ng-show="message" ng-class="{\'kk-t2b-show-message\': $parent.message}">' +
-        '   <p ng-bind="message"></p>' +
-        '   <button class="close">' +
-        '       <span aria-hidden="true" ng-tap="$parent.message=null">&times;</span>' +
-        '   </button>' +
+        '<div class="message" ng-show="message">' +
+        '   <div class="message-bar kk-animate" ng-class="{\'kk-t2b-show\': message}">' +
+        '       <p ng-bind="message"></p>' +
+        '       <button class="close">' +
+        '           <span aria-hidden="true" kk-tap="closeMessage()">&times;</span>' +
+        '       </button>' +
+        '   </div>' +
         '</div>',
-        replace: true
+        replace: true,
+        link: function (scope) {
+            scope.closeMessage = function () {
+                scope.message = null;
+            };
+        }
     }
 });
 
 /**
+ * Directive sms
+ */
+app.directive('kkSms', ['genericService', 'genericFactory', function (genericService, genericFactory) {
+
+    var command = {
+        scope: false,
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+
+        var time = attrs.smsTime || 60;
+        var type = attrs.smsType;
+        var uri = 'general/ajax-sms';
+
+        var alloy = {};
+
+        alloy.tap = function () {
+
+            // disabled
+            if (typeof elem.attr('disabled') !== 'undefined') {
+                return null;
+            }
+
+            genericFactory.loading = true;
+
+            var data = {
+                api: uri,
+                post: {
+                    phone: attrs.kkSms,
+                    type: type
+                }
+            };
+
+            data.success = function () {
+                genericFactory.loading = false;
+                elem.attr('disabled', 'disabled');
+
+                var oldText = elem.html();
+                var newText = '<i>' + time + '</i>秒后可重发';
+
+                elem.html(newText);
+
+                var obj = elem.find('i');
+                var smsTime = setInterval(function () {
+                    var sec = parseInt(obj.text());
+                    if (sec <= 1) {
+                        clearInterval(smsTime);
+                        elem.html(oldText);
+                        elem.removeAttr('disabled');
+
+                        return null;
+                    }
+                    obj.text(sec - 1);
+                }, 1000);
+            };
+
+            data.fail = function (result) {
+                genericFactory.loading = false;
+                genericFactory.message = result.info;
+            };
+
+            scope.request(data);
+        };
+        new AlloyFinger(elem[0], alloy);
+    };
+
+    return command;
+}]);
+
+/**
  * Directive menu
  */
-app.directive('kkMenu', ['generic', function (generic) {
+app.directive('kkMenu', ['genericService', function (genericService) {
 
     var command = {
         scope: {},
@@ -607,20 +677,104 @@ app.directive('kkMenu', ['generic', function (generic) {
 
     command.link = function (scope, elem, attrs) {
         var menu = $(attrs.kkMenu);
-        var pos = generic.offset(elem[0]);
+        var pos = genericService.offset(elem[0]);
+
+        var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
         menu.css({
-            left: pos.left - parseInt(menu.attr('margin-left')),
-            top: pos.top + pos.height + 10
+            left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()),
+            top: pos.top + pos.height + 20
         });
 
-        elem[0].click(function () {
+        elem.click(function () {
             menu.slideToggle();
         });
     };
 
     return command;
 }]);
+
+/**
+ * Directive fixed box
+ */
+app.directive('kkFixed', ['genericService', function (genericService) {
+
+    var command = {
+        scope: {},
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+
+        var prefixHeight = parseInt(attrs.kkFixed) || 0;
+        var pos = genericService.offset(elem[0]);
+
+        var fillBoxClass = attrs.fixedBox || 'fixed-fill-box';
+        var _fillBoxClass = '.' + fillBoxClass;
+
+        $(window).scroll(function () {
+
+            var scrollTop = $(window).scrollTop();
+
+            if (prefixHeight + scrollTop >= pos.top) {
+                elem.addClass('fixed-box');
+
+                if (!$(_fillBoxClass).length) {
+                    var fillBox = $('<div></div>');
+                    fillBox.addClass(fillBoxClass).css({
+                        width: pos.width,
+                        height: pos.height
+                    });
+                    elem.before(fillBox);
+                }
+            } else {
+                elem.removeClass('fixed-box');
+                $(_fillBoxClass).remove();
+            }
+        });
+    };
+
+    return command;
+}]);
+
+/**
+ * Directive table card
+ */
+app.directive('kkTabCard', function () {
+
+    var command = {
+        scope: {},
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+        var tabElements = elem.find(attrs.tabElement || '*');
+        var tab = [];
+        var tabElement = [];
+        tabElements.each(function () {
+            var tabDiv = $(this).attr('tab-card');
+
+            if (tabDiv) {
+                tab.push($(tabDiv)[0]);
+                tabElement.push(this);
+            }
+        });
+
+        $(tabElement).click(function () {
+
+            // action tab
+            $(tabElement).removeClass(attrs.kkTabCard);
+            $(this).addClass(attrs.kkTabCard);
+
+            // action card
+            var tabDiv = $(this).attr('tab-card');
+            $(tab).fadeOut();
+            $(tabDiv).fadeIn();
+        });
+    };
+
+    return command;
+});
 
 /**
  * Directive input cancel
@@ -652,34 +806,26 @@ app.directive('kkInputCancel', function () {
 });
 
 /**
+ * Service for data
+ */
+app.factory('genericFactory', ['$timeout', function($timeout) {
+    return {
+        message: null,
+        loading: false
+    };
+}]);
+
+/**
  * Controller
  */
-app.controller('generic', function ($scope, $q, $timeout, generic) {
+app.controller('generic', function ($scope, $q, $timeout, genericService, genericFactory) {
 
-    $scope.service = generic;
-
-    $scope.loading = false;
-    $scope.message = null;
-    $scope.search = null;
+    $scope.service = genericService;
+    $scope.factory = genericFactory;
 
     $scope.conf = {
-        messageStay: 2500,
         ajaxLock: {}
     };
-
-    /**
-     * Close message
-     *
-     * @param newValue
-     * @param oldValue
-     */
-    $scope.$watch('message', function (newValue, oldValue, scope) {
-        if (newValue !== null && oldValue === null) {
-            $timeout(function () {
-                scope.message = null;
-            }, $scope.conf.messageStay);
-        }
-    });
 
     /**
      * Ajax lock
@@ -693,8 +839,8 @@ app.controller('generic', function ($scope, $q, $timeout, generic) {
             lock[api] = 0;
             return true;
         } else {
-            if (!lock[api] || generic.time() > lock[api]) {
-                lock[api] = generic.time() + 1000; // 1 second
+            if (!lock[api] || genericService.time() > lock[api]) {
+                lock[api] = genericService.time() + 1000; // 1 second
                 return true;
             }
             return false;
@@ -707,7 +853,6 @@ app.controller('generic', function ($scope, $q, $timeout, generic) {
      * @param option
      */
     $scope.request = function (option) {
-        var service = $scope.service;
         option.loading = option.loading || true;
 
         if (!$scope.ajaxLock(option.api)) {
@@ -715,23 +860,23 @@ app.controller('generic', function ($scope, $q, $timeout, generic) {
         }
 
         if (option.loading) {
-            $scope.loading = true;
+            $scope.factory.loading = true;
         }
 
-        service.ajaxPost(option.api, option.post).then(function (result) {
+        $scope.service.ajaxPost(option.api, option.post).then(function (result) {
 
-            $scope.loading = false;
-            $scope.message = result.info;
+            $scope.factory.loading = false;
+            $scope.factory.message = result.info;
 
             option.success && option.success(result);
         }, function (result) {
 
-            $scope.loading = false;
+            $scope.factory.loading = false;
 
             if (option.fail) {
                 option.fail(result);
             } else {
-                $scope.message = result.info;
+                $scope.factory.message = result.info;
             }
         });
     };
