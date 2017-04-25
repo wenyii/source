@@ -76,42 +76,41 @@ header {
       float: right;
       .margin-top(12px);
     }
-    .menu-1 {
-      position: absolute;
-      display: none;
-      z-index: 30;
-      right: 0px;
-      top: 35px;
-      width: 126px;
-      height: 135px;
-      padding: 0 10px;
-      background-color: rgba(0, 0, 0, 0.82);
-      border-radius: 5px;
-      .triangle {
-        position: absolute;
-        top: -10px;
-        right: 17px;
-        width: 21px;
-        height: 10px;
-      }
-      div {
-        hr {
-          margin: 0;
-        }
-        a {
-          height: 45px;
-          line-height: 45px;
-          .font-size(15px);
-          text-align: left;
-          color: #ffffff;
-          display: block;
-          img {
-            margin-left: 0;
-            margin-right: 5px;
-            width: 19px;
-            height: 20px;
-          }
-        }
+  }
+}
+
+#menu {
+  display: none;
+  position: absolute;
+  z-index: 998;
+  width: 126px;
+  height: 135px;
+  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.82);
+  border-radius: 5px;
+  .triangle {
+    position: absolute;
+    top: -10px;
+    right: 17px;
+    width: 21px;
+    height: 10px;
+  }
+  div {
+    hr {
+      margin: 0;
+    }
+    a {
+      height: 45px;
+      line-height: 45px;
+      .font-size(15px);
+      text-align: left;
+      color: #ffffff;
+      display: block;
+      img {
+        margin-left: 0;
+        margin-right: 5px;
+        width: 19px;
+        height: 20px;
       }
     }
   }
@@ -182,18 +181,21 @@ footer {
   }
 }
 
-/*
- * Loading
- */
-div.loading {
+.shade (@opacity: .3, @index: 998) {
   position: fixed;
-  z-index: 998;
+  z-index: @index;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, @opacity);
+}
 
+/*
+ * Loading
+ */
+div.loading {
+  .shade;
   .loading-bar {
     width: 36px;
     height: 36px;
@@ -233,36 +235,50 @@ div.loading {
  * Message
  */
 .message {
-  @height: 80px;
-  @padding: 15px;
-  @color: #333;
-  width: 290px;
-  height: @height;
-  padding: @padding;
-  border-radius: 5px;
-  border: 1px @color solid;
-  color: @color;
-  background-color: rgba(255, 217, 20, .9);
-  text-align: center;
-  line-height: @height - @padding * 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 999;
-  font-size: 16px;
+  .shade;
+  .message-bar {
+    @height: 80px;
+    @padding: 15px;
+    @color: #333;
 
-  button.close {
-    @length-px: 20px;
-    @margin-px: 5px;
-    width: @length-px;
-    height: @length-px;
-    position: absolute;
-    right: @margin-px;
-    top: @margin-px;
+    width: 290px;
+    height: @height;
+    position: relative;
+    z-index: 999;
+    margin: 42% auto;
+
+    padding: @padding;
+    border-radius: 5px;
+    border: 1px @color solid;
     color: @color;
-    line-height: @length-px;
+    background-color: rgba(255, 217, 20, .9);
+    text-align: center;
+    line-height: @height - @padding * 2;
+    font-size: 16px;
+
+    button.close {
+      @length-px: 30px;
+      @margin-px: 10px;
+      width: @length-px;
+      height: @length-px;
+      position: absolute;
+      right: @margin-px;
+      top: (@height - @length-px) / 2;
+      color: @color;
+      font-size: @length-px;
+      line-height: @length-px;
+    }
   }
+}
+
+/*
+ * Fixed
+ */
+.fixed-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
 }
 
 /*
@@ -302,39 +318,5 @@ div.loading {
 
   &.kk-t2b-show {
     animation: top-to-bottom-show .5s 1;
-  }
-
-  // top move to bottom (show) for message
-  @keyframes top-to-bottom-show-message {
-    0% {
-      transform: translate(-50%, -50px);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
-  }
-
-  &.kk-t2b-show-message {
-    animation: top-to-bottom-show-message .5s 1;
-  }
-
-  // bottom move to top (hide)
-  @keyframes bottom-to-top-hide {
-    0% {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translate(0, -50px);
-      opacity: 0;
-    }
-  }
-
-  &.kk-b2t-hide {
-    animation: top-to-bottom-hide .5s 1;
   }
 }
