@@ -231,11 +231,13 @@ app.service('genericService', function ($http, $q) {
     // Listen scroll for to top
     this.goToTop = function (button, screenNum, time) {
 
-        button = $(button);
-        button.click(function () {
-            $('body, html').animate({scrollTop: 0}, time || 500);
+        new AlloyFinger(button, {
+            tap: function() {
+                $('body, html').animate({scrollTop: 0}, time || 500);
+            }
         });
 
+        button = $(button);
         $(window).scroll(function () {
 
             var scrollTop = $(window).scrollTop();
@@ -252,7 +254,7 @@ app.service('genericService', function ($http, $q) {
     };
 
     // Send post base on ajax
-    this.ajaxPost = function (uri, params) {
+    this.ajaxPost = function (uri, params, errorCallback) {
 
         var defer = $q.defer();
         params[that.csrfKey] = this.csrfToken;
@@ -270,7 +272,12 @@ app.service('genericService', function ($http, $q) {
             }
 
         }, function () {
-            that.message('An error occurred, try again later.');
+            var error = 'An error occurred, try again later.';
+            if (errorCallback) {
+                errorCallback(error);
+            } else {
+                that.message(error);
+            }
         });
 
         return defer.promise;
@@ -382,11 +389,13 @@ app.directive('kkAnimation', function () {
 
     command.link = function (scope, elem, attrs) {
         var cls = attrs.kkAnimation;
-        elem.bind('click', function () {
-            elem.addClass(cls);
-            setTimeout(function () {
-                elem.removeClass(cls);
-            }, 500);
+        new AlloyFinger(elem[0], {
+            tap: function() {
+                elem.addClass(cls);
+                setTimeout(function () {
+                    elem.removeClass(cls);
+                }, 500);
+            }
         });
     };
 
@@ -577,10 +586,10 @@ app.directive('kkMessage', function () {
         },
         restrict: 'E',
         template: '' +
-        '<div class="message" ng-show="message">' +
+        '<div class="message" ng-show="message" kk-tap="closeMessage()">' +
         '   <div class="message-bar kk-animate" ng-class="{\'kk-t2b-show\': message}">' +
         '       <p ng-bind="message"></p>' +
-        '       <button class="close">' +
+        '       <button class="close hidden">' +
         '           <span aria-hidden="true" kk-tap="closeMessage()">&times;</span>' +
         '       </button>' +
         '   </div>' +
@@ -686,8 +695,10 @@ app.directive('kkMenu', ['genericService', function (genericService) {
             top: pos.top + pos.height + 20
         });
 
-        elem.click(function () {
-            menu.slideToggle();
+        new AlloyFinger(elem[0], {
+            tap: function() {
+                menu.slideToggle();
+            }
         });
     };
 
@@ -760,16 +771,19 @@ app.directive('kkTabCard', function () {
             }
         });
 
-        $(tabElement).click(function () {
+        $.each(tabElement, function() {
+            new AlloyFinger(this, {
+                tap: function() {
+                    // action tab
+                    $(tabElement).removeClass(attrs.kkTabCard);
+                    $(this).addClass(attrs.kkTabCard);
 
-            // action tab
-            $(tabElement).removeClass(attrs.kkTabCard);
-            $(this).addClass(attrs.kkTabCard);
-
-            // action card
-            var tabDiv = $(this).attr('tab-card');
-            $(tab).fadeOut();
-            $(tabDiv).fadeIn();
+                    // action card
+                    var tabDiv = $(this).attr('tab-card');
+                    $(tab).hide();
+                    $(tabDiv).fadeIn();
+                }
+            });
         });
     };
 
@@ -806,9 +820,53 @@ app.directive('kkInputCancel', function () {
 });
 
 /**
+ * Directive ajax load
+ */
+app.directive('kkAjaxLoad', ['genericService', 'genericFactory', function (genericService, genericFactory) {
+
+    var command = {
+        scope: false,
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+        genericService.reachBottom(function () {
+
+            if (elem.attr('data-over')) {
+                return null;
+            }
+
+            var page = parseInt(elem.attr('data-page'));
+            page = page ? page : 2;
+
+            scope.request({
+                api: attrs.kkAjaxLoad,
+                post: {
+                    page: page
+                },
+                success: function (res) {
+                    if (genericService.isEmpty(res.data.html)) {
+                        elem.attr('data-over', true);
+
+                        if (attrs.blankMessage) {
+                            genericFactory.message = attrs.blankMessage;
+                        }
+                        return null;
+                    }
+
+                    elem.append(res.data.html).attr('data-page', page + 1);
+                }
+            });
+        });
+    };
+
+    return command;
+}]);
+
+/**
  * Service for data
  */
-app.factory('genericFactory', ['$timeout', function($timeout) {
+app.factory('genericFactory', ['$timeout', function ($timeout) {
     return {
         message: null,
         loading: false
@@ -863,10 +921,17 @@ app.controller('generic', function ($scope, $q, $timeout, genericService, generi
             $scope.factory.loading = true;
         }
 
-        $scope.service.ajaxPost(option.api, option.post).then(function (result) {
+        $scope.service.ajaxPost(option.api, option.post, function (error) {
 
             $scope.factory.loading = false;
+            $scope.factory.message = error;
+
+        }).then(function (result) {
+
+            $scope.factory.loading = false;
+            if (!$scope.service.isEmpty(result.info)) {
             $scope.factory.message = result.info;
+            }
 
             option.success && option.success(result);
         }, function (result) {

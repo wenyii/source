@@ -1138,6 +1138,10 @@ $(function () {
             return '价格必须为数字类型';
         }
 
+        if (!$._isNumeric(record.purchase_limit)) {
+            return '限购数量必须为数字类型';
+        }
+
         if ($._isEmpty(record.info)) {
             return '简介不能为空';
         }

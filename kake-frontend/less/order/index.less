@@ -1,4 +1,5 @@
 @import "../main";
+
 body {
   max-width: 768px;
   margin: auto;
@@ -17,6 +18,8 @@ p {
 }
 
 .classify {
+  width: 100%;
+  background-color: white;
   height: 38px;
   border-top: 1px solid #cdcdcd;
   border-bottom: 1px solid #cdcdcd;
@@ -39,16 +42,13 @@ p {
     .classify-1-2 {
       flex: 1;
     }
+    div.cur-1 {
+      span {
+        color: #ffcc00;
+        border-bottom: 2px solid #ffcc00;
+      }
+    }
   }
-}
-
-.cur-1 {
-  color: #ffcc00;
-  border-bottom: 2px solid #ffcc00;
-}
-
-.ongoing {
-  //display: none;
 }
 
 .order-status {
@@ -115,9 +115,6 @@ p {
       }
     }
   }
-  .invoice-schedule-button {
-    display: none;
-  }
   .confirmation-number {
     margin-left: 15px;
     margin-right: 33px;
@@ -143,7 +140,6 @@ p {
 }
 
 .refund-schedule {
-  display: none;
   margin-left: 15px;
   margin-right: 33px;
   .font-size(15px);
@@ -216,11 +212,6 @@ p {
   margin: 0 15px;
 }
 
-.invoice-company {
-  display: none;
-  margin: 0 15px;
-}
-
 .invoice-name {
   .margin-top(22px);
   padding-bottom: 18px;
@@ -283,4 +274,10 @@ p {
 
 .order-complete {
   display: none;
+}
+
+.no-order {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
 }
