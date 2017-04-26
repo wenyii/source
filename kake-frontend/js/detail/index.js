@@ -9,8 +9,8 @@ app.controller('detail', function ($scope, $controller) {
     $scope.buy = {
         package: {},
         user_info: {
-            name: '黎晓荣',
-            phone: '15021275672',
+            name: null,
+            phone: null,
             captcha: null
         },
         payment_method: 'wx'
