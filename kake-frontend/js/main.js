@@ -79,8 +79,106 @@ app.service('genericService', function ($http, $q) {
     };
 
     // String.trim
-    String.prototype.trim = function () {
-        return this.replace(/(^\s*)|(\s*$)/g, '');
+    String.prototype.trim = function (str) {
+        str = str ? ('\\s' + str) : '\\s';
+        return this.replace(eval('/(^[' + str + ']*)|([' + str + ']*$)/g'), '');
+    };
+
+    // String.leftTrim
+    String.prototype.leftTrim = function (str) {
+        str = str ? ('\\s' + str) : '\\s';
+        return this.replace(eval('/(^[' + str + ']*)/g'), '');
+    };
+
+    // String.rightTrim
+    String.prototype.rightTrim = function (str) {
+        str = str ? ('\\s' + str) : '\\s';
+        return this.replace(eval('/([' + str + ']*$)/g'), '');
+    };
+
+    // String.lengths (mb length)
+    String.prototype.lengths = function () {
+
+        var length = 0;
+        for (var i = 0; i < this.length; i++) {
+            if (0 !== (this.charCodeAt(i) & 0xff00)) {
+                length++;
+            }
+            length++;
+        }
+
+        return length;
+    };
+
+    // String.pad
+    String.prototype.pad = function (padstr, length, type) {
+
+        padstr = padstr.toString();
+        type = type || 'left';
+
+        if (this.length >= length || !['left', 'right', 'both'].exists(type)) {
+            return this;
+        }
+        var last = (length - this.length) % padstr.length;
+        var padnum = _padnum = Math.floor((length - this.length) / padstr.length);
+
+        if (last > 0) {
+            padnum += 1;
+        }
+
+        var _that = this;
+        for (i = 0; i < padnum; i++) {
+            if (i === _padnum) {
+                padstr = padstr.substr(0, last);
+            }
+            switch (type) {
+                case 'left':
+                    _that = padstr + _that;
+                    break;
+                case 'right':
+                    _that += padstr;
+                    break;
+                case 'both':
+                    _that = (0 === i % 2) ? (padstr + _that) : (_that + padstr);
+                    break;
+            }
+        }
+
+        return _that;
+    };
+
+    // String.fill
+    String.prototype.fill = function (fillstr, length, type) {
+
+        fillstr = fillstr.toString();
+        type = type || 'left';
+
+        if (length < 1 || !['left', 'right', 'both'].exists(type)) {
+            return this;
+        }
+
+        var _that = this;
+        for (i = 0; i < length; i++) {
+            switch (type) {
+                case 'left':
+                    _that = fillstr + _that;
+                    break;
+                case 'right':
+                    _that += fillstr;
+                    break;
+                case 'both':
+                    _that = (0 === i % 2) ? (fillstr + _that) : (_that + fillstr);
+                    break;
+            }
+        }
+
+        return _that;
+    };
+
+    // String.repeat
+    String.prototype.repeat = function (num) {
+        num = (isNaN(num) || num < 1) ? 1 : num + 1;
+        return new Array(num).join(this)
     };
 
     // String.ucWords
@@ -110,6 +208,32 @@ app.service('genericService', function ($http, $q) {
     // String.smallHump
     String.prototype.smallHump = function (split) {
         return this.bigHump(split).lcFirst();
+    };
+
+    // Date.format
+    // yyyy-MM-dd hh:mm:ss
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S": this.getMilliseconds()
+        };
+
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+
+        return fmt;
     };
 
     // Is array
@@ -561,7 +685,7 @@ app.directive('kkScroll', ['genericService', function (genericService) {
             target: that.scrollObject[0],
             property: 'translateX',
             //min: -that.scrollObject.width() + window.innerWidth - this.marginAndPadding,
-           min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth-15* that.scrollObject.children().length,
+            min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - 15 * that.scrollObject.children().length,
             max: 0,
             sensitivity: 1.5,
 

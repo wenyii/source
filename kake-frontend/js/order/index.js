@@ -5,22 +5,92 @@ app.controller('order', function ($scope, $controller) {
 
     $controller('generic', {$scope: $scope});
 
+    $scope.f5 = function () {
+        setTimeout(function () {
+            history.go(0);
+        }, 2500);
+    };
+
+    $scope.refund = [];
+    $scope.order = [];
     $scope.bill = [];
+
+    // 申请退款
+    $scope.applyRefund = function (id) {
+
+        var refund = $scope.refund[id];
+
+        if (!refund || $scope.service.isEmpty(refund.remark)) {
+            $scope.factory.message = '请填写退款申请原因';
+            return null;
+        }
+
+        refund.id = id;
+        $scope.request({
+            api: 'order/ajax-apply-refund',
+            post: refund,
+            success: $scope.f5
+        });
+    };
+
+    // 申请预约
+    $scope.applyOrder = function (id) {
+
+        var order = $scope.order[id];
+
+        if (!order || $scope.service.isEmpty(order.name)) {
+            $scope.factory.message = '请填写入住人姓名';
+            return null;
+        }
+
+        if (!order || $scope.service.isEmpty(order.phone) || !$scope.service.check(order.phone, 'phone')) {
+            $scope.factory.message = '请填写正确的入住人联系方式';
+            return null;
+        }
+
+        if (!order || $scope.service.isEmpty(order.date)) {
+            $scope.factory.message = '请选择入住日期';
+            return null;
+        }
+
+        order.id = id;
+        order.time = order.date.format('yyyy-MM-dd');
+
+        $scope.request({
+            api: 'order/ajax-apply-order',
+            post: order,
+            success: $scope.f5
+        });
+    };
+
+    // 我已入住
+    $scope.completed = function (id) {
+        var result = confirm('确定已入住酒店?');
+        if (!result) {
+            return null;
+        }
+
+        $scope.request({
+            api: 'order/ajax-completed',
+            post: {
+                id: id
+            },
+            success: $scope.f5
+        });
+    };
 
     // 申请发票
     $scope.applyBill = function (id) {
 
-        var service = $scope.service;
-        var factory = $scope.factory;
         var bill = $scope.bill[id];
 
-        if (bill.company && service.isEmpty(bill.company_name)) {
-            factory.message = '请填写发票抬头公司名称';
+        if (!bill || bill.company && $scope.service.isEmpty(bill.company_name)) {
+            $scope.factory.message = '请填写发票抬头公司名称';
             return null;
         }
 
-        if (service.isEmpty(bill.address)) {
-            factory.message = '请填写发票的邮寄地址';
+        if (!bill || $scope.service.isEmpty(bill.address)) {
+            $scope.factory.message = '请填写发票的邮寄地址';
             return null;
         }
 
@@ -28,11 +98,7 @@ app.controller('order', function ($scope, $controller) {
         $scope.request({
             api: 'order/ajax-apply-bill',
             post: bill,
-            success: function () {
-                setTimeout(function () {
-                    history.go(0);
-                }, 3000);
-            }
+            success: $scope.f5
         });
     };
 });
