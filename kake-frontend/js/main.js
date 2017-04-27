@@ -232,7 +232,7 @@ app.service('genericService', function ($http, $q) {
     this.goToTop = function (button, screenNum, time) {
 
         new AlloyFinger(button, {
-            tap: function() {
+            tap: function () {
                 $('body, html').animate({scrollTop: 0}, time || 500);
             }
         });
@@ -291,6 +291,27 @@ app.service('genericService', function ($http, $q) {
         };
 
         return !!items[type].test(param);
+    };
+
+    // Parse query string
+    this.parseQueryString = function (url) {
+
+        if (url.indexOf('?') !== -1) {
+            url = url.split('?')[1];
+        }
+
+        if (url.indexOf('#')) {
+            url = url.split('#')[0];
+        }
+
+        url = url.split('&');
+        var items = {};
+        $.each(url, function (key, item) {
+            item = item.split('=');
+            items[item[0]] = item[1];
+        });
+
+        return items;
     };
 });
 
@@ -390,7 +411,7 @@ app.directive('kkAnimation', function () {
     command.link = function (scope, elem, attrs) {
         var cls = attrs.kkAnimation;
         new AlloyFinger(elem[0], {
-            tap: function() {
+            tap: function () {
                 elem.addClass(cls);
                 setTimeout(function () {
                     elem.removeClass(cls);
@@ -696,7 +717,7 @@ app.directive('kkMenu', ['genericService', function (genericService) {
         });
 
         new AlloyFinger(elem[0], {
-            tap: function() {
+            tap: function () {
                 menu.slideToggle();
             }
         });
@@ -771,9 +792,9 @@ app.directive('kkTabCard', function () {
             }
         });
 
-        $.each(tabElement, function() {
+        $.each(tabElement, function () {
             new AlloyFinger(this, {
-                tap: function() {
+                tap: function () {
                     // action tab
                     $(tabElement).removeClass(attrs.kkTabCard);
                     $(this).addClass(attrs.kkTabCard);
@@ -822,7 +843,7 @@ app.directive('kkInputCancel', function () {
 /**
  * Directive ajax load
  */
-app.directive('kkAjaxLoad', ['genericService', 'genericFactory', function (genericService, genericFactory) {
+app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', function (genericService, genericFactory, $compile) {
 
     var command = {
         scope: false,
@@ -839,11 +860,13 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', function (gener
             var page = parseInt(elem.attr('data-page'));
             page = page ? page : 2;
 
+            var data = attrs.extraParams;
+            data = data ? genericService.parseQueryString(data) : {};
+            data.page = page;
+
             scope.request({
                 api: attrs.kkAjaxLoad,
-                post: {
-                    page: page
-                },
+                post: data,
                 success: function (res) {
                     if (genericService.isEmpty(res.data.html)) {
                         elem.attr('data-over', true);
@@ -853,6 +876,9 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', function (gener
                         }
                         return null;
                     }
+
+                    var tpl = $compile(res.data.html);
+                    res.data.html = tpl(scope);
 
                     elem.append(res.data.html).attr('data-page', page + 1);
                 }
@@ -930,7 +956,7 @@ app.controller('generic', function ($scope, $q, $timeout, genericService, generi
 
             $scope.factory.loading = false;
             if (!$scope.service.isEmpty(result.info)) {
-            $scope.factory.message = result.info;
+                $scope.factory.message = result.info;
             }
 
             option.success && option.success(result);
