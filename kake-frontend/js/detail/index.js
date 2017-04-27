@@ -9,11 +9,11 @@ app.controller('detail', function ($scope, $controller) {
     $scope.buy = {
         package: {},
         user_info: {
-            name: '王宾',
-            phone: 17130046175,
+            name: '黎哈哈',
+            phone: 15021275672,
             captcha: null
         },
-        payment_method: 'ali'
+        payment_method: 'wx'
     };
 
     // 删减商品

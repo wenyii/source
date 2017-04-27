@@ -15,6 +15,31 @@ app.controller('order', function ($scope, $controller) {
     $scope.order = [];
     $scope.bill = [];
 
+    // 立即付款
+    $scope.paymentAgain = function ($paymentMethod, $orderNumber) {
+        $scope.request({
+            api: 'order/payment-again',
+            post: {
+                payment_method: $paymentMethod,
+                order_number: $orderNumber
+            },
+            success: function (res) {
+                location.href = res.data;
+            }
+        });
+    };
+
+    // 取消订单
+    $scope.cancelOrder = function ($orderNumber) {
+        $scope.request({
+            api: 'order/cancel-order',
+            post: {
+                order_number: $orderNumber
+            },
+            success: $scope.f5
+        });
+    };
+
     // 申请退款
     $scope.applyRefund = function (id) {
 
