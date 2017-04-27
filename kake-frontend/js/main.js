@@ -560,7 +560,8 @@ app.directive('kkScroll', ['genericService', function (genericService) {
             vertical: false,
             target: that.scrollObject[0],
             property: 'translateX',
-            min: -that.scrollObject.width() + window.innerWidth - this.marginAndPadding,
+            //min: -that.scrollObject.width() + window.innerWidth - this.marginAndPadding,
+           min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth-15* that.scrollObject.children().length,
             max: 0,
             sensitivity: 1.5,
 
@@ -713,7 +714,7 @@ app.directive('kkMenu', ['genericService', function (genericService) {
 
         menu.css({
             left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()),
-            top: pos.top + pos.height + 20
+            top: pos.top + pos.height + 15
         });
 
         new AlloyFinger(elem[0], {

@@ -33,7 +33,7 @@ body {
           margin-left: 15px;
           margin-right: 13px;
           &.current {
-            background-color: orangered;
+            background-color: #ffcc00;
           }
         }
         &.disabled {
@@ -77,30 +77,25 @@ body {
             float: right;
             border: 1px solid #cccccc;
             span {
+              float: left;
               display: inline-block;
               text-align: center;
               line-height: 25px;
               .margin-top(-1px);
-              .font-size(15px);
+              .font-size(20px);
             }
             .reduction {
               width: 24px;
               background-color: #bababa;
-              .font-size(15px);
             }
             .num {
               width: 45px;
               border-left: 1px solid #cccccc;
               border-right: 1px solid #cccccc;
-              margin-left: -4px;
-              margin-right: -5px;
-              .font-size(20px);
               color: #ffcc00;
-
             }
             .add {
               width: 24px;
-              .font-size(15px);
             }
           }
         }
@@ -155,13 +150,9 @@ body {
     }
     .pay {
       float: right;
-      //background: url("@{img}/pink-circle.png");
-      input {
-        // display: none;
-      }
     }
     &.current {
-      border-color: green;
+      border-color: #ffcc00;
     }
   }
 }
