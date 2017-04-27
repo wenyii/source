@@ -1117,10 +1117,16 @@ $(function () {
         event.preventDefault();
 
         var that = $(this);
+        var info = that.attr('confirm-info');
+
+        if (!info) {
+            info = '是否确定执行"' + that.text().trim() + '"操作?';
+        }
+
         $.placeModal({
             id: 'show-confirm',
             size: 'sm',
-            message: '是否确定执行"' + that.text().trim() + '"操作?',
+            message: info,
             yesCallback: function () {
                 location.href = that.attr('href');
             }
