@@ -993,19 +993,22 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
                 api: attrs.kkAjaxLoad,
                 post: data,
                 success: function (res) {
-                    if (genericService.isEmpty(res.data.html)) {
-                        elem.attr('data-over', true);
 
+                    var over = function() {
+                        elem.attr('data-over', true);
                         if (attrs.blankMessage) {
                             genericFactory.message = attrs.blankMessage;
                         }
                         return null;
-                    }
+                    };
+
+                    genericService.isEmpty(res.data.html) && over();
 
                     var tpl = $compile(res.data.html);
                     res.data.html = tpl(scope);
 
                     elem.append(res.data.html).attr('data-page', page + 1);
+                    res.data.over && over();
                 }
             });
         });
