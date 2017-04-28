@@ -9,8 +9,8 @@ app.controller('detail', function ($scope, $controller) {
     $scope.buy = {
         package: {},
         user_info: {
-            name: '黎哈哈',
-            phone: 15021275672,
+            name: null,
+            phone: null,
             captcha: null
         },
         payment_method: 'wx'
@@ -86,7 +86,7 @@ app.controller('detail', function ($scope, $controller) {
             return null;
         }
 
-        if (!user.captcha || user.captcha.length !== 4) {
+        if (!user.captcha || user.captcha.toString().length !== 4) {
             factory.message = '手机验证码应是4位数字';
             return null;
         }

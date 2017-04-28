@@ -31,6 +31,12 @@ app.controller('order', function ($scope, $controller) {
 
     // 取消订单
     $scope.cancelOrder = function ($orderNumber) {
+
+        var result = confirm('确定取消该订单吗?');
+        if (!result) {
+            return null;
+        }
+
         $scope.request({
             api: 'order/cancel-order',
             post: {
