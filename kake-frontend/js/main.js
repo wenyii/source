@@ -3,7 +3,7 @@ var app = angular.module('kkApp', []);
 /**
  * Service
  */
-app.service('genericService', function ($http, $q) {
+app.service('genericService', ['$http', '$q', function ($http, $q) {
 
     var that = this;
 
@@ -437,12 +437,12 @@ app.service('genericService', function ($http, $q) {
 
         return items;
     };
-});
+}]);
 
 /**
  * Config
  */
-app.config(function ($httpProvider) {
+app.config(['$httpProvider', function ($httpProvider) {
 
     var jsonToUrl = function (obj) {
         var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
@@ -489,7 +489,7 @@ app.config(function ($httpProvider) {
     // Statement ajax request
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-});
+}]);
 
 /**
  * Directive tap replace ng-click
@@ -1030,7 +1030,7 @@ app.factory('genericFactory', ['$timeout', function ($timeout) {
 /**
  * Controller
  */
-app.controller('generic', function ($scope, $q, $timeout, genericService, genericFactory) {
+app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'genericFactory', function ($scope, $q, $timeout, genericService, genericFactory) {
 
     $scope.service = genericService;
     $scope.factory = genericFactory;
@@ -1122,4 +1122,4 @@ app.controller('generic', function ($scope, $q, $timeout, genericService, generi
             onBridgeReady();
         }
     };
-});
+}]);

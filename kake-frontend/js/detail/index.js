@@ -1,7 +1,7 @@
 /**
  * 控制器 - 详情
  */
-app.controller('detail', function ($scope, $controller) {
+app.controller('detail', ['$scope', '$controller', function ($scope, $controller) {
 
     $controller('generic', {$scope: $scope});
 
@@ -110,4 +110,4 @@ app.controller('detail', function ($scope, $controller) {
 
         location.href = url;
     };
-});
+}]);

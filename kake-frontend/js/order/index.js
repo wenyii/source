@@ -1,7 +1,7 @@
 /**
  * 控制器 - 订单中心
  */
-app.controller('order', function ($scope, $controller) {
+app.controller('order', ['$scope', '$controller', function ($scope, $controller) {
 
     $controller('generic', {$scope: $scope});
 
@@ -132,5 +132,5 @@ app.controller('order', function ($scope, $controller) {
             success: $scope.f5
         });
     };
-});
+}]);
 
