@@ -1,14 +1,7 @@
 @import "../main";
 
-body {
-  font-family: PingFang-SC-Medium;
-  color: #000000;
-  position: relative;
-}
-
 .body {
   margin-bottom: 50px;
-  padding-bottom: 30px;
 }
 
 .detail-hotel-1 {
@@ -18,7 +11,7 @@ body {
 
 .combo {
   ul {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     li {
       .combo-1 {
         margin: 0 15px;
@@ -66,7 +59,7 @@ body {
           padding-left: 56px;
           padding-right: 15px;
           .margin-top(18px);
-          height: 25px;
+          height: 30px;
           .combo-4-1 {
             float: left;
             .font-size(15px);
@@ -104,16 +97,22 @@ body {
 }
 
 .linkman {
-  margin: 0 15px 20px 15px;
+  margin-right: 15px;
+  margin-bottom: 40px;
   .detail-hotel-1 {
     margin-bottom: 12px;
   }
+  .input-border {
+    height: 44px;
+    border-bottom: 1px solid #eeeeee;
+    margin-left: 15px;
+  }
   input {
-    line-height: 44px;
+    height: 20px;
+    .margin-top(10px);
     width: 100%;
     border: none;
     .font-size(14px);
-    border-bottom: 1px solid #eeeeee;
     padding-left: 15px;
     font-family: PingFang-SC-Regular;
   }
@@ -130,7 +129,8 @@ body {
 }
 
 .payment {
-  margin: 0 15px;
+  margin-right: 15px;
+  padding-bottom: 20px;
   .detail-hotel-1 {
     margin-bottom: 17px;
   }
@@ -141,6 +141,7 @@ body {
     line-height: 50px;
     .margin-top(10px);
     border: 1px solid #d7d7d7;
+    margin-left: 15px;
     img {
       display: inline-block;
       width: 30px;
@@ -149,6 +150,7 @@ body {
     .pay {
       float: right;
       color: #a8a8a8;
+      font-weight: normal;
     }
     &.current {
       border-color: #ffcc00;
@@ -156,3 +158,8 @@ body {
   }
 }
 
+.blank1 {
+  width: 100%;
+  height: 30px;
+  background-color: #eeeeee;
+}

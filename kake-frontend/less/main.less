@@ -12,10 +12,12 @@
   font-size: @size;
 }
 body {
-  font-family: "PingFang SC", "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family:"PingFang-SC-Medium",  "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   font-weight: 100;
   max-width: 768px;
   margin: auto;
+  color: #000000;
+  position: relative;
   input, button, select, textarea, input:focus, span:focus {
     outline: none;
   }
@@ -50,26 +52,13 @@ header {
   font-family: @typeface;
   .font-size(18px);
   background-color: #ffcc00;
-  .return {
-    width: 30px;
-    display: inline-block;
-    margin-left: 15px;
-    height: 40px;
-    float: left;
-    line-height: 40px;
-    img {
-      .margin-top(10px);
-      width: 20px;
-      height: 20px;
-    }
-  }
+  position: relative;
   .detail {
     width: 30px;
     height: 40px;
     display: inline-block;
-    float: right;
-    margin-right: 15px;
-    position: relative;
+    position: absolute;
+    right:15px;
     img {
       width: 21px;
       height: 16px;
@@ -125,7 +114,7 @@ header {
 footer {
   background-color: #ffffff;
   width: 100%;
-  max-width: 700px;
+  max-width: 768px;
   height: 50px;
   position: fixed;
   bottom: 0;
@@ -136,9 +125,9 @@ footer {
     flex: 2;
     background-color: #ffffff;
     color: #ffcc00;
-    font-family: PingFang-SC-Bold;
     p {
       margin-left: 15px;
+      .font-size(15px);
       span {
         font-weight: bold;
         .font-size(20px);
@@ -172,7 +161,7 @@ footer {
   color: #323232;
   .margin-top(23px);
   text-align: center;
-  font-family: PingFang-SC-Bold;
+  font-family: PingFang-SC-Medium;
   span {
     width: 8px;
     height: 19px;
