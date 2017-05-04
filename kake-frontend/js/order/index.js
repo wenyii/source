@@ -15,6 +15,29 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
     $scope.order = [];
     $scope.bill = [];
 
+    // 微信吊起支付
+    $scope.wxPayment = function (data, orderNumber) {
+        function onBridgeReady() {
+            WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (response) {
+                    if (response.err_msg === 'get_brand_wcpay_request:ok') {
+                        location.href = requestUrl + 'order/wx-pay-result&order_number=' + orderNumber
+                    }
+                }
+            );
+        }
+
+        if (typeof WeixinJSBridge === 'undefined') {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+    };
+    
     // 立即付款
     $scope.paymentAgain = function ($paymentMethod, $orderNumber) {
         $scope.request({

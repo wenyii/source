@@ -69,7 +69,15 @@ module.exports = function (grunt) {
         watch: {
             css: {
                 files: ['less/**/*.less'],
-                tasks: ['lessc', 'css3'],
+                tasks: ['css-less', 'css-post', 'css-compress'],
+                options: {
+                    spawn: true,
+                    interrupt: true
+                }
+            },
+            js: {
+                files: ['js/**/*.js'],
+                tasks: ['js-compress'],
                 options: {
                     spawn: true,
                     interrupt: true
@@ -84,10 +92,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('lessc', ['less']);
-    grunt.registerTask('css3', ['postcss']);
-    grunt.registerTask('css', ['cssmin']);
-    grunt.registerTask('js', ['uglify']);
+    grunt.registerTask('css-less', ['less']);
+    grunt.registerTask('css-post', ['postcss']);
+    grunt.registerTask('css-compress', ['cssmin']);
+    grunt.registerTask('js-compress', ['uglify']);
     grunt.registerTask('listen', ['watch']);
-    grunt.registerTask('default', ['lessc', 'postcss', 'cssmin', 'uglify']);
-}
+    grunt.registerTask('handle', ['less', 'postcss', 'cssmin', 'uglify']);
+};
