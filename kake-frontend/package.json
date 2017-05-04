@@ -20,7 +20,7 @@
     "pixrem": "^3.0.2"
   },
   "scripts": {
-    "compress": "grunt default",
+    "handle": "grunt handle",
     "listen": "grunt listen",
     "create": "./generate-source.sh"
   },
