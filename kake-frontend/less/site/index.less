@@ -8,14 +8,6 @@
 .font-size(@size) {
   font-size: @size;
 }
-
-body {
-  color: #000000;
-  font-family: PingFang-SC-Medium;
-  max-width: 768px;
-  margin: auto;
-}
-
 .banner {
   img {
     height: 251px;
@@ -42,7 +34,6 @@ body {
 .experience {
   height: 328px;
   .experience-1 {
-    font-family: PingFang-SC-Medium;
     padding: 32px 15px 13px 0;
     .font-size(20px);
     color: #010101;
@@ -116,7 +107,6 @@ body {
     margin-bottom: 30px;
     .recommend2 {
       .font-size(20px);
-      font-family: PingFang-SC-Bold;
       display: inline-block;
       width: 88px;
       height: 30px;
@@ -139,7 +129,6 @@ body {
       .recommend3-1-1 {
         width: 104px;
         height: 27px;
-        font-family: PingFang-SC-Bold;
         text-align: center;
         line-height: 27px;
         color: #fafafa;
@@ -154,16 +143,16 @@ body {
       }
     }
     .recommend3-2 {
-      font-family: PingFang-SC-Bold;
       .font-size(20px);
       color: #303030;
       .margin-top(20px);
     }
     .recommend3-3 {
-      padding-left: 5px;
+      padding-left: 2px;
       .font-size(15px);
       color: #505050;
       .margin-top(10px);
+       font-family: @typeface;
     }
   }
 }

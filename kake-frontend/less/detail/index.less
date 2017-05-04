@@ -1,31 +1,10 @@
 @import "../main";
 
-body {
-  font-family: PingFang-SC-Medium;
-  color: #000000;
-  position: relative;
-}
 .banner {
   img {
     height: 251px;
   }
   position: relative;
-  .arrows {
-    line-height: 36px;
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    left: 15px;
-    top: 18px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    z-index: 20;
-    img {
-      width: 21px;
-      height: 16px;
-      margin-left: 7px;
-    }
-  }
   .menu {
     line-height: 36px;
     width: 36px;
@@ -40,42 +19,6 @@ body {
       width: 21px;
       height: 16px;
       margin-left: 7px;
-    }
-    .menu-1 {
-      position: absolute;
-      display: none;
-      right: 0px;
-      top: 45px;
-      width: 126px;
-      height: 135px;
-      padding: 0 10px;
-      background-color: rgba(0, 0, 0, 0.82);
-      border-radius: 5px;
-      b {
-        position: absolute;
-        top: -10px;
-        right: 17px;
-        img {
-          width: 21px;
-          height: 10px;
-        }
-      }
-
-      li {
-        line-height: 45px;
-        .font-size(15px);
-        color: #ffffff;
-        border-bottom: 1px solid #ffffff;
-        img {
-          margin-left: 0;
-          margin-right: 5px;
-          width: 19px;
-          height: 20px;
-        }
-      }
-      .menu-order-center {
-        border: none;
-      }
     }
   }
 }
@@ -95,9 +38,9 @@ body {
     color: #fafafa;
     text-align: center;
     line-height: 30px;
-    font-family: PingFang-SC-Bold;
+    font-family: Helvetica-Bold;
     span {
-      .font-size(18px);
+      .font-size(24px);
     }
   }
   .hotel-detail-1 {
@@ -109,7 +52,7 @@ body {
     .hotel-detail-2-1 {
       .font-size(15px);
       color: #757575;
-      margin-left: 13px;
+      margin-left: 15px;
     }
   }
 }
@@ -154,7 +97,7 @@ body {
 .detail-hotel {
   margin: 0 15px;
   .detail-hotel-2 {
-    .margin-top(12px);
+    .margin-top(22px);
     padding-bottom: 23px;
     .font-size(15px);
     font-family: @typeface;
@@ -177,13 +120,16 @@ body {
   .detail-hotel {
     border-bottom: 1px solid #cdcdcd;
   }
+  .no-border {
+    border: none;
+  }
   padding-bottom: 80px;
   display: none;
   .notice-money {
     font-family: @typeface;
     line-height: 30px;
     .font-size(15px);
-    padding-top: 5px;
+    padding-top: 25px;
     padding-bottom: 20px;
   }
   .back-change {
