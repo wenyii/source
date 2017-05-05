@@ -20,7 +20,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         function onBridgeReady() {
             WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (response) {
                     if (response.err_msg === 'get_brand_wcpay_request:ok') {
-                        location.href = requestUrl + 'order/wx-pay-result&order_number=' + orderNumber
+                        location.href = requestUrl + 'order/pay-result&order_number=' + orderNumber
                     }
                 }
             );
@@ -37,14 +37,35 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
             onBridgeReady();
         }
     };
+
+    // 轮询订单是否完成（支付宝专用）
+    $scope.pollOrder = function (orderNumber, userId, time) {
+        $scope.request({
+            api: 'order/ajax-poll-order',
+            loading: false,
+            post: {
+                order_number: orderNumber,
+                user_id: userId,
+                time: time
+            },
+            success: function (res) {
+                location.href = res.data;
+            },
+            fail: function () {
+                setTimeout(function () {
+                    $scope.pollOrder(orderNumber, userId, time);
+                }, 3000);
+            }
+        });
+    };
     
     // 立即付款
-    $scope.paymentAgain = function ($paymentMethod, $orderNumber) {
+    $scope.paymentAgain = function (paymentMethod, orderNumber) {
         $scope.request({
             api: 'order/ajax-payment-again',
             post: {
-                payment_method: $paymentMethod,
-                order_number: $orderNumber
+                payment_method: paymentMethod,
+                order_number: orderNumber
             },
             success: function (res) {
                 location.href = res.data;
@@ -53,7 +74,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
     };
 
     // 取消订单
-    $scope.cancelOrder = function ($orderNumber) {
+    $scope.cancelOrder = function (orderNumber) {
 
         var result = confirm('确定取消该订单吗?');
         if (!result) {
@@ -63,7 +84,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         $scope.request({
             api: 'order/ajax-cancel-order',
             post: {
-                order_number: $orderNumber
+                order_number: orderNumber
             },
             success: $scope.f5
         });
