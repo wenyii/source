@@ -345,7 +345,6 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
             var windowHeight = $(window).height();
 
             prefixHeight = parseInt(prefixHeight) || 0;
-
             if ((prefixHeight + scrollTop) >= (documentHeight - windowHeight)) {
                 callback(scrollTop, documentHeight, windowHeight);
             }
@@ -1069,7 +1068,10 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
      * @param option
      */
     $scope.request = function (option) {
-        option.loading = option.loading || true;
+
+        if (typeof option.loading === 'undefined') {
+            option.loading =  true;
+        }
 
         if (!$scope.ajaxLock(option.api)) {
             return false;
