@@ -672,19 +672,19 @@ app.directive('kkScroll', ['genericService', function (genericService) {
 
         this.scrollObject = elem.children();
         this.imageObject = this.scrollObject.children();
-this.marginAndPadding = parseInt(this.scrollObject.css('margin-left'))
-            + parseInt(this.scrollObject.css('padding-left'))*(that.scrollObject.children().length-1)
-            + parseInt(this.imageObject.css('margin-right'))*(that.scrollObject.children().length-1)
-            + parseInt(this.imageObject.css('padding-left'))*(that.scrollObject.children().length-1)
-            + parseInt(this.imageObject.css('margin-left'))*(that.scrollObject.children().length-1)
-            + parseInt(this.imageObject.css('padding-right'))*(that.scrollObject.children().length-1);
+        this.marginAndPadding = parseInt(this.scrollObject.css('margin-left'))
+            + parseInt(this.scrollObject.css('padding-left')) * (that.scrollObject.children().length - 1)
+            + parseInt(this.imageObject.css('margin-right')) * (that.scrollObject.children().length - 1)
+            + parseInt(this.imageObject.css('padding-left')) * (that.scrollObject.children().length - 1)
+            + parseInt(this.imageObject.css('margin-left')) * (that.scrollObject.children().length - 1)
+            + parseInt(this.imageObject.css('padding-right')) * (that.scrollObject.children().length - 1);
         Transform(this.scrollObject[0]);
         new AlloyTouch({
             touch: '#' + attrs.id,
             vertical: false,
             target: that.scrollObject[0],
             property: 'translateX',
-            min: -that.scrollObject.children().width()* that.scrollObject.children().length + window.innerWidth - this.marginAndPadding,
+            min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - this.marginAndPadding,
             //min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - 15 * that.scrollObject.children().length,
             max: 0,
             sensitivity: 1.5,
@@ -843,8 +843,12 @@ app.directive('kkMenu', ['genericService', function (genericService) {
 
         new AlloyFinger(elem[0], {
             tap: function () {
-                menu.toggle();
+                menu.fadeToggle();
             }
+        });
+
+        $(window).scroll(function () {
+            menu.fadeOut('fast');
         });
     };
 
@@ -994,7 +998,7 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
                 post: data,
                 success: function (res) {
 
-                    var over = function() {
+                    var over = function () {
                         elem.attr('data-over', true);
                         if (attrs.blankMessage) {
                             genericFactory.message = attrs.blankMessage;

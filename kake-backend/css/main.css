@@ -374,3 +374,7 @@ div.mission {
     padding: 25px 15px;
     font-weight: 200;
 }
+
+.operation a.btn {
+    margin-bottom: 3px;
+}
