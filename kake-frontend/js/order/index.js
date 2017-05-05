@@ -41,7 +41,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
     // 立即付款
     $scope.paymentAgain = function ($paymentMethod, $orderNumber) {
         $scope.request({
-            api: 'order/payment-again',
+            api: 'order/ajax-payment-again',
             post: {
                 payment_method: $paymentMethod,
                 order_number: $orderNumber
@@ -61,7 +61,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         }
 
         $scope.request({
-            api: 'order/cancel-order',
+            api: 'order/ajax-cancel-order',
             post: {
                 order_number: $orderNumber
             },
