@@ -631,7 +631,7 @@ app.directive('kkFocus', ['genericService', function (genericService) {
         });
 
         // plan
-        this.stayTime = attrs.focusStayTime || 3000;
+        this.stayTime = attrs.focusStayTime || 5000;
         this.playTime = attrs.focusPlayTime || 500;
 
         this.auto = function (v) {
@@ -831,17 +831,17 @@ app.directive('kkMenu', ['genericService', function (genericService) {
 
     command.link = function (scope, elem, attrs) {
         var menu = $(attrs.kkMenu);
-        var pos = genericService.offset(elem[0]);
-
-        var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
-
-        menu.css({
-            left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()),
-            top: pos.top + pos.height + 15
-        });
 
         new AlloyFinger(elem[0], {
             tap: function () {
+                var pos = genericService.offset(elem[0]);
+                var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
+
+                menu.css({
+                    left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()),
+                    top: pos.top + pos.height + 15
+                });
+
                 menu.fadeToggle();
             }
         });
@@ -1023,12 +1023,12 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
 /**
  * Service for data
  */
-app.factory('genericFactory', ['$timeout', function ($timeout) {
+app.factory('genericFactory', function () {
     return {
         message: null,
         loading: false
     };
-}]);
+});
 
 /**
  * Controller
@@ -1070,7 +1070,7 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
     $scope.request = function (option) {
 
         if (typeof option.loading === 'undefined') {
-            option.loading =  true;
+            option.loading = true;
         }
 
         if (!$scope.ajaxLock(option.api)) {

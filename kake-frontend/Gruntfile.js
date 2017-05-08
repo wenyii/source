@@ -49,7 +49,7 @@ module.exports = function (grunt) {
                 mangle: true, // 混淆变量名
                 banner: '/*! <%= pkg.author %> */\n/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
                 compress: {
-                    drop_console: true
+                    drop_console: false
                 },
                 report: "min"
             },
@@ -97,5 +97,7 @@ module.exports = function (grunt) {
     grunt.registerTask('css-compress', ['cssmin']);
     grunt.registerTask('js-compress', ['uglify']);
     grunt.registerTask('listen', ['watch']);
-    grunt.registerTask('handle', ['less', 'postcss', 'cssmin', 'uglify']);
+    grunt.registerTask('handle-css', ['less', 'postcss', 'cssmin']);
+    grunt.registerTask('handle-js', ['uglify']);
+    grunt.registerTask('handle-all', ['less', 'postcss', 'cssmin', 'uglify']);
 };

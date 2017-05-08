@@ -20,7 +20,9 @@
     "pixrem": "^3.0.2"
   },
   "scripts": {
-    "handle": "grunt handle",
+    "css": "grunt handle-css",
+    "js": "grunt handle-js",
+    "all": "grunt handle-all",
     "listen": "grunt listen",
     "create": "./generate-source.sh"
   },
