@@ -368,13 +368,6 @@ div.mission {
     max-width: 960px;
 }
 
-.site-error .alert {
-    width: 100%;
-    font-size: 20px;
-    padding: 25px 15px;
-    font-weight: 200;
-}
-
 .operation a.btn {
     margin-bottom: 3px;
 }
