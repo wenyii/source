@@ -371,3 +371,11 @@ div.mission {
 .operation a.btn {
     margin-bottom: 3px;
 }
+
+p.list-p {
+    margin: 0;
+}
+
+.table > tbody > tr > td {
+    padding: 10px;
+}
