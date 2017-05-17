@@ -345,6 +345,17 @@ div.upload-div > div button, button.browse {
     margin-top: 1px;
 }
 
+td pre {
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    word-break: normal;
+    word-wrap: normal;
+    background-color: transparent;
+    border: none;
+    overflow: hidden;
+}
+
 /*
  * Block quote
  */
