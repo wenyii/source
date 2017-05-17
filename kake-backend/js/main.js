@@ -1094,7 +1094,7 @@ $(function () {
     });
 
     // 执行计划任务
-    $('div.mission button').click(function () {
+    $('div.mission button, .mission-button').click(function () {
 
         var tag = $(this).attr('data-action-tag');
         var postData = {};
