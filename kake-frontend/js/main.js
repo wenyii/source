@@ -677,6 +677,7 @@ app.directive('kkScroll', ['genericService', function (genericService) {
             + parseInt(this.imageObject.css('padding-left')) * (that.scrollObject.children().length - 1)
             + parseInt(this.imageObject.css('margin-left')) * (that.scrollObject.children().length - 1)
             + parseInt(this.imageObject.css('padding-right')) * (that.scrollObject.children().length - 1);
+
         Transform(this.scrollObject[0]);
         new AlloyTouch({
             touch: '#' + attrs.id,
@@ -686,7 +687,7 @@ app.directive('kkScroll', ['genericService', function (genericService) {
             min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - this.marginAndPadding,
             //min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - 15 * that.scrollObject.children().length,
             max: 0,
-            sensitivity: 1.5,
+            sensitivity: 1,
 
             touchMove: function () {
                 this.preventDefault = true;
