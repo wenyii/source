@@ -1,0 +1,1563 @@
+
+> kake@1.0.0 listen /Users/apple/Documents/Project/Maiqi/source/kake-frontend
+> grunt listen
+
+[4mRunning "watch" task[24m
+Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[32m>> [39mFile "js/main.js" changed.
+[32m>> [39mFile "less/detail/choose-package.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.18 kB → 152.66 kB
+
+[32mDone, without errors.[39m
+[4mRunning "uglify:common" (uglify) task[24m
+[32m>> [39m6 files created.
+
+[32mDone, without errors.[39m
+[36mCompleted in 16.322s at Wed May 17 2017 18:01:33 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.17 kB → 151.88 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.281s at Thu May 18 2017 10:21:39 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.17 kB → 151.88 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.001s at Thu May 18 2017 10:24:39 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.18 kB → 152.66 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.921s at Thu May 18 2017 10:26:23 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/main.less on line 16, column 53:[31m
+>> [39m15 body {[31m
+>> [39m16   font-family: "Helvetica Neue",Helvetica,sans-serif；[31m
+>> [39m17   font-weight: 100;
+[33mWarning: Error compiling less/detail/choose-package.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.310s at Thu May 18 2017 10:29:43 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.98 kB → 152.23 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.421s at Thu May 18 2017 10:30:44 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.84 kB → 152.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.416s at Thu May 18 2017 10:32:00 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.69 kB → 152.09 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.244s at Thu May 18 2017 10:33:20 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mNameError: variable @typeface is undefined in less/main.less on line 54, column 16:[31m
+>> [39m53   line-height: 40px;[31m
+>> [39m54   font-family: @typeface;[31m
+>> [39m55   .font-size(18px);
+[33mWarning: Error compiling less/detail/choose-package.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.641s at Thu May 18 2017 10:39:12 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mNameError: variable @typeface is undefined in less/main.less on line 54, column 16:[31m
+>> [39m53   line-height: 40px;[31m
+>> [39m54   font-family: @typeface;[31m
+>> [39m55   .font-size(18px);
+[33mWarning: Error compiling less/detail/choose-package.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.434s at Thu May 18 2017 10:41:58 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mNameError: variable @top is undefined in less/main.less on line 10, column 15:[31m
+>> [39m9 .margin-top(@top) {[31m
+>> [39m10   margin-top: @top;[31m
+>> [39m11 }
+[33mWarning: Error compiling less/detail/choose-package.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.200s at Thu May 18 2017 10:45:07 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 194.92 kB → 152.46 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.422s at Thu May 18 2017 10:47:17 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.83 kB → 153.18 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.477s at Thu May 18 2017 10:48:37 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.83 kB → 153.18 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.346s at Thu May 18 2017 10:48:46 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.73 kB → 153.07 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.247s at Thu May 18 2017 10:49:52 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.5 kB → 152.88 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.227s at Thu May 18 2017 10:52:12 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.5 kB → 152.88 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.992s at Thu May 18 2017 10:52:28 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.85 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 8.125s at Thu May 18 2017 10:56:02 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.85 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.443s at Thu May 18 2017 10:58:05 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.85 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.309s at Thu May 18 2017 10:58:22 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.51 kB → 152.87 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.253s at Thu May 18 2017 10:58:42 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.84 kB → 153.2 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.275s at Thu May 18 2017 11:01:06 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.68 kB → 153.07 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.432s at Thu May 18 2017 11:06:36 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.65 kB → 153.04 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.364s at Thu May 18 2017 11:09:06 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.67 kB → 153.06 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.228s at Thu May 18 2017 11:13:20 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.69 kB → 153.08 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.957s at Thu May 18 2017 11:14:59 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.69 kB → 153.08 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.260s at Thu May 18 2017 11:15:38 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.67 kB → 153.06 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.993s at Thu May 18 2017 11:16:15 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.69 kB → 153.08 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.046s at Thu May 18 2017 11:20:50 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/detail/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.67 kB → 153.06 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.456s at Thu May 18 2017 11:22:04 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.77 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.938s at Thu May 18 2017 11:23:11 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.77 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.800s at Thu May 18 2017 13:09:52 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.64 kB → 152.92 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.453s at Thu May 18 2017 13:15:32 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.66 kB → 152.93 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.821s at Thu May 18 2017 13:15:49 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.8 kB → 153.05 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.684s at Thu May 18 2017 13:17:33 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.83 kB → 153.08 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 8.101s at Thu May 18 2017 13:18:32 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 90, column 65:[31m
+>> [39m89           z-index: 1;[31m
+>> [39m90           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m91           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.335s at Thu May 18 2017 13:19:25 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.201s at Thu May 18 2017 13:21:11 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 90, column 65:[31m
+>> [39m89           background-size: 80px 80px;[31m
+>> [39m90           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m91           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.424s at Thu May 18 2017 13:22:13 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 90, column 65:[31m
+>> [39m89           background-size: 80px 80px;[31m
+>> [39m90           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m91           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.281s at Thu May 18 2017 13:25:48 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.851s at Thu May 18 2017 13:27:10 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 100, column 61:[31m
+>> [39m99       background-size: 80px 80px;[31m
+>> [39m100       background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m101           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 6.066s at Thu May 18 2017 13:29:22 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 93, column 65:[31m
+>> [39m92           background-size: 80px 80px;[31m
+>> [39m93           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m94           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.768s at Thu May 18 2017 13:30:07 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.695s at Thu May 18 2017 13:31:43 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.48 kB → 152.77 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.363s at Thu May 18 2017 13:32:16 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.014s at Thu May 18 2017 13:33:48 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 88, column 65:[31m
+>> [39m87           background-size: 80px 80px;[31m
+>> [39m88           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m89           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.226s at Thu May 18 2017 13:36:22 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.300s at Thu May 18 2017 13:38:03 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.114s at Thu May 18 2017 13:38:48 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.202s at Thu May 18 2017 13:39:17 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 75, column 65:[31m
+>> [39m74           background-size: 80px 80px;[31m
+>> [39m75           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m76           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.965s at Thu May 18 2017 13:40:03 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.698s at Thu May 18 2017 13:40:40 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.708s at Thu May 18 2017 13:41:16 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.797s at Thu May 18 2017 13:45:52 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 92, column 65:[31m
+>> [39m91           background-size: 80px 80px;[31m
+>> [39m92           background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m93           span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.812s at Thu May 18 2017 13:47:19 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 93, column 69:[31m
+>> [39m92               background-size: 80px 80px;[31m
+>> [39m93               background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m94               span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.776s at Thu May 18 2017 13:50:24 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 88, column 75:[31m
+>> [39m87                     background-size: 80px 80px;[31m
+>> [39m88                     background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m89                     span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.998s at Thu May 18 2017 13:52:16 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 88, column 75:[31m
+>> [39m87                     background-size: 80px 80px;[31m
+>> [39m88                     background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m89                     span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.651s at Thu May 18 2017 13:54:52 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 91, column 32:[31m
+>> [39m90                         .font-size(24px);[31m
+>> [39m91                         Í color: #F9C800;[31m
+>> [39m92                         left: 20px;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.727s at Thu May 18 2017 13:55:49 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mSyntaxError: expected ')' got 'n' in less/site/index.less on line 88, column 75:[31m
+>> [39m87                     background-size: 80px 80px;[31m
+>> [39m88                     background-image: url("../../img/flashsales-icon.png" no-repeat);[31m
+>> [39m89                     span {
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.875s at Thu May 18 2017 13:56:15 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.87 kB → 153.1 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.280s at Thu May 18 2017 13:56:37 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.87 kB → 153.1 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.640s at Thu May 18 2017 13:58:26 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.91 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.380s at Thu May 18 2017 13:59:32 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.9 kB → 153.11 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 8.098s at Thu May 18 2017 14:00:19 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.11 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 10.779s at Thu May 18 2017 14:06:40 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.77 kB → 153.01 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.412s at Thu May 18 2017 14:11:21 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.86 kB → 153.09 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 8.434s at Thu May 18 2017 14:12:33 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.86 kB → 153.09 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 10.263s at Thu May 18 2017 14:13:40 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.86 kB → 153.09 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.894s at Thu May 18 2017 14:15:44 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.86 kB → 153.09 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 8.717s at Thu May 18 2017 14:17:06 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.91 kB → 153.13 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.398s at Thu May 18 2017 14:18:27 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.905s at Thu May 18 2017 14:20:04 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.013s at Thu May 18 2017 14:20:59 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.672s at Thu May 18 2017 14:21:58 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.619s at Thu May 18 2017 14:23:02 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.301s at Thu May 18 2017 14:24:57 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.887s at Thu May 18 2017 14:26:40 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.586s at Thu May 18 2017 14:27:01 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+
+[33mScheduled tasks have been interrupted...[39m[32m>> [39mFile "less/site/index.less" changed.
+[36mCompleted in 0.010s at Thu May 18 2017 14:27:07 GMT+0800 (CST)[39m - Waiting...
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.92 kB → 153.14 kB
+
+[32mDone, without errors.[39m
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.91 kB → 153.13 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.027s at Thu May 18 2017 14:46:49 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.15 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.269s at Thu May 18 2017 14:51:16 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.15 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.111s at Thu May 18 2017 14:56:40 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.15 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.014s at Thu May 18 2017 14:58:11 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.97 kB → 153.17 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.876s at Thu May 18 2017 15:01:15 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 25:[31m
+>> [39m99             span {[31m
+>> [39m100                 i｛ color: #fafafa;[31m
+>> [39m101                 .font-size(14px);
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.424s at Thu May 18 2017 15:09:10 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 25:[31m
+>> [39m99             span {[31m
+>> [39m100                 i｛ color: #fafafa;[31m
+>> [39m101                 .font-size(14px);
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.722s at Thu May 18 2017 15:10:08 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 22:[31m
+>> [39m99             i｛ [31m
+>> [39m100                 color: #fafafa;[31m
+>> [39m101                 .font-size(14px);
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.359s at Thu May 18 2017 15:11:50 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 109, column 22:[31m
+>> [39m108                 i｛ [31m
+>> [39m109                 color: #fafafa;[31m
+>> [39m110                 .font-size(14px);
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.936s at Thu May 18 2017 15:13:09 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 110, column 33:[31m
+>> [39m109                 [31m
+>> [39m110                 .font-size(14px);[31m
+>> [39m111             ｝
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.037s at Thu May 18 2017 15:13:35 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 110, column 31:[31m
+>> [39m109                 [31m
+>> [39m110                 font-size:14px;[31m
+>> [39m111             ｝
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.918s at Thu May 18 2017 15:14:42 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 110, column 33:[31m
+>> [39m109                 [31m
+>> [39m110                 .font-size(14px);[31m
+>> [39m111             ｝
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.864s at Thu May 18 2017 15:15:00 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 99, column 24:[31m
+>> [39m98             }[31m
+>> [39m99             i｛ position: absolute;[31m
+>> [39m100             color: #fafafa;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.754s at Thu May 18 2017 15:16:41 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 22:[31m
+>> [39m99             i｛[31m
+>> [39m100              position: absolute;[31m
+>> [39m101             color: #fafafa;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.099s at Thu May 18 2017 15:18:01 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 25:[31m
+>> [39m99             i｛ [31m
+>> [39m100                 position: absolute;[31m
+>> [39m101                 color: #fafafa;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.655s at Thu May 18 2017 15:18:33 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 33:[31m
+>> [39m99             i｛ [31m
+>> [39m100                 .font-size(14px);[31m
+>> [39m101                 left: 23px;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.468s at Thu May 18 2017 15:18:49 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 21:[31m
+>> [39m99             i｛ [31m
+>> [39m100                 left: 23px;[31m
+>> [39m101                 top: 29px;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 5.067s at Thu May 18 2017 15:19:06 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[31m>> [39mParseError: Unrecognised input in less/site/index.less on line 100, column 25:[31m
+>> [39m99             i｛ [31m
+>> [39m100                 position: absolute;[31m
+>> [39m101                 color: #fafafa;
+[33mWarning: Error compiling less/site/index.less Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m
+[36mCompleted in 4.932s at Thu May 18 2017 15:19:27 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.15 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.437s at Thu May 18 2017 15:20:15 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.94 kB → 153.16 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.680s at Thu May 18 2017 15:22:14 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.98 kB → 153.19 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.859s at Thu May 18 2017 15:22:33 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.93 kB → 153.15 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.495s at Thu May 18 2017 15:22:59 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.2 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.209s at Thu May 18 2017 15:28:11 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.28 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.477s at Thu May 18 2017 15:28:20 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.28 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 7.280s at Thu May 18 2017 15:29:20 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.11 kB → 153.29 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.886s at Thu May 18 2017 15:29:55 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.28 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.758s at Thu May 18 2017 15:30:18 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.28 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.266s at Thu May 18 2017 15:31:30 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.28 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.563s at Thu May 18 2017 15:31:43 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.124s at Thu May 18 2017 15:32:03 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+
+[33mScheduled tasks have been interrupted...[39m[32m>> [39mFile "less/site/index.less" changed.
+[36mCompleted in 0.007s at Thu May 18 2017 15:32:40 GMT+0800 (CST)[39m - Waiting...
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.261s at Thu May 18 2017 15:34:06 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.293s at Thu May 18 2017 15:35:14 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+
+[33mScheduled tasks have been interrupted...[39m[32m>> [39mFile "less/site/index.less" changed.
+[36mCompleted in 0.015s at Thu May 18 2017 15:36:05 GMT+0800 (CST)[39m - Waiting...
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 5.946s at Thu May 18 2017 15:37:03 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.021s at Thu May 18 2017 15:37:20 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.294s at Thu May 18 2017 15:38:13 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.108s at Thu May 18 2017 15:38:57 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.09 kB → 153.27 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.364s at Thu May 18 2017 15:41:14 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 196.11 kB → 153.29 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.171s at Thu May 18 2017 15:42:09 GMT+0800 (CST)[39m - Waiting...
+[32m>> [39mFile "less/site/index.less" changed.
+[32m>> [39mFile "less/detail/index.less" changed.
+[32m>> [39mFile "less/main.less" changed.
+[4mRunning "less:common" (less) task[24m
+[32m>> [39m9 stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "postcss:common" (postcss) task[24m
+[32m>> [39m9 processed stylesheets created.
+[32m>> [39m9 sourcemaps created.
+
+[4mRunning "cssmin:common" (cssmin) task[24m
+[32m>> [39m9 files created. 195.18 kB → 152.66 kB
+
+[32mDone, without errors.[39m
+[36mCompleted in 6.657s at Thu May 18 2017 16:12:18 GMT+0800 (CST)[39m - Waiting...
