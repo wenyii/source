@@ -1,9 +1,13 @@
-@img: "http://leon.source.kakehotels.com/kake-frontend/img";
+@source: "http://source.kakehotels.com/kake-frontend";
+@img: "@{source}/img";
+@font: "@{source}/fonts";
 
 /*
  * Generic
  */
-@typeface: PingFang-SC-Regular;
+@typeface: "nexa";
+@font-face { font-family: 'nexa'; src: url("@{font}/nexa.ttf"); font-style: normal; font-weight: normal; }
+
 .margin-top(@top) {
   margin-top: @top;
 }
@@ -13,8 +17,7 @@
 }
 
 body {
-  font-family: "PingFang-SC-Medium", "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
-  font-weight: 100;
+  font-family:@typeface;
   max-width: 768px;
   margin: auto;
   color: #000000;
