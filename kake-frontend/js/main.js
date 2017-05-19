@@ -1082,14 +1082,21 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             $scope.factory.loading = true;
         }
 
+        var endLoad = function () {
+            var end = function () {
+                $scope.factory.loading = false;
+            };
+            $timeout(end, 500);
+        };
+
         $scope.service.ajaxPost(option.api, option.post, function (error) {
 
-            $scope.factory.loading = false;
+            endLoad();
             $scope.factory.message = error;
 
         }).then(function (result) {
 
-            $scope.factory.loading = false;
+            endLoad();
             if (!$scope.service.isEmpty(result.info)) {
                 $scope.factory.message = result.info;
             }
@@ -1097,8 +1104,7 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             option.success && option.success(result);
         }, function (result) {
 
-            $scope.factory.loading = false;
-
+            endLoad();
             if (option.fail) {
                 option.fail(result);
             } else {
