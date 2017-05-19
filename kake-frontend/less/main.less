@@ -5,7 +5,6 @@
 /*
  * Generic
  */
-@typeface: "nexa";
 @font-face { font-family: 'nexa'; src: url("@{font}/nexa.ttf"); font-style: normal; font-weight: normal; }
 
 .margin-top(@top) {
@@ -17,7 +16,7 @@
 }
 
 body {
-  font-family:@typeface;
+  font-family: 'nexa';
   max-width: 768px;
   margin: auto;
   color: #000000;
@@ -53,7 +52,6 @@ header {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  font-family: @typeface;
   .font-size(18px);
   background-color: #ffcc00;
   position: relative;
@@ -124,7 +122,7 @@ footer {
   bottom: 0;
   display: flex;
   line-height: 50px;
-  border-top: 1px solid #cfcfcf;
+  border-top: 1px solid #E6E0E0;
   .price {
     flex: 2;
     background-color: #ffffff;
@@ -166,7 +164,6 @@ footer {
   color: #323232;
   .margin-top(23px);
   text-align: center;
-  font-family: PingFang-SC-Medium;
   span {
     width: 8px;
     height: 19px;
@@ -248,7 +245,6 @@ div.loading {
     color: @color;
     background-color: rgba(255, 204, 0, 0.9);
     border-radius: 8px;
-    box-shadow: 0 10px 30px -8px #4a4a24;
     text-align: center;
     line-height: @height - @padding * 2;
     font-size: 16px;
