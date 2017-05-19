@@ -28,6 +28,27 @@
             height: 16px;
         }
     }
+    .focus-point {
+        width: 100%;
+        position: absolute;
+        top: 220px;
+        z-index: 20;
+        text-align: center;
+        li {
+            display: inline-block;
+            margin: 0 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            opacity: 1;
+            border: 1px solid #fff;
+            
+        }
+        .on {
+                background: #ffcc00;
+                border:1px solid #fc0;
+            }
+    }
 }
 .experience {
     height: 328px;
@@ -155,7 +176,6 @@
                 height: 100%;
             }
             .recommend3-1-1 {
-                width: 104px;
                 height: 27px;
                 text-align: center;
                 line-height: 27px;
@@ -163,6 +183,7 @@
                 .font-size(14px);
                 background-color: rgba(34, 34, 34, 0.8);
                 position: absolute;
+                padding: 0 14px 0 10px;
                 bottom: 23px;
                 span {
                     .font-size(24px);
