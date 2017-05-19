@@ -1082,29 +1082,27 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             $scope.factory.loading = true;
         }
 
-        var endLoad = function () {
-            var end = function () {
-                $scope.factory.loading = false;
-            };
-            $timeout(end, 500);
-        };
-
         $scope.service.ajaxPost(option.api, option.post, function (error) {
 
-            endLoad();
+            $scope.factory.loading = false;
             $scope.factory.message = error;
 
         }).then(function (result) {
 
-            endLoad();
-            if (!$scope.service.isEmpty(result.info)) {
-                $scope.factory.message = result.info;
-            }
+            var handler = function () {
+                $scope.factory.loading = false;
+                if (!$scope.service.isEmpty(result.info)) {
+                    $scope.factory.message = result.info;
+                }
 
-            option.success && option.success(result);
+                option.success && option.success(result);
+            };
+
+            $timeout(handler, 500);
+
         }, function (result) {
 
-            endLoad();
+            $scope.factory.loading = false;
             if (option.fail) {
                 option.fail(result);
             } else {
