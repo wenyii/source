@@ -588,7 +588,7 @@ app.directive('kkFocus', ['genericService', function (genericService) {
             } else {
                 var currentCss = attrs.focusPointCurrent || 'current';
                 that.pointObject.children().removeClass(currentCss);
-                that.pointObject.children().eq(this.currentPage).addClass(currentCss);
+                that.pointObject.children().eq(index).addClass(currentCss);
             }
         };
 
