@@ -578,6 +578,21 @@ app.directive('kkFocus', ['genericService', function (genericService) {
             return genericService.message('[kk-focus] Current element must has attribute `id`!');
         }
 
+        var changeCurrent = function (index) {
+            index = index || 0;
+            var tpl = attrs.focusNumberTpl;
+            if (tpl) {
+                tpl = tpl.replace(/\{TOTAL\}/g, that.imageObject.length);
+                tpl = tpl.replace(/\{NOW\}/g, index + 1);
+                that.pointObject.html(tpl);
+            } else {
+                var currentCss = attrs.focusPointCurrent || 'current';
+                that.pointObject.children().removeClass(currentCss);
+                that.pointObject.children().eq(this.currentPage).addClass(currentCss);
+            }
+        };
+
+        changeCurrent();
         Transform(this.scrollObject[0]);
 
         var touch = new AlloyTouch({
@@ -625,8 +640,7 @@ app.directive('kkFocus', ['genericService', function (genericService) {
             },
 
             animationEnd: function () {
-                that.pointObject.children().removeClass('current');
-                that.pointObject.children().eq(this.currentPage).addClass('current');
+                changeCurrent(this.currentPage);
             }
         });
 
