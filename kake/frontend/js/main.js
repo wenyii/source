@@ -1003,9 +1003,14 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
             var page = parseInt(elem.attr('data-page'));
             page = page ? page : 2;
 
+            var query = location.search.replace('?r=', '');
+            query = query ? genericService.parseQueryString(query) : {};
+
             var data = attrs.extraParams;
             data = data ? genericService.parseQueryString(data) : {};
             data.page = page;
+
+            data = $.extend({}, query, data);
 
             scope.request({
                 api: attrs.kkAjaxLoad,
