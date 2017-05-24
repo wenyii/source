@@ -852,9 +852,12 @@ app.directive('kkMenu', ['genericService', function (genericService) {
                 var pos = genericService.offset(elem[0]);
                 var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
+				var posX = parseInt(attrs.menuPosX || 0);
+				var posY = parseInt(attrs.menuPosY || 0);
+
                 menu.css({
-                    left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()),
-                    top: pos.top + pos.height + 15
+                    left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()) + posX,
+                    top: pos.top + pos.height + 15 + posY
                 });
 
                 menu.fadeToggle();
