@@ -852,8 +852,8 @@ app.directive('kkMenu', ['genericService', function (genericService) {
                 var pos = genericService.offset(elem[0]);
                 var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
-				var posX = parseInt(attrs.menuPosX || 0);
-				var posY = parseInt(attrs.menuPosY || 0);
+                var posX = parseInt(attrs.menuPosX || 0);
+                var posY = parseInt(attrs.menuPosY || 0);
 
                 menu.css({
                     left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()) + posX,
@@ -1063,6 +1063,44 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
 
     $scope.conf = {
         ajaxLock: {}
+    };
+
+    $scope.wxSDK = function (conf, title, description, cover) {
+
+        wx.config(conf);
+        wx.ready(function () {
+
+            wx.hideMenuItems({
+                menuList: [
+                    'menuItem:share:qq',
+                    'menuItem:share:weiboApp',
+                    'menuItem:share:facebook',
+                    'menuItem:share:QZone',
+                    'menuItem:editTag',
+                    'menuItem:delete',
+                    'menuItem:originPage',
+                    'menuItem:readMode',
+                    'menuItem:share:email',
+                    'menuItem:share:brand'
+                ]
+            });
+
+            var options = {
+                title: title,
+                link: location.href,
+                imgUrl: cover,
+                success: function () {
+                    $scope.factory.message = '分享成功';
+                }
+            };
+
+            // 分享到朋友圈
+            wx.onMenuShareTimeline(options);
+
+            // 分享给朋友
+            options.desc = description;
+            wx.onMenuShareAppMessage(options);
+        });
     };
 
     /**
