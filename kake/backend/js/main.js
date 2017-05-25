@@ -701,7 +701,7 @@ $(function () {
 
     $.alert = function (message, level, time) {
         level = level || 'warning';
-        time = time || 5;
+        time = time || 8;
         var id = $.time(false);
         var tpl = '' +
             '<div id="' + id + '" class="alert alert-' + level + ' bigtosmall alert-dismissible" role="alert">' +
