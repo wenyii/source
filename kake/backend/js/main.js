@@ -957,7 +957,7 @@ $(function () {
             return null;
         }
 
-        $('input[name="' + inputName + '"]').val(value);
+        $('input[name="' + inputName + '"]').val(value).change();
         $('#show-page').find('.close').click();
     };
 
@@ -971,7 +971,7 @@ $(function () {
             return null;
         }
 
-        $('input[name="' + inputName + '"]').val(value.join(split));
+        $('input[name="' + inputName + '"]').val(value.join(split)).change();
         $('#show-page').find('.close').click();
     };
 
@@ -1208,4 +1208,25 @@ $(function () {
             });
         });
     };
+
+    // 产品分销时变更产品时自动填写开始销量
+    $('.product_producer-product_id input, .product_producer-type select').change(function () {
+
+        var productId = parseInt($('.product_producer-product_id input').val());
+        var type = $('.product_producer-type select').val();
+
+        if (isNaN(productId)) {
+            $.alert('产品ID必须为正整数');
+            return;
+        }
+
+        var url = requestUrl + 'product-producer/get-from-sales';
+        $.sendGetAsync(url + '&product_id=' + productId + '&type=' + type, function (data) {
+            if (data.state) {
+                $('input[name="from_sales"]').val(data.data);
+            } else {
+                $.alert(data.info);
+            }
+        });
+    });
 });
