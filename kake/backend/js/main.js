@@ -257,7 +257,6 @@
             url = url.replace(/[\?\&]ajaxtime=\d+/, '');
         }
         url += (url.indexOf('?') !== -1 ? '&ajaxtime=' : '?ajaxtime=') + $.time(false);
-        url = encodeURI(decodeURIComponent(url));
 
         return url;
     };
@@ -1229,4 +1228,19 @@ $(function () {
             }
         });
     });
+
+    // 显示二维码
+    $.showQrCode = function (url) {
+        url = requestUrl + 'general/ajax-get-qr-code&url=' + encodeURIComponent(url);
+        $.sendGetAsync(url, function (data) {
+            $.placeModal({
+                id: 'show-qr-code',
+                size: 'sm',
+                title: '扫描二维码',
+                message: '<div style="text-align: center;">' + data.data + '</div>',
+                yes: null,
+                no: null
+            }).modal();
+        });
+    };
 });

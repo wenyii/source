@@ -107,6 +107,7 @@ app.controller('detail', ['$scope', '$controller', function ($scope, $controller
         url += '&user_info[captcha]=' + user.captcha;
 
         url += '&payment_method=' + $scope.buy.payment_method;
+        url = $scope.service.supplyParams(url, ['channel']);
 
         location.href = url;
     };
