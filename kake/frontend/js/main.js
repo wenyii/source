@@ -436,6 +436,25 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
 
         return items;
     };
+
+    // Supplement params from current location
+    this.supplyParams = function (href, params) {
+        var queryParams = that.parseQueryString(location.href);
+        var queryString = '';
+        $.each(params || [], function (k, v) {
+            if (typeof queryParams[v] !== 'undefined') {
+                queryString += '&' + v + '=' + queryParams[v];
+            }
+        });
+
+        if (href.indexOf('?')) {
+            href += queryString;
+        } else {
+            href = href + '?' + queryString.leftTrim('&')
+        }
+
+        return href;
+    };
 }]);
 
 /**
@@ -1049,7 +1068,8 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
 app.factory('genericFactory', function () {
     return {
         message: null,
-        loading: false
+        loading: false,
+        hit: false
     };
 });
 
@@ -1063,6 +1083,41 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
 
     $scope.conf = {
         ajaxLock: {}
+    };
+
+    $scope.common = function () {
+
+        /*
+        $('*').on('tap click', function (e) {
+            e.stopPropagation();
+
+            var pos = {
+                x: e.clientX,
+                y: e.clientY
+            };
+            console.log(pos);
+        });
+        */
+
+        $('a').on('tap click', function (e) {
+
+            var href = $(this).attr('href');
+            if (!href || href.indexOf('javascript:') === 0) {
+                return true;
+            }
+
+            if (href.indexOf('http') === 0 && href.indexOf(baseUrl) === -1) {
+                return true;
+            }
+
+            var _href = $scope.service.supplyParams(href, ['channel']);
+            if (href === _href) {
+                return true;
+            }
+
+            e && e.preventDefault && e.preventDefault();
+            location.href = _href;
+        });
     };
 
     $scope.wxSDK = function (conf, title, description, cover) {

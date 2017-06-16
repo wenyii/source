@@ -20,7 +20,10 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         function onBridgeReady() {
             WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (response) {
                     if (response.err_msg === 'get_brand_wcpay_request:ok') {
-                        location.href = requestUrl + 'order/pay-result&order_number=' + orderNumber
+                        var url = requestUrl + 'order/pay-result&order_number=' + orderNumber
+                        url = $scope.service.supplyParams(url, ['channel']);
+
+                        location.href = url;
                     }
                 }
             );
@@ -46,7 +49,8 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
             post: {
                 order_number: orderNumber,
                 user_id: userId,
-                time: time
+                time: time,
+                channel: $scope.service.parseQueryString().channel
             },
             success: function (res) {
                 location.href = res.data;
