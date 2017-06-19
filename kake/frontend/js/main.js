@@ -523,6 +523,7 @@ app.directive('kkTap', ['$parse', function ($parse) {
         return function ngEventHandler(scope, element) {
             var alloy = {};
             alloy.tap = function (event) {
+                window.event = event;
                 var callback = function () {
                     fn(scope, {
                         $event: event
@@ -736,26 +737,6 @@ app.directive('kkScroll', ['genericService', function (genericService) {
 }]);
 
 /**
- * Directive loading
- */
-app.directive('kkLoading', function () {
-    return {
-        scope: {
-            loading: '='
-        },
-        restrict: 'E',
-        template: '' +
-        '<div class="loading" ng-show="loading">' +
-        '   <div class="loading-bar loading-bounce kk-animate" ng-class="{\'kk-t2b-show\': loading}">' +
-        '       <div class="in"></div>' +
-        '       <div class="out"></div>' +
-        '   </div>' +
-        '</div>',
-        replace: true
-    }
-});
-
-/**
  * Directive message
  */
 app.directive('kkMessage', function () {
@@ -779,6 +760,46 @@ app.directive('kkMessage', function () {
                 scope.message = null;
             };
         }
+    }
+});
+
+/**
+ * Directive loading
+ */
+app.directive('kkLoading', function () {
+    return {
+        scope: {
+            loading: '='
+        },
+        restrict: 'E',
+        template: '' +
+        '<div class="loading" ng-show="loading">' +
+        '   <div class="loading-bar loading-bounce kk-animate" ng-class="{\'kk-t2b-show\': loading}">' +
+        '       <div class="in"></div>' +
+        '       <div class="out"></div>' +
+        '   </div>' +
+        '</div>',
+        replace: true
+    }
+});
+
+/**
+ * Directive hit
+ */
+app.directive('kkHit', function () {
+    return {
+        scope: {
+            hit: '='
+        },
+        restrict: 'E',
+        template: '' +
+        '<div class="hit" ng-show="hit">' +
+        '   <div class="hit-bar hit-bounce kk-animate">' +
+        '       <div class="in"></div>' +
+        '       <div class="out"></div>' +
+        '   </div>' +
+        '</div>',
+        replace: true
     }
 });
 
@@ -1082,23 +1103,11 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
     $scope.factory = genericFactory;
 
     $scope.conf = {
-        ajaxLock: {}
+        ajaxLock: {},
+        timeout: null
     };
 
     $scope.common = function () {
-
-        /*
-        $('*').on('tap click', function (e) {
-            e.stopPropagation();
-
-            var pos = {
-                x: e.clientX,
-                y: e.clientY
-            };
-            console.log(pos);
-        });
-        */
-
         $('a').on('tap click', function (e) {
 
             var href = $(this).attr('href');
@@ -1118,6 +1127,33 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             e && e.preventDefault && e.preventDefault();
             location.href = _href;
         });
+    };
+
+    $scope.hit = function () {
+
+        if ($scope.factory.hit) {
+            return;
+        }
+
+        var e = window.event;
+        e.stopPropagation();
+
+        var pos = {
+            x: parseInt(e.changedTouches[0].clientX),
+            y: parseInt(e.changedTouches[0].clientY)
+        };
+
+        var hit = $('div.hit');
+        hit.css({
+            left: pos.x - hit.width() / 2,
+            top: pos.y - hit.height() / 2
+        });
+        $scope.factory.hit = true;
+
+        var hideHit = function () {
+            $scope.factory.hit = false;
+        };
+        $timeout(hideHit, 600);
     };
 
     $scope.wxSDK = function (conf, title, description, cover) {
