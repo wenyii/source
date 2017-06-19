@@ -5,7 +5,12 @@
 /*
  * Generic
  */
-@font-face { font-family: 'nexa'; src: url("@{font}/nexa.ttf"); font-style: normal; font-weight: 700; }
+@font-face {
+  font-family: 'nexa';
+  src: url("@{font}/nexa.ttf");
+  font-style: normal;
+  font-weight: 700;
+}
 
 .margin-top(@top) {
   margin-top: @top;
@@ -16,9 +21,9 @@
 }
 
 body {
-  font-family: "黑体","宋体","思源黑体";
+  font-family: "黑体", "宋体", "思源黑体";
   max-width: 768px;
-  
+
   margin: auto;
   color: #595959;
   position: relative;
@@ -150,16 +155,16 @@ footer {
 }
 
 /*
-*blank 分割块
-*/
+ * blank
+ */
 .blank {
   height: 20px;
   background-color: #f4f4f4;
 }
 
 /*
-*左边分类detail-hotel-1
-*/
+ * detail-hotel-1
+ */
 .detail-hotel-1 {
   .font-size(18px);
   color: #323232;
@@ -186,46 +191,6 @@ footer {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, @opacity);
-}
-
-/*
- * Loading
- */
-div.loading {
-  .shade;
-  .loading-bar {
-    width: 36px;
-    height: 36px;
-    position: relative;
-    z-index: 999;
-    margin: 42% auto;
-
-    &.loading-bounce {
-      @keyframes bounce {
-        0% {
-          transform: scale(0);
-        }
-        50% {
-          transform: scale(1);
-        }
-        100% {
-          transform: scale(0);
-        }
-      }
-      div {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background-color: #ffd914;
-        opacity: .5;
-        animation: bounce 2s infinite ease-in-out;
-        &.in {
-          animation-delay: -1s;
-        }
-      }
-    }
-  }
 }
 
 /*
@@ -261,6 +226,122 @@ div.loading {
       color: @color;
       font-size: @length-px;
       line-height: @length-px;
+    }
+  }
+}
+
+/*
+ * Loading
+ */
+div.loading {
+  .shade;
+  .loading-bar {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    z-index: 999;
+    margin: 42% auto;
+
+    &.loading-bounce {
+      @keyframes bounce {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0);
+        }
+      }
+      div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        opacity: .5;
+        animation: bounce 2s infinite ease-in-out;
+        &.in {
+          animation-delay: -1s;
+          background-color: #ffab13;
+          box-shadow: 0 0 5px #ffab13;
+        }
+        &.out {
+          background-color: #ffd914;
+          box-shadow: 0 0 5px #ffd914;
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Hit
+ */
+div.hit {
+  @size: 58px;
+  width: @size;
+  height: @size;
+  position: fixed;
+  z-index: 999;
+  .hit-bar {
+    width: @size;
+    height: @size;
+    position: relative;
+
+    &.hit-bounce {
+
+      @in: 20%;
+      @inSize: 20;
+
+      @out: 30%;
+      @outSize: 30;
+
+      @keyframes in {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(100 / @inSize);
+          opacity: 0;
+        }
+      }
+
+      @keyframes out {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(100 / @outSize);
+          opacity: 0;
+        }
+      }
+
+      div {
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #ffffff;
+        background-color: #ffd914;
+        &.in {
+          width: @in;
+          height: @in;
+          margin: (100 - @in) / 2;
+          opacity: .4;
+          z-index: 2;
+          animation: in .4s ease-in-out;
+          animation-fill-mode: forwards;
+        }
+        &.out {
+          width: @out;
+          height: @out;
+          margin: (100 - @out) / 2;
+          opacity: .3;
+          z-index: 1;
+          animation: out .4s ease-in-out;
+          animation-delay: .2s;
+          animation-fill-mode: forwards;
+        }
+      }
     }
   }
 }
