@@ -391,3 +391,7 @@ p.list-p {
 .table > tbody > tr > td {
     padding: 10px;
 }
+
+form p.bg-info {
+    padding: 10px;
+}

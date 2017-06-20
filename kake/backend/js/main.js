@@ -898,16 +898,21 @@ $(function () {
             previewObj.html('');
         }
 
+        var action = '';
+        if (options.action) {
+            action = '' +
+            '<div class="action-btn">' +
+            '   <span ' +
+            '       class="glyphicon glyphicon-trash remove" ' +
+            '       id="' + options.data.id + '" ' +
+            '       name="' + options.attachmentName + '" ' +
+            '       title="删除"></span>' +
+            ' </div>';
+        }
+
         previewObj.append('' +
             '<div class="col-sm-' + options.previewLabel + '">' +
-            '   <a href="javascript:void(0)" class="thumbnail">' +
-            '       <div class="action-btn">' +
-            '           <span ' +
-            '               class="glyphicon glyphicon-trash remove" ' +
-            '               id="' + options.data.id + '" ' +
-            '               name="' + options.attachmentName + '" ' +
-            '               title="删除"></span>' +
-            '       </div>' +
+            '   <a href="javascript:void(0)" class="thumbnail">' + action +
             '       <img src="' + options.data.url + '">' +
             '   </a>' +
             '</div>');
