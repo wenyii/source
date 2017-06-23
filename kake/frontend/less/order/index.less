@@ -6,15 +6,20 @@ p {
 
 .blank-piece {
   height: 20px;
-  background-color: #eeeeee;
+  background-color: #f5f5f5;
 }
-
+input[type="date"]::-webkit-inner-spin-button { visibility: hidden; } 
+input[type="date"]:not(.has-value):before{
+  color: #B3B3B6;
+  content: attr(placeholder);
+  font-size: 16px;
+}
 .classify {
   width: 100%;
   background-color: white;
   height: 38px;
-  border-top: 1px solid #cdcdcd;
-  border-bottom: 1px solid #cdcdcd;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
   padding-top: 7px;
   .classify-1 {
     display: flex;
@@ -32,7 +37,7 @@ p {
       color: #323232;
     }
     .classify-1-1 {
-      border-right: 1px solid #cdcdcd;
+      border-right: 1px solid #ebebeb;
     }
     div.cur-1 {
       span {
@@ -57,8 +62,8 @@ p {
   }
   .apply-refund {
     padding: 22px 15px;
-    border-top: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
     display: flex;
     .apply-refund-lft {
       flex: 2;
@@ -91,7 +96,7 @@ p {
         display: inline-block;
       }
       .cancel-button {
-        background-color: #bababa;
+        background-color: #f5f5f5;
       }
       .appointment-button {
         margin-left: 16px;
@@ -247,6 +252,7 @@ p {
     .margin-top(18px);
   }
   input {
+    border-radius: 0;
     border: none;
     width: 100%;
     .margin-top(18px);
@@ -269,7 +275,8 @@ p {
     text-align: center;
     line-height: 28px;
     float: right;
-    margin-right: 18px;
+    margin-right: 10px;
+    
   }
 }
 
