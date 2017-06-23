@@ -1128,37 +1128,6 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             e && e.preventDefault && e.preventDefault();
             location.href = _href;
         });
-
-        // 击打效果
-        $('*').on('tap click', function(e) {
-        		var href = $(this).attr('href');
-        		e.stopPropagation();
-        		if ($scope.factory.hit) {
-	            return;
-	        }
-	
-	        var pos = {
-	            x: parseInt(e.clientX),
-	            y: parseInt(e.clientY)
-	        };
-	        var hit = $('div.hit');
-	        hit.css({
-	            left: pos.x - hit.width() / 2,
-	            top: pos.y - hit.height() / 2
-	        });
-	        
-	        var showHit = function () {
-	            $scope.factory.hit = true;
-	        };
-	        var hideHit = function () {
-	            $scope.factory.hit = false;
-				if (!href || href.indexOf('javascript:') === 0) {
-	                return true;
-	            }
-	        };
-	        $timeout(showHit, 1);
-	        $timeout(hideHit, 300);
-        });
     };
 
     $scope.wxSDK = function (conf, title, description, cover) {
@@ -1266,5 +1235,5 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             }
         });
     };
-    
+
 }]);
