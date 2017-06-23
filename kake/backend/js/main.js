@@ -1038,6 +1038,34 @@ $(function () {
 
     // ---
 
+    // ajax 筛选
+    $.ajaxFilterList = function (action) {
+        body.on('click', '.filter button[type="submit"]', function (event) {
+            event.preventDefault();
+
+            var data = {};
+            $.each($('form.filter').serializeArray(), function () {
+                data[this.name] = this.value;
+            });
+            var url = baseUrl + '/?' + $.jsonToUrl(data);
+            $.sendGetAsync(url, function (data) {
+                $('#' + action).html(data.data.message);
+            });
+        });
+    };
+
+    // ajax 分页
+    $.ajaxPageList = function (action) {
+        body.on('click', '.pagination a', function (event) {
+            event.preventDefault();
+
+            var url = $(this).attr('href');
+            $.sendGetAsync(url, function (data) {
+                $('#' + action).html(data.data.message);
+            });
+        });
+    };
+
     // 验证码手机号码
     $.checkPhone = function (phone) {
         if (!/^0?1[0-9]\d{9}$/.test(phone)) {
@@ -1183,34 +1211,6 @@ $(function () {
         postData[csrfKey] = csrfToken;
 
         $.sendRequest(requestUrl + action, postData);
-    };
-
-    // ajax 筛选
-    $.ajaxFilterList = function (action) {
-        body.on('click', '.filter button[type="submit"]', function (event) {
-            event.preventDefault();
-
-            var data = {};
-            $.each($('form.filter').serializeArray(), function () {
-                data[this.name] = this.value;
-            });
-            var url = baseUrl + '/?' + $.jsonToUrl(data);
-            $.sendGetAsync(url, function (data) {
-                $('#' + action).html(data.data.message);
-            });
-        });
-    };
-
-    // ajax 分页
-    $.ajaxPageList = function (action) {
-        body.on('click', '.pagination a', function (event) {
-            event.preventDefault();
-
-            var url = $(this).attr('href');
-            $.sendGetAsync(url, function (data) {
-                $('#' + action).html(data.data.message);
-            });
-        });
     };
 
     // 产品分销时变更产品时自动填写开始销量

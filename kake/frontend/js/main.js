@@ -419,6 +419,8 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
     // Parse query string
     this.parseQueryString = function (url) {
 
+        url = url || location.href;
+
         if (url.indexOf('?') !== -1) {
             url = url.split('?')[1];
         }
@@ -439,7 +441,7 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
 
     // Supplement params from current location
     this.supplyParams = function (href, params) {
-        var queryParams = that.parseQueryString(location.href);
+        var queryParams = that.parseQueryString();
         var queryString = '';
         $.each(params || [], function (k, v) {
             if (typeof queryParams[v] !== 'undefined') {
