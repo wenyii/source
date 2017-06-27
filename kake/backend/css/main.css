@@ -395,3 +395,23 @@ p.list-p {
 form p.bg-info {
     padding: 10px;
 }
+
+.modal-footer {
+    border-top: none;
+}
+
+h1 {
+    margin: 0;
+}
+
+h1 small {
+    font-size: 50%;
+}
+
+p.bg-warning, p.bg-success, p.bg-info {
+    padding: 15px;
+}
+
+div.site-error h1 {
+    margin: 25px auto;
+}
