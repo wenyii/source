@@ -415,3 +415,7 @@ p.bg-warning, p.bg-success, p.bg-info {
 div.site-error h1 {
     margin: 25px auto;
 }
+
+.sortable-box {
+    cursor: move;
+}
