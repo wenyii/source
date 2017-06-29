@@ -527,6 +527,25 @@
         return this;
     };
 
+    Array.prototype.swap = function (first, last) { // 交互索引
+        this[first] = this.splice(last, 1, this[first])[0];
+        return this;
+    };
+
+    Array.prototype.up = function (index) { // 前移
+        if (index === 0) {
+            return this;
+        }
+        return this.swap(index, index - 1);
+    };
+
+    Array.prototype.down = function (index) { // 后移
+        if (index === this.length - 1) {
+            return this;
+        }
+        return this.swap(index, index + 1);
+    };
+
     Array.complement = function (a, b) { // 数组补集
         return Array.minus(Array.union(a, b), Array.intersect(a, b));
     };
@@ -853,7 +872,8 @@ $(function () {
 
     // 上传附件
     $.uploadAttachment = function (options) {
-        new AjaxUpload(options.uploadInput[0], {
+        var obj = $(options.uploadInput)[0];
+        new AjaxUpload(obj, {
             action: options.action,
             name: 'ajax',
             autoSubmit: true,
@@ -894,25 +914,25 @@ $(function () {
         }
 
         var previewObj = $('div[name="' + options.previewName + '"]');
-        if (!parseInt(options.multiple)) {
+        if (!options.multiple) {
             previewObj.html('');
         }
 
         var action = '';
         if (options.action) {
             action = '' +
-            '<div class="action-btn">' +
-            '   <span ' +
-            '       class="glyphicon glyphicon-trash remove" ' +
-            '       id="' + options.data.id + '" ' +
-            '       name="' + options.attachmentName + '" ' +
-            '       title="删除"></span>' +
-            ' </div>';
+                '<div class="action-btn">' +
+                '   <span ' +
+                '       class="glyphicon glyphicon-trash remove" ' +
+                '       id="' + options.data.id + '" ' +
+                '       name="' + options.attachmentName + '" ' +
+                '       title="删除"></span>' +
+                ' </div>';
         }
 
         previewObj.append('' +
             '<div class="col-sm-' + options.previewLabel + '">' +
-            '   <a href="javascript:void(0)" class="thumbnail">' + action +
+            '   <a href="javascript:void(0)" class="thumbnail sortable-box">' + action +
             '       <img src="' + options.data.url + '">' +
             '   </a>' +
             '</div>');
