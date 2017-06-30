@@ -940,6 +940,36 @@ $(function () {
         return true;
     };
 
+    // 拖拽排序
+    $.sortable = function (htmlSelector, inputSelector) {
+        var htmlBox = $(htmlSelector)[0];
+        Sortable.create(htmlBox, {
+            group: 'slave',
+            animation: 200,
+            onEnd: function (e) {
+                var _old = e.oldIndex - 1;
+                var _new = e.newIndex - 1;
+                if (_new !== _old) {
+                    var valueBox = $(inputSelector);
+                    var value = valueBox.val().split(',');
+
+                    // 从拖拽的元素开始动手
+                    if (_old < _new) { // 往后排
+                        for (var k = _old; k < _new; k++) {
+                            value.down(k);
+                        }
+                    } else if(_old > _new) { // 往前排
+                        for (var v = _old; v > _new; v--) {
+                            value.up(v);
+                        }
+                    }
+
+                    valueBox.val(value.join(','));
+                }
+            }
+        });
+    };
+
     // 处理模态框页面表单
     $.handleModalForm = function (form, handleFormDataFn, callbackObj) {
         var data = {};
