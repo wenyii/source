@@ -379,6 +379,9 @@ div.mission {
     text-align: left;
     max-width: 960px;
 }
+.tooltip {
+    line-height: 1.8;
+}
 
 .operation a.btn {
     margin-bottom: 3px;
