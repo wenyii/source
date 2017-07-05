@@ -1274,7 +1274,7 @@ $(function () {
             return;
         }
 
-        var url = requestUrl + 'product-producer/get-from-sales';
+        var url = requestUrl + 'product-producer/ajax-get-from-sales';
         $.sendGetAsync(url + '&product_id=' + productId + '&type=' + type, function (data) {
             if (data.state) {
                 $('input[name="from_sales"]').val(data.data);
