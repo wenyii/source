@@ -1,0 +1,486 @@
+@import "../main";
+.body {
+    margin-bottom: 50px;
+    background: #fff;
+}
+.distri_panel{
+    .distri_ani{
+        .ani-bg{
+            width: 100%;
+            position: absolute;
+        }
+        .people{
+            position: relative;
+            width: 254px;
+            top: 50%;
+            left: 36%;
+            z-index: 12;
+            transform: translate(-50%,85%);
+            animation:fadeInOutPeople 5s ease-in;
+        }
+        .car{
+            position: relative;
+            width: 375px;
+            top: 50%;
+            left: 146%;
+            transform: translate(-50%,0%);
+            z-index: 13;
+            -webkit-animation:car2_drive 6s ease-in;
+        }
+         @-webkit-keyframes fadeInOutPeople {
+            0%,40% {
+                opacity: 0;
+             }
+            //下车
+            42%{
+                opacity: 0;
+            }
+            52%{
+                opacity: 0.7;
+            }
+            62%{
+                opacity: 0.8;
+            }
+            72%{
+                opacity: 0.9;
+            }
+            82%{
+                opacity: 0.9;
+            }
+            92%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes carBody_shake{
+            0%,16%,18.3%,100%{
+                top:0;
+            }
+            17.4%{
+                top:8px;
+            }
+        }
+        @-webkit-keyframes car2_drive{
+            0%,10%{
+            }
+            
+            //停顿
+            20%,55%{
+                left:200px;
+            }
+            //开走
+            70%,100%{
+                left:-200px;
+            }
+        }
+        .crab{
+            position: relative;
+            width: 56px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,0%);
+            z-index: 3;
+        }
+        .r-leef{
+            position: relative;
+            width: 56px;
+            float: right;
+        }
+        .l-leef{
+            position: relative;
+            width: 56px;
+            margin-top: -40px;
+        }
+    }
+    .distri_content{
+        animation:fadeInBox 1s ease-in-out;
+        @-webkit-keyframes fadeInBox{
+            0%{
+                opacity: 0.4;
+            }
+            50%{
+                opacity: 0.5;
+            }
+            60%{
+                opacity: 0.6;
+            }
+            70%{
+                opacity: 0.7;
+            }
+            80%{
+                opacity: 0.8;
+            }
+            90%{
+                opacity: 0.9;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        .gif{
+            img{
+                width: 100%;
+            }
+        }
+        .line{
+            position: relative;
+            img{
+                width: 100%;
+            }
+        }
+        .logo{
+            position: absolute;
+            width: 300px;
+            text-align: center;
+            top:137px;
+            bottom:0;
+            left:0;
+            right: 0;
+            margin:auto;
+            img{
+                width: 64px;
+                height: 64px;
+                border-radius: 100%;
+                border: 1px solid #fff;
+            }
+        }
+        .product-bg{
+            position: relative;
+            margin-top: 19px;
+            img{
+                width: 100%;
+            }
+        }
+        .product_list{
+            position: absolute;
+            margin: 0;
+            top: 0;
+            margin-top: 66px;
+            ul{
+                li{
+                    .photoleft{
+                        margin-top: 130px;
+                        img{
+                            width: 308px;
+                            z-index: 1;
+                        }
+                    }
+                    .photoright{
+                        margin-left: 25%;
+                        margin-top: -130px;
+                        img{
+                            width: 308px;
+                            z-index: 1;
+                            margin-top: 206px;
+                        }
+                    }
+                    .descriptionleft{
+                        position: absolute;
+                        img{
+                            z-index: 22;
+                            width: 128px;
+                            margin:-95px 0 0 216px;
+                            position: relative;
+                        }
+                        .btn{
+                            position: absolute;
+                            z-index: 200;
+                            img{
+                            z-index: 26;
+                            width: 83px;
+                          //  margin: -61px 0 0 220px;
+                            margin:-8px 0 0 -120px;
+                            position: absolute;
+                            }
+                            
+                            animation:fadeInlove 1s infinite;
+                        }
+                        @-webkit-keyframes fadeInlove{
+                            0%{
+                                transform: translateY(6px);
+                            }
+                            50%{
+                                transform: translateY(0px);
+                            }
+                            100%{
+                                transform: translateY(6px);
+                            }
+                        }
+                        .text{
+                            float: right;
+                            width: 128px;
+                            height: 200px;
+                            left:233px;
+                            z-index: 46;
+                            top: -80px;
+                            position: absolute;
+                            h2{
+                                color: #000;
+                                z-index: 24;
+                                font-size: 15px;
+                                font-weight: bold;
+                                margin:0;                            
+                            }
+                            span{
+                                width:100%;
+                                color: #000;
+                                z-index: 24;
+                                position: absolute;
+                                font-size: 14px;
+                            }
+                            small{
+                                color: #01abb5;
+                                font-size: 15px;
+                                position: absolute;
+                                font-weight: bold;
+                                top: 54px;
+                            }
+                        }
+                    
+                    }
+                    
+                    .descriptionright{
+                        position: absolute;
+                            img{
+                                width: 128px;
+                                margin:-95px 0 0 20px;
+                                position: relative;
+                            }
+                            .btn{
+                                img{
+                                z-index: 26;
+                                width: 80px;
+                                margin:-27px 20px 0 -121px;
+                                position: absolute;
+                                }
+                                animation:fadeInbtn 3s ease-in infinite;
+                            }
+                            @-webkit-keyframes fadeInbtn{
+                                0%{
+                                    transform: translateY(10px);
+                                }
+                                50%{
+                                    transform: translateY(0px);
+                                }
+                                100%{
+                                    transform: translateY(10px);
+                                }
+                            }
+                            .text{
+                                float: right;
+                                width: 128px;
+                                height: 200px;
+                                left:38px;
+                                z-index: 46;
+                                top: -80px;
+                                position: absolute;
+                                h2{
+                                    color: #000;
+                                    z-index: 24;
+                                    font-size: 15px;
+                                    font-weight: bold;
+                                    margin:0;                            
+                                }
+                                span{
+                                    width:100%;
+                                    color: #000;
+                                    z-index: 24;
+                                    position: absolute;
+                                    font-size: 14px;
+                                }
+                                small{
+                                    color: #01abb5;
+                                    font-size: 15px;
+                                    position: absolute;
+                                    font-weight: bold;
+                                    top: 54px;
+                                }
+                            }
+                        
+                        }
+                }
+            } 
+            
+        }
+        .ball{
+            position: absolute;
+            margin: 0;
+            top: 0;
+            top: 266px;
+            left:319px;
+            img{
+                width: 46px;
+                height: 40px;
+            }
+            //animation:fadeInball 3s ease-in-out infinite;
+        }
+        @-webkit-keyframes fadeInball{
+            0%,10%{
+                top: -79px;
+                left: 43px;
+            }
+
+//         下滑
+           20%,40{
+               top: -8px;
+               left: -30px;
+           }
+//         转折
+           42%,50%{
+               top: 26px;
+               left: -9px;
+           }
+//         弹跳
+           54%{
+               top: 14px;
+           }
+           56%{
+                top: 26px;
+           }
+           58%{
+                top: 14px;
+           }
+           60%{
+                top: 26px;                
+           }
+//         结束           
+           100%{
+               
+           }
+        }
+        .glasses{
+            position: absolute;
+            margin: 0;
+            top: 433px;
+            left: 22px;
+            img{
+                width: 95px;
+                height: 30px;
+            }
+            //animation:fadeInglasses 5s ease-in-out infinite;
+        }
+        @-webkit-keyframes fadeInglasses{
+            0%{
+                transform: scale(0.8);
+            }
+            50%{
+                transform: scale(1);
+            }
+            100%{
+                transform: scale(0.8);
+            }
+        }
+        .shoes{
+            position: absolute;
+            margin: 0;
+            top: 775px;
+            left: 26px;
+            img{
+                width: 55px;
+                height: 33px;
+            }
+            //animation:fadeInshoes 3s ease-in infinite;
+        }
+        @-webkit-keyframes fadeInshoes{
+            0%,10%{
+                opacity: 0;
+            }
+            70%,100%{
+                opacity: 1;
+            }
+        }
+        .slopearrow{
+            position: absolute;
+            margin: 0;
+            top: 1102px;
+            left: 21px;
+            img{
+                width: 55px;
+                height: 50px;
+            }
+            //animation:fadeInslopearrow 3s ease-in infinite;
+        }
+        @-webkit-keyframes fadeInslopearrow{
+            0%,10%{
+            }
+            70%,100%{
+                transform: translate(0, -10px);
+            }
+        }
+        .compass{
+            position: absolute;
+            margin: 0;
+            top: 876px ;
+            left: 319px;
+            img{
+                width: 40px;
+                height: 35px;
+            }
+            //animation:fadeIncompass 3s ease-in infinite;
+        }
+        @-webkit-keyframes fadeIncompass{
+            0%,10%{
+                opacity: 0;
+            }
+            70%,100%{
+                opacity: 1;
+            }
+        }
+        .camera{
+            position: absolute;
+            
+            top: 0;
+            margin: 0;
+            left: 101px;
+            top: 1408px;
+            img{
+                width: 80px;
+                height: 46px;
+               // margin:1408px 0 0 101px;
+            }
+            //animation:fadeIncamera 7s ease-out infinite;
+        }
+        @-webkit-keyframes fadeIncamera{
+            0%{-webkit-transform:translate3d(100%,0,0) skewX(-30deg);transform:translate3d(100%,0,0) skewX(-30deg);opacity:0}
+            60%{-webkit-transform:skewX(20deg);transform:skewX(20deg);opacity:1}
+            80%{-webkit-transform:skewX(-5deg);transform:skewX(-5deg);opacity:1}
+            100%{-webkit-transform:none;transform:none;opacity:1}
+        }
+        .downarrow{
+            position: absolute;
+            margin: 0;
+            top: 1766px;
+            left: 165px;
+            img{
+                width: 45px;
+                height: 36px;
+                
+            }
+            animation:fadeIndownarrow 2.5s ease-in infinite;
+        }
+        @-webkit-keyframes fadeIndownarrow{
+            0%,10%{
+                opacity: 0;
+            }
+            70%,100%{
+                opacity: 1;
+            }
+        }
+        .footer{
+            margin:123px 0 0 25%;
+            a{
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+                img{
+                    width: 118px;
+                    height: 70px;
+                }
+            }
+        }
+        
+    }
+}
+
