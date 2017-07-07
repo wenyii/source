@@ -457,6 +457,25 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
 
         return href;
     };
+
+    // Image load completed
+    this.imageLoaded = function (box, callback) {
+
+        box = box || $('body');
+        var imageNum = box.find('img').length;
+
+        if (imageNum <= 0) {
+            callback();
+            return;
+        }
+
+        box.find('img').load(function () {
+            imageNum--;
+            if (imageNum === 0) {
+                callback();
+            }
+        });
+    };
 }]);
 
 /**
