@@ -533,7 +533,6 @@ app.directive('kkTap', ['$parse', function ($parse) {
                 };
                 scope.$apply(callback);
             };
-
             new AlloyFinger(element[0], alloy);
         };
     };
