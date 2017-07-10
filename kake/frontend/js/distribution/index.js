@@ -5,8 +5,10 @@ app.controller('distribution', ['$scope', '$controller', '$timeout', function ($
 
 	$controller('generic', {$scope: $scope});
 	
-	$scope.isShowAni = true;
-	$timeout(function(){
-		$scope.isShowAni = false ;
-	},5000)
+	$scope.service.imageLoaded($('.distri_ani'), function() {
+		$scope.isShowAni = true;
+		$timeout(function(){
+			$scope.isShowAni = false ;
+		},5000);
+	});
 }]);
