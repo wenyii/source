@@ -477,7 +477,7 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
                 deferred.resolve();
             }
 
-            imgDeferred.push(dfd);
+            imgDeferred.push(deferred);
         });
 
         $.when(imgDeferred).done(function () {
