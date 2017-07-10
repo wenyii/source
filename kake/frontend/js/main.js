@@ -462,18 +462,26 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
     this.imageLoaded = function (box, callback) {
 
         box = box || $('body');
-        var imageNum = box.find('img').length;
+        var imgDeferred = [];
 
-        if (imageNum <= 0) {
-            callback();
-            return;
-        }
+        box.find('img').each(function () {
 
-        box.find('img').load(function () {
-            imageNum--;
-            if (imageNum === 0) {
-                callback();
+            var deferred = $.Deferred();
+            $(this).bind('load', function () {
+                deferred.resolve();
+            }).bind('error', function () {
+                deferred.reject();
+            });
+
+            if (this.complete) {
+                deferred.resolve();
             }
+
+            imgDeferred.push(dfd);
+        });
+
+        $.when(imgDeferred).done(function () {
+            callback();
         });
     };
 }]);
