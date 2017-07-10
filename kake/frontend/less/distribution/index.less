@@ -6,8 +6,8 @@
 .distri_panel{
     .distri_ani{
         .ani-bg{
-            width: 100%;
             position: absolute;
+            width:100%;
         }
         .people{
             position: relative;
@@ -146,23 +146,12 @@
                 border: 1px solid #fff;
             }
         }
-//      .product-bg{
-//          position: relative;
-//          
-//          
-////          img{
-////              width: 100%;
-////          }
-//      }
         .product_list{
-//          position: absolute;
-//          margin: 0;
-//          top: 0;
-//          margin-top: 84px;
             margin-top: -139px;
             background: url("@{img}/distribution/productbg.png");
             width: 100%;
-            background-size:100% 100%;
+            background-size:100% auto;
+            
             ul{
                 li{
                     .photoleft{
@@ -173,8 +162,9 @@
                         }
                     }
                     .photoright{
-                        margin-left: 25%;
                         margin-top: -130px;
+                        width: 100%;
+                        text-align: right;
                         img{
                             width: 308px;
                             z-index: 1;
@@ -199,18 +189,17 @@
                             margin:-8px 0 0 -120px;
                             position: absolute;
                             }
-                            
-                            animation:fadeInlove 1s infinite;
+                            animation:fadeInbtn 3s ease-in infinite;
                         }
-                        @-webkit-keyframes fadeInlove{
+                        @-webkit-keyframes fadeInbtn{
                             0%{
-                                transform: translateY(6px);
+                                transform: translateY(10px);
                             }
                             50%{
                                 transform: translateY(0px);
                             }
                             100%{
-                                transform: translateY(6px);
+                                transform: translateY(10px);
                             }
                         }
                         .text{
@@ -400,7 +389,7 @@
         .slopearrow{
             position: absolute;
             margin: 0;
-            top: 1102px;
+            top: 1056px;
             left: 21px;
             img{
                 width: 55px;
@@ -418,8 +407,8 @@
         .compass{
             position: absolute;
             margin: 0;
-            top: 876px ;
-            left: 319px;
+            top: 1048px;
+            left: 141px;
             img{
                 width: 40px;
                 height: 35px;
@@ -440,7 +429,7 @@
             top: 0;
             margin: 0;
             left: 101px;
-            top: 1408px;
+            top: 1390px;
             img{
                 width: 80px;
                 height: 46px;
