@@ -271,7 +271,12 @@ div.page {
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 30px;
+    text-shadow: 3px 3px 0 #101010, 4px 4px 0 #eee;
+}
+
+.navbar-brand:hover {
+    transition: color 1s ease;
 }
 
 /*
@@ -421,4 +426,32 @@ div.site-error h1 {
 
 .sortable-box {
     cursor: move;
+}
+
+input[type="file"] {
+    font-size: 12px;
+    padding: 7px 12px;
+}
+
+#content-div {
+    position: relative;
+}
+
+#menu-toggle {
+    position: absolute;
+    width: 8px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    height: 40px;
+    left: 0;
+    top: 20px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+    border-left: none;
+}
+
+#menu-toggle:hover {
+    background-color: #428bca;
+    transition: background-color 1s ease;
 }

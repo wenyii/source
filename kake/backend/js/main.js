@@ -849,8 +849,8 @@ $(function () {
     // 提示气泡
     $('[data-toggle="tooltip"]').tooltip();
 
-    // 收起/打开菜单栏 ctrl + enter
-    $.keyBind(13, function () {
+    // 收起/展现菜单
+    $.toggleMenu = function () {
         var menu = $('#menu-div');
         var content = $('#content-div');
 
@@ -867,8 +867,12 @@ $(function () {
                 $.sendGetSync(requestUrl + 'general/ajax-hide-menu&hide=1');
             });
         }
+    };
 
-    }, body, true);
+    // 收起/打开菜单栏 ctrl + enter
+    $('#menu-toggle').click(function () {
+        $.toggleMenu();
+    });
 
     // 上传附件
     $.uploadAttachment = function (options) {
@@ -958,7 +962,7 @@ $(function () {
                         for (var k = _old; k < _new; k++) {
                             value.down(k);
                         }
-                    } else if(_old > _new) { // 往前排
+                    } else if (_old > _new) { // 往前排
                         for (var v = _old; v > _new; v--) {
                             value.up(v);
                         }
