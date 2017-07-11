@@ -2,97 +2,122 @@
 .body {
     margin-bottom: 50px;
     background: #fff;
+    padding:0;
+    overflow: hidden;
 }
 .distri_panel{
     .distri_ani{
-        .ani-bg{
-            position: absolute;
-            width:100%;
+        .content{
+            width: 100%;
+            height: 100%;
+            top:0;
+            z-index: -1; 
+            position: relative;
+            img{
+                display: block;
+                outline: none;
+                border:0;
+                height: 100%;
+                width: 100%;
+            }
         }
         .people{
-            position: relative;
+            position: absolute;
             width: 254px;
-            top: 50%;
-            left: 36%;
-            z-index: 12;
-            transform: translate(-50%,85%);
-            animation:fadeInOutPeople 5s ease-in;
+            left: 20%;
+            bottom: 60px;
+            display: none;
         }
-        .car{
-            position: relative;
+        
+        @keyframes halo {
+            0%, 100% {
+                transform: rotate(-20deg);
+            }
+            50% {
+                transform: rotate(20deg);
+            }
+        }
+        
+        .halo{
+            position: absolute;
             width: 375px;
-            top: 50%;
-            left: 146%;
-            transform: translate(-50%,0%);
-            z-index: 13;
-            -webkit-animation:car2_drive 6s ease-in;
+            top: 0px;
+            z-index: 2;
+            overflow: hidden;
+            transform-origin: 98% 2%;
+            transform: rotate(-20deg);
+            animation: halo 6s infinite ease-in-out;
         }
-         @-webkit-keyframes fadeInOutPeople {
-            0%,40% {
-                opacity: 0;
-             }
-            //下车
-            42%{
-                opacity: 0;
+        .box-false{
+            position: absolute;
+            bottom: 30px;
+            right: -400px;
+            width: 375px;
+            height: 200px;
+            z-index: 666;
+            .an-brake {
+                transform-origin: 50% 100%;
+                animation: an-brake .5s ease-in-out;
             }
-            52%{
-                opacity: 0.7;
+            @keyframes an-brake {
+                10%, 60% {
+                    transform: skewX(15deg);
+                }
+                0%, 100% {
+                    transform: skewX(0deg);
+                }
             }
-            62%{
-                opacity: 0.8;
-            }
-            72%{
-                opacity: 0.9;
-            }
-            82%{
-                opacity: 0.9;
-            }
-            92%{
-                opacity: 1;
-            }
-            100%{
-                opacity: 1;
+            .box {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                z-index: 888;
+                img.car {
+                    position: absolute;
+                    width: 400px;
+                    left: 0;
+                    bottom: 0;
+                    z-index: 222;
+                }
+                 img.gas {
+                    position: absolute;
+                    width: 80px;
+                    right: -25px;
+                    bottom: 4px;
+                }
+                img.an-gas {
+                    animation: an-gas .2s infinite ease-in-out;
+                }
+                @keyframes an-gas {
+                    0% {
+                        transform: translate(-25px, 15px) scale(0)
+                    }
+                    100% {
+                        transform: translate(5px, 0px) scale(1)
+                    }
+                }
             }
         }
-        @-webkit-keyframes carBody_shake{
-            0%,16%,18.3%,100%{
-                top:0;
-            }
-            17.4%{
-                top:8px;
-            }
-        }
-        @-webkit-keyframes car2_drive{
-            0%,10%{
-            }
-            
-            //停顿
-            20%,55%{
-                left:200px;
-            }
-            //开走
-            70%,100%{
-                left:-200px;
-            }
-        }
-        .crab{
-            position: relative;
-            width: 56px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,0%);
-            z-index: 3;
-        }
-        .r-leef{
-            position: relative;
-            width: 56px;
-            float: right;
-        }
-        .l-leef{
-            position: relative;
-            width: 56px;
-            margin-top: -40px;
-        }
+        .an-shake {
+                    animation: an-shake .1s infinite ease-in-out;
+                }
+                @keyframes an-shake {
+                    0%, 100% {
+                        transform: translate(1px, 0px) rotate(0deg)
+                    }
+                    20% {
+                        transform: translate(-2px, -2px) rotate(0.2deg)
+                    }
+                    40% {
+                        transform: translate(-2px, 1px) rotate(-0.1deg)
+                    }
+                    60% {
+                        transform: translate(-1px, 2px) rotate(-0.2deg)
+                    }
+                    80% {
+                        transform: translate(0px, 2px) rotate(0.1deg)
+                    }
+                }
     }
     .distri_content{
         animation:fadeInBox 1s ease-in-out;
@@ -182,7 +207,6 @@
                             img{
                             z-index: 26;
                             width: 83px;
-                          //  margin: -61px 0 0 220px;
                             margin:-8px 0 0 -120px;
                             position: absolute;
                             }
@@ -292,7 +316,6 @@
                                     top: 54px;
                                 }
                             }
-                        
                         }
                 }
             } 
