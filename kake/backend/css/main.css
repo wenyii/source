@@ -374,6 +374,9 @@ blockquote {
     border-left-width: 5px;
 }
 
+/*
+ * General
+ */
 div.mission {
     width: 28%;
     min-width: 250px;
@@ -454,4 +457,44 @@ input[type="file"] {
 #menu-toggle:hover {
     background-color: #428bca;
     transition: background-color 1s ease;
+}
+
+.table {
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+a.thumbnail .action-btn {
+    cursor: pointer;
+}
+
+/*
+ * Cropper
+ */
+#crop-box {
+    width: 100%;
+    height: 440px;
+    padding: 20px 0;
+}
+
+#crop-box .container {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+#crop-box .container img {
+    max-width: 100%;
+}
+
+#crop-box .assist {
+    float: left;
+    margin-left: 30px;
+}
+
+#crop-box .assist .crop-preview {
+    overflow: hidden;
 }
