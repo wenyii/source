@@ -739,15 +739,22 @@ $(function () {
     };
 
     // 弹出页面 - 基于模态框
-    $.showPage = function (api, params) {
+    $.showPage = function (api, params, method) {
 
         // 组织请求数据
         var postData = {};
-        postData[csrfKey] = csrfToken;
 
+        method = (method || 'get').toLowerCase();
         api = api.split('.');
 
-        var query = $._isJson(params) ? '&' + $.jsonToUrl(params) : '';
+        var query = '';
+        if (method === 'get') {
+            query = $._isJson(params) ? '&' + $.jsonToUrl(params) : '';
+            postData[csrfKey] = csrfToken;
+        } else {
+            params[csrfKey] = csrfToken;
+            postData = params;
+        }
         $.sendPost(requestUrl + api[0] + '/ajax-modal-' + api[1] + query, postData, function (data) {
             if (!data.state) {
                 $.alert(data.info, 'danger');
@@ -876,8 +883,7 @@ $(function () {
 
     // 上传附件
     $.uploadAttachment = function (options) {
-        var obj = $(options.uploadInput)[0];
-        new AjaxUpload(obj, {
+        new AjaxUpload($(options.triggerTarget), {
             action: options.action,
             name: 'ajax',
             autoSubmit: true,
@@ -892,22 +898,31 @@ $(function () {
                 }
 
                 options.data = response.data;
-                if ($.createThumb(options)) {
-                    var attachmentElem = $('input[name="' + options.attachmentName + '"]');
-
-                    // 允许多张图片上传
-                    if (parseInt(options.multiple)) {
-
-                        // 需提交的附件ids
-                        var ids = attachmentElem.val().split(',').uniquelize().remove('');
-                        ids.push(response.data.id);
-                        attachmentElem.val(ids.join(','));
-                    } else {
-                        attachmentElem.val(response.data.id);
-                    }
+                if (options.data.crop) {
+                    $.showPage('general.crop', options, 'post');
+                } else {
+                    $.handleUpload(options);
                 }
             }
         });
+    };
+
+    // 上传后处理
+    $.handleUpload = function (options) {
+        if ($.createThumb(options)) {
+            var attachmentElem = $('input[name="' + options.attachmentName + '"]');
+
+            // 允许多张图片上传
+            if (parseInt(options.multiple)) {
+
+                // 需提交的附件ids
+                var ids = attachmentElem.val().split(',').uniquelize().remove('');
+                ids.push(options.data.id);
+                attachmentElem.val(ids.join(','));
+            } else {
+                attachmentElem.val(options.data.id);
+            }
+        }
     };
 
     // 生成附件预览
@@ -937,7 +952,7 @@ $(function () {
         previewObj.append('' +
             '<div class="col-sm-' + options.previewLabel + '">' +
             '   <a href="javascript:void(0)" class="thumbnail sortable-box">' + action +
-            '       <img src="' + options.data.url + '">' +
+            '       <img src="' + options.data.url + '?' + $.time() + '">' +
             '   </a>' +
             '</div>');
 
@@ -1300,6 +1315,65 @@ $(function () {
                 yes: null,
                 no: null
             }).modal();
+        });
+    };
+
+    // 裁切图片
+    $.crop = function (options) {
+
+        var width = parseInt(options.width);
+        var height = parseInt(options.height);
+
+        var containerWidth = options.containerWidth || 500;
+        var containerHeight = options.containerHeight || 400;
+
+        var ratio = width / height;
+        var submitBtn = $(options.submitBtn || '.crop-submit');
+        var container = $(options.container || '#crop');
+        var previewSelector = options.preview || '.crop-preview';
+
+        if (width > 300) {
+            var w = 300;
+            var h = (w / width) * height;
+
+            $(previewSelector).css({
+                width: w,
+                height: h
+            });
+        }
+
+        container.cropper({
+            aspectRatio: ratio,
+            viewMode: 2,
+            dragMode: 'none',
+            rotatable: false,
+            cropBoxResizable: false,
+            minContainerWidth: containerWidth,
+            minContainerHeight: containerHeight,
+            preview: options.preview || '.crop-preview',
+            ready: function () {
+                $(this).cropper('setCropBoxData', {
+                    left: 0,
+                    top: 0,
+                    width: w,
+                    height: h
+                });
+            }
+        });
+
+        submitBtn.click(function () {
+            var base64 = container.cropper('getCroppedCanvas', {
+                width: width,
+                height: height
+            }).toDataURL();
+
+            options.postData[csrfKey] = csrfToken;
+            options.postData[options.base64Key || 'base64'] = base64;
+
+            $.sendPost(requestUrl + 'general/ajax-save-crop', options.postData, function (data) {
+                options.submitCallback(data);
+                $('#crop-box').parent().prev().find('.close').click();
+            });
         });
     };
 });
