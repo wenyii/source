@@ -11,21 +11,35 @@
     ul {
 //      margin: 0 15px;
         li {
-            .combo-1 {
-                line-height: 46px;
-                b {
-                    display: inline-block;
-                    float: left;
-                    width: 15px;
-                    height: 15px;
-                    background-color: #e5e5e5;
-                    margin: 15px;
-                    &.current {
-                        background-color: #ffcc00;
+            .combo-1{
+                overflow: hidden;
+                .lable{
+                    display: block;
+                    padding:23px 20px;
+                    position: relative;
+                    b{
+                        display: inline-block;
+                        float: left;
+                        width: 15px;
+                        height: 15px;
+                        background-color: #e5e5e5;
+                        margin: 6px 15px 0px 0px;
+                        &.current {
+                            background-color: #ffcc00;
+                        }
                     }
-                }
-                &.disabled {
-                    color: darkgrey;
+                    span{
+                        width: 64%;
+                        font-size: 14px;
+                        float: left;
+                        line-height: 25px;
+                    }
+                    i{
+                        float: right;
+                        width: 20%;
+                        font-size: 18px;
+                        text-align: right;
+                    }
                 }
             }
             .combo-2 {
