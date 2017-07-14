@@ -933,7 +933,7 @@ $(function () {
         }
 
         var previewObj = $('div[name="' + options.previewName + '"]');
-        if (!options.multiple) {
+        if (!parseInt(options.multiple)) {
             previewObj.html('');
         }
 
@@ -1332,22 +1332,24 @@ $(function () {
         var container = $(options.container || '#crop');
         var previewSelector = options.preview || '.crop-preview';
 
+        var w, h;
         if (width > 300) {
-            var w = 300;
-            var h = (w / width) * height;
-
-            $(previewSelector).css({
-                width: w,
-                height: h
-            });
+            w = 300;
+            h = (w / width) * height;
+        } else {
+            w = width;
+            h = height;
         }
+        
+        $(previewSelector).css({
+            width: w,
+            height: h
+        });
 
         container.cropper({
             aspectRatio: ratio,
             viewMode: 2,
-            dragMode: 'none',
             rotatable: false,
-            cropBoxResizable: false,
             minContainerWidth: containerWidth,
             minContainerHeight: containerHeight,
             preview: options.preview || '.crop-preview',
