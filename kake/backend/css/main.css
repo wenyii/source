@@ -471,6 +471,12 @@ a.thumbnail .action-btn {
     cursor: pointer;
 }
 
+.sort-btn {
+    cursor: pointer;
+    font-size: 12px;
+    color: #428bca;
+}
+
 /*
  * Cropper
  */
