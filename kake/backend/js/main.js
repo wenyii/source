@@ -1340,7 +1340,7 @@ $(function () {
             w = width;
             h = height;
         }
-        
+
         $(previewSelector).css({
             width: w,
             height: h
@@ -1378,4 +1378,44 @@ $(function () {
             });
         });
     };
+
+    // 各字段综合排序
+    $('span.sort-btn').click(function () {
+
+        var index = ['natural', 'desc', 'asc'];
+        var map = {
+            natural: 'glyphicon-sort',
+            desc: 'glyphicon-sort-by-alphabet-alt',
+            asc: 'glyphicon-sort-by-alphabet'
+        };
+
+        var that = $(this);
+        var sortIndex = parseInt(that.attr('sort-index')) || 0;
+        var nextIndex = (sortIndex >= index.length - 1) ? 0 : (sortIndex + 1);
+        that.attr('sort-index', nextIndex);
+
+        var sortQuery = '';
+        $('span.sort-btn').each(function () {
+            var name = $(this).attr('sort-name');
+            var sortNo = parseInt($(this).attr('sort-index'));
+            var sort = index[sortNo];
+
+            if (sortNo > 0) {
+                sortQuery += ',' + name + ' ' + sort;
+            }
+        });
+
+        sortQuery = encodeURI(sortQuery.substring(1));
+
+        var url = location.href;
+        sortQuery = sortQuery.trim() === '' ? '' : ('&sorter=' + sortQuery);
+
+        if (url.indexOf('sorter=') !== -1) {
+            url = url.replace(/[?|&]sorter=([^&]*)/, sortQuery)
+        } else {
+            url += sortQuery;
+        }
+
+        location.href = url;
+    });
 });
