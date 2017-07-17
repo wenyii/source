@@ -1135,6 +1135,16 @@ $(function () {
         });
     };
 
+    // ajax 排序
+    $.ajaxSorterList = function (action) {
+        body.on('click', 'span.sort-btn', function () {
+            var url = $.sorter($(this), true);
+            $.sendGetAsync(url, function (data) {
+                $('#' + action).html(data.data.message);
+            });
+        });
+    };
+
     // 验证码手机号码
     $.checkPhone = function (phone) {
         if (!/^0?1[0-9]\d{9}$/.test(phone)) {
@@ -1381,6 +1391,13 @@ $(function () {
 
     // 各字段综合排序
     $('span.sort-btn').click(function () {
+        $.sorter($(this));
+    });
+
+    // 排序核心
+    $.sorter = function (that, ajaxModel) {
+
+        ajaxModel = ajaxModel || false;
 
         var index = ['natural', 'desc', 'asc'];
         var map = {
@@ -1389,7 +1406,6 @@ $(function () {
             asc: 'glyphicon-sort-by-alphabet'
         };
 
-        var that = $(this);
         var sortIndex = parseInt(that.attr('sort-index')) || 0;
         var nextIndex = (sortIndex >= index.length - 1) ? 0 : (sortIndex + 1);
         that.attr('sort-index', nextIndex);
@@ -1407,7 +1423,7 @@ $(function () {
 
         sortQuery = encodeURI(sortQuery.substring(1));
 
-        var url = location.href;
+        var url = $('input[name="current-url"]').val();
         sortQuery = sortQuery.trim() === '' ? '' : ('&sorter=' + sortQuery);
 
         if (url.indexOf('sorter=') !== -1) {
@@ -1416,6 +1432,10 @@ $(function () {
             url += sortQuery;
         }
 
+        if (ajaxModel) {
+            return url;
+        }
+
         location.href = url;
-    });
+    };
 });
