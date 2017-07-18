@@ -1,506 +1,341 @@
 @import "../main";
-html,body {
-    margin-bottom: 50px;
-    background: #fff;
-    padding:0;
-    width: 100%;
-    height: 100%;
+
+html, body {
+  margin-bottom: 50px;
+  background: #fff;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
-.distri_panel{
+
+.distri_panel {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  .distri_ani {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    
-    .distri_ani{
-        overflow: hidden;
+
+    .content {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: url("@{img}/distribution/ani-bg.png") no-repeat center center/100% 100%;
+    }
+
+    .people {
+      position: absolute;
+      width: 254px;
+      left: 20%;
+      bottom: 60px;
+      display: none;
+    }
+
+    @keyframes halo {
+      0%, 100% {
+        transform: rotate(-20deg);
+      }
+      50% {
+        transform: rotate(20deg);
+      }
+    }
+
+    .halo {
+      position: absolute;
+      width: 375px;
+      top: 0;
+      z-index: 2;
+      overflow: hidden;
+      transform-origin: 98% 2%;
+      transform: rotate(-20deg);
+      animation: halo 6s infinite ease-in-out;
+    }
+    .box-false {
+      position: absolute;
+      bottom: 30px;
+      right: -400px;
+      width: 375px;
+      height: 200px;
+      z-index: 666;
+      .an-brake {
+        transform-origin: 50% 100%;
+        animation: an-brake .5s ease-in-out;
+      }
+      @keyframes an-brake {
+        10%, 60% {
+          transform: skewX(15deg);
+        }
+        0%, 100% {
+          transform: skewX(0deg);
+        }
+      }
+      .box {
+        position: relative;
         width: 100%;
         height: 100%;
-        
-        .content{
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            background: url("@{img}/distribution/ani-bg.png") no-repeat center center/100% 100%;
+        z-index: 888;
+        img.car {
+          position: absolute;
+          width: 400px;
+          left: 0;
+          bottom: 0;
+          z-index: 222;
         }
-        
-        .people{
-            position: absolute;
-            width: 254px;
-            left: 20%;
-            bottom: 60px;
-            display: none;
+        img.gas {
+          position: absolute;
+          width: 80px;
+          right: -25px;
+          bottom: 4px;
         }
-        
-        @keyframes halo {
-            0%, 100% {
-                transform: rotate(-20deg);
-            }
-            50% {
-                transform: rotate(20deg);
-            }
+        img.an-gas {
+          animation: an-gas .2s infinite ease-in-out;
         }
-        
-        .halo{
-            position: absolute;
-            width: 375px;
-            top: 0px;
-            z-index: 2;
-            overflow: hidden;
-            transform-origin: 98% 2%;
-            transform: rotate(-20deg);
-            animation: halo 6s infinite ease-in-out;
+        @keyframes an-gas {
+          0% {
+            transform: translate(-25px, 15px) scale(0)
+          }
+          100% {
+            transform: translate(5px, 0px) scale(1)
+          }
         }
-        .box-false{
-            position: absolute;
-            bottom: 30px;
-            right: -400px;
-            width: 375px;
-            height: 200px;
-            z-index: 666;
-            .an-brake {
-                transform-origin: 50% 100%;
-                animation: an-brake .5s ease-in-out;
-            }
-            @keyframes an-brake {
-                10%, 60% {
-                    transform: skewX(15deg);
-                }
-                0%, 100% {
-                    transform: skewX(0deg);
-                }
-            }
-            .box {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                z-index: 888;
-                img.car {
-                    position: absolute;
-                    width: 400px;
-                    left: 0;
-                    bottom: 0;
-                    z-index: 222;
-                }
-                 img.gas {
-                    position: absolute;
-                    width: 80px;
-                    right: -25px;
-                    bottom: 4px;
-                }
-                img.an-gas {
-                    animation: an-gas .2s infinite ease-in-out;
-                }
-                @keyframes an-gas {
-                    0% {
-                        transform: translate(-25px, 15px) scale(0)
-                    }
-                    100% {
-                        transform: translate(5px, 0px) scale(1)
-                    }
-                }
-            }
-        }
-        .an-shake {
-                    animation: an-shake .1s infinite ease-in-out;
-                }
-                @keyframes an-shake {
-                    0%, 100% {
-                        transform: translate(1px, 0px) rotate(0deg)
-                    }
-                    20% {
-                        transform: translate(-2px, -2px) rotate(0.2deg)
-                    }
-                    40% {
-                        transform: translate(-2px, 1px) rotate(-0.1deg)
-                    }
-                    60% {
-                        transform: translate(-1px, 2px) rotate(-0.2deg)
-                    }
-                    80% {
-                        transform: translate(0px, 2px) rotate(0.1deg)
-                    }
-                }
+      }
     }
-    .distri_content{
-        animation:fadeInBox 1s ease-in-out;
-        @-webkit-keyframes fadeInBox{
-            0%{
-                opacity: 0.4;
+    .an-shake {
+      animation: an-shake .1s infinite ease-in-out;
+    }
+    @keyframes an-shake {
+      0%, 100% {
+        transform: translate(1px, 0px) rotate(0deg)
+      }
+      20% {
+        transform: translate(-2px, -2px) rotate(0.2deg)
+      }
+      40% {
+        transform: translate(-2px, 1px) rotate(-0.1deg)
+      }
+      60% {
+        transform: translate(-1px, 2px) rotate(-0.2deg)
+      }
+      80% {
+        transform: translate(0px, 2px) rotate(0.1deg)
+      }
+    }
+  }
+  .distri_content {
+    animation: fadeInBox 1s ease-in-out;
+    @-webkit-keyframes fadeInBox {
+      0% {
+        opacity: 0.4;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      60% {
+        opacity: 0.6;
+      }
+      70% {
+        opacity: 0.7;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.9;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .gif {
+      img {
+        width: 100%;
+      }
+    }
+    .line {
+      position: relative;
+      img {
+        width: 100%;
+      }
+    }
+    .logo {
+
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 137px;
+      img {
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        border: 1px solid #fff;
+      }
+    }
+    .product_list {
+      background: url("@{img}/distribution/productbg.png");
+      width: 100%;
+      background-size: 100% auto;
+      position: absolute;
+      ul {
+        li {
+          .photoleft {
+            img {
+              width: 300px;
+              z-index: 1;
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             }
-            50%{
-                opacity: 0.5;
-            }
-            60%{
-                opacity: 0.6;
-            }
-            70%{
-                opacity: 0.7;
-            }
-            80%{
-                opacity: 0.8;
-            }
-            90%{
-                opacity: 0.9;
-            }
-            100%{
-                opacity: 1;
-            }
-        }
-        .gif{
-            img{
-                width: 100%;
-            }
-        }
-        .line{
-            position: relative;
-            img{
-                width: 100%;
-            }
-        }
-        .logo{
-            
-            position: absolute;
+          }
+          .photoright {
             width: 100%;
-            text-align: center;
-            top:137px;
-            img{
-                width: 64px;
-                height: 64px;
-                border-radius: 100%;
-                border: 1px solid #fff;
+            text-align: right;
+            img {
+              width: 300px;
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+              z-index: 1;
+              margin-top: 75px;
             }
-        }
-        .product_list{
-            background: url("@{img}/distribution/productbg.png");
-            width: 100%;
-            background-size:100% auto;
+          }
+          .descriptionleft {
             position: absolute;
-            ul{
-                li{
-                    .photoleft{
-                        img{
-                            width: 300px;
-                            z-index: 1;
-                            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-                        }
-                    }
-                    .photoright{
-                        width: 100%;
-                        text-align: right;
-                        img{
-                            width: 300px;
-                            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-                            z-index: 1;
-                            margin-top: 75px;
-                        }
-                    }
-                    .descriptionleft{
-                        position: absolute;
-                        img{
-                            z-index: 22;
-                            width: 128px;
-                            margin:-95px 0 0 216px;
-                            
-                            position: relative;
-                        }
-                        .btn{
-                            position: absolute;
-                            z-index: 200;
-                            img{
-                            z-index: 26;
-                            width: 83px;
-                            margin:-8px 0 0 -120px;
-                            position: absolute;
-                            }
-                            animation:fadeInbtn 3s ease-in infinite;
-                        }
-                        @-webkit-keyframes fadeInbtn{
-                            0%{
-                                transform: translateY(10px);
-                            }
-                            50%{
-                                transform: translateY(0px);
-                            }
-                            100%{
-                                transform: translateY(10px);
-                            }
-                        }
-                        .text{
-                            float: right;
-                            width: 98px;
-                            height: 200px;
-                            left:233px;
-                            z-index: 46;
-                            top: -80px;
-                            position: absolute;
-                            h2{
-                                color: #000;
-                                z-index: 22;
-                                font-size: 16px;
-                                font-weight: bold;
-                                margin:0;       
-                                line-height: 20px;                     
-                            }
-                            span{
-                                width:100%;
-                                color: #000;
-                                z-index: 24;
-                                position: absolute;
-                                font-size: 18px;
-                            }
-                            small{
-                                color: #01abb5;
-                                font-size: 22px;
-                                position: absolute;
-                                font-weight: bold;
-                                top: 54px;
-                            }
-                        }
-                    
-                    }
-                    
-                    .descriptionright{
-                        position: absolute;
-                            img{
-                                width: 128px;
-                                margin:-95px 0 0 20px;
-                                position: relative;
-                            }
-                            .btn{
-                                img{
-                                z-index: 26;
-                                width: 80px;
-                                margin:-27px 20px 0 -121px;
-                                position: absolute;
-                                }
-                                animation:fadeInbtn 3s ease-in infinite;
-                            }
-                            @-webkit-keyframes fadeInbtn{
-                                0%{
-                                    transform: translateY(10px);
-                                }
-                                50%{
-                                    transform: translateY(0px);
-                                }
-                                100%{
-                                    transform: translateY(10px);
-                                }
-                            }
-                            .text{
-                                float: right;
-                                width: 98px;
-                                height: 200px;
-                                left:38px;
-                                z-index: 46;
-                                top: -80px;
-                                position: absolute;
-                                
-                                h2{
-                                    color: #000;
-                                    z-index: 22;
-                                    font-size: 16px;
-                                    font-weight: bold;
-                                    margin:0;          
-                                    line-height: 20px;                  
-                                }
-                                span{
-                                    width:100%;
-                                    color: #000;
-                                    z-index: 24;
-                                    position: absolute;
-                                    font-size: 14px;
-                                }
-                                small{
-                                    color: #01abb5;
-                                    font-size: 22px;
-                                    position: absolute;
-                                    font-weight: bold;
-                                    top: 54px;
-                                }
-                            }
-                        }
-                }
-            } 
-            
-        }
-        .ball{
-            position: absolute;
-            margin: 0;
-            top: 0;
-            top: 266px;
-            left:319px;
-            img{
-                width: 46px;
-                height: 40px;
+            img {
+              z-index: 22;
+              width: 128px;
+              margin: -95px 0 0 216px;
+
+              position: relative;
             }
-            //animation:fadeInball 3s ease-in-out infinite;
-        }
-        @-webkit-keyframes fadeInball{
-            0%,10%{
-                top: -79px;
-                left: 43px;
+            .btn {
+              position: absolute;
+              z-index: 200;
+              img {
+                z-index: 26;
+                width: 83px;
+                margin: -8px 0 0 -120px;
+                position: absolute;
+              }
+              animation: fadeInbtn 3s ease-in infinite;
+            }
+            @-webkit-keyframes fadeInbtn {
+              0% {
+                transform: translateY(10px);
+              }
+              50% {
+                transform: translateY(0px);
+              }
+              100% {
+                transform: translateY(10px);
+              }
+            }
+            .text {
+              float: right;
+              width: 98px;
+              height: 200px;
+              left: 233px;
+              z-index: 46;
+              top: -80px;
+              position: absolute;
+              h2 {
+                color: #000;
+                z-index: 22;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0;
+                line-height: 20px;
+              }
+              span {
+                width: 100%;
+                color: #000;
+                z-index: 24;
+                position: absolute;
+                font-size: 18px;
+              }
+              small {
+                color: #01abb5;
+                font-size: 22px;
+                position: absolute;
+                font-weight: bold;
+                top: 54px;
+              }
             }
 
-//         下滑
-           20%,40{
-               top: -8px;
-               left: -30px;
-           }
-//         转折
-           42%,50%{
-               top: 26px;
-               left: -9px;
-           }
-//         弹跳
-           54%{
-               top: 14px;
-           }
-           56%{
-                top: 26px;
-           }
-           58%{
-                top: 14px;
-           }
-           60%{
-                top: 26px;                
-           }
-//         结束           
-           100%{
-               
-           }
-        }
-        .glasses{
+          }
+
+          .descriptionright {
             position: absolute;
-            margin: 0;
-            top: 433px;
-            left: 22px;
-            img{
-                width: 95px;
-                height: 30px;
+            img {
+              width: 128px;
+              margin: -95px 0 0 20px;
+              position: relative;
             }
-            //animation:fadeInglasses 5s ease-in-out infinite;
-        }
-        @-webkit-keyframes fadeInglasses{
-            0%{
-                transform: scale(0.8);
-            }
-            50%{
-                transform: scale(1);
-            }
-            100%{
-                transform: scale(0.8);
-            }
-        }
-        .shoes{
-            position: absolute;
-            margin: 0;
-            top: 775px;
-            left: 26px;
-            img{
-                width: 55px;
-                height: 33px;
-            }
-            //animation:fadeInshoes 3s ease-in infinite;
-        }
-        @-webkit-keyframes fadeInshoes{
-            0%,10%{
-                opacity: 0;
-            }
-            70%,100%{
-                opacity: 1;
-            }
-        }
-        .slopearrow{
-            position: absolute;
-            margin: 0;
-            top: 1056px;
-            left: 21px;
-            img{
-                width: 55px;
-                height: 50px;
-            }
-            //animation:fadeInslopearrow 3s ease-in infinite;
-        }
-        @-webkit-keyframes fadeInslopearrow{
-            0%,10%{
-            }
-            70%,100%{
-                transform: translate(0, -10px);
-            }
-        }
-        .compass{
-            position: absolute;
-            margin: 0;
-            top: 1048px;
-            left: 141px;
-            img{
-                width: 40px;
-                height: 35px;
-            }
-            //animation:fadeIncompass 3s ease-in infinite;
-        }
-        @-webkit-keyframes fadeIncompass{
-            0%,10%{
-                opacity: 0;
-            }
-            70%,100%{
-                opacity: 1;
-            }
-        }
-        .camera{
-            position: absolute;
-            
-            top: 0;
-            margin: 0;
-            left: 101px;
-            top: 1390px;
-            img{
+            .btn {
+              img {
+                z-index: 26;
                 width: 80px;
-                height: 46px;
-               // margin:1408px 0 0 101px;
+                margin: -27px 20px 0 -121px;
+                position: absolute;
+              }
+              animation: fadeInbtn 3s ease-in infinite;
             }
-            //animation:fadeIncamera 7s ease-out infinite;
-        }
-        @-webkit-keyframes fadeIncamera{
-            0%{-webkit-transform:translate3d(100%,0,0) skewX(-30deg);transform:translate3d(100%,0,0) skewX(-30deg);opacity:0}
-            60%{-webkit-transform:skewX(20deg);transform:skewX(20deg);opacity:1}
-            80%{-webkit-transform:skewX(-5deg);transform:skewX(-5deg);opacity:1}
-            100%{-webkit-transform:none;transform:none;opacity:1}
-        }
-        .downarrow{
-            position: absolute;
-            margin: 0;
-            top: 1766px;
-            left: 165px;
-            img{
-                width: 45px;
-                height: 36px;
-                
+            @-webkit-keyframes fadeInbtn {
+              0% {
+                transform: translateY(10px);
+              }
+              50% {
+                transform: translateY(0px);
+              }
+              100% {
+                transform: translateY(10px);
+              }
             }
-            animation:fadeIndownarrow 2.5s ease-in infinite;
-        }
-        @-webkit-keyframes fadeIndownarrow{
-            0%,10%{
-                opacity: 0;
-            }
-            70%,100%{
-                opacity: 1;
-            }
-        }
-        .footer{
-            margin-top: 30%;
-           // margin:123px 0 0 25%;
-            a{
+            .text {
+              float: right;
+              width: 98px;
+              height: 200px;
+              left: 38px;
+              z-index: 46;
+              top: -80px;
+              position: absolute;
+
+              h2 {
+                color: #000;
+                z-index: 22;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0;
+                line-height: 20px;
+              }
+              span {
                 width: 100%;
-                display: inline-block;
-                text-align: center;
-                img{
-                    width: 118px;
-                    height: 70px;
-                }
+                color: #000;
+                z-index: 24;
+                position: absolute;
+                font-size: 14px;
+              }
+              small {
+                color: #01abb5;
+                font-size: 22px;
+                position: absolute;
+                font-weight: bold;
+                top: 54px;
+              }
             }
+          }
         }
-        
+      }
     }
+    .footer {
+      margin-top: 30%;
+      a {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        img {
+          width: 118px;
+          height: 70px;
+        }
+      }
+    }
+  }
 }
 
