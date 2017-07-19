@@ -1,2 +1,114 @@
 @import "../main";
-
+html, body {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.kake-panel{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    .bg{
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;   
+        z-index: 1;
+        background: url("@{img}/activity/bg.png") no-repeat center center/100% 100%;
+    }
+    .content{
+        position: absolute;
+        z-index: 2;
+        span{
+            img{
+                width: 100%;
+                height: 171px;
+                padding: 0 10%;
+                margin-top: -929px;
+                
+            }
+        }
+        .file{
+            position: absolute;
+            padding: 0 10%;
+            margin-top: -558px;
+            input{
+                width: 300px;
+                height: 171px;
+                font-size: 12px; 
+                padding: 7px 12px; 
+                display: block; 
+                color: transparent;
+            }
+        }
+        .diary{
+            position: absolute;
+            width: 149px;
+            height: 102px;
+            left: 20px;
+            margin-top: -619px;
+            background: url("@{img}/activity/diary.png") no-repeat center center/100% 100%;
+        }
+        .plane{
+            position: absolute;
+            width: 134px;
+            height: 54px;
+            left: 57%;
+            margin-top: -587px;
+            background: url("@{img}/activity/plane.png") no-repeat center center/100% 100%;
+        }
+        .lcloud{
+            position: absolute;
+            width: 68px;
+            height: 52px;
+            margin-top: -510px;
+            background: url("@{img}/activity/lcloud.png") no-repeat center center/100% 100%;
+        }
+        .rcloud{
+            position: absolute;
+            width: 57px;
+            height: 50px;
+            left: 84%;
+            margin-top: -444px;
+            background: url("@{img}/activity/rcloud.png") no-repeat center center/100% 100%;
+        }
+        .train{
+            position: absolute;
+            width: 113px;
+            height: 25px;
+            margin-top: -403px;
+            background: url("@{img}/activity/train.png") no-repeat center center/100% 100%;
+        }
+        textarea{
+            -webkit-appearance: textarea;
+            border-image: initial;
+            -webkit-rtl-ordering: logical;
+            -webkit-user-select: text;
+            -webkit-box-orient: vertical;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-transform: none;
+            position: absolute;
+            margin-top: -238px;
+            width: 235px;
+            height: 132px;
+            left: 20%;
+            border: 1px solid red;
+            color: #262626;
+            font-size: 14px;
+            line-height: 20px;
+            background: none;
+            border: none;
+        }
+        a.btn{
+            img{
+                width: 84px;
+                height: 25px;
+                left: 55%;
+                position: absolute;
+                margin-top: -132px;
+            }
+        }
+    }
+}
