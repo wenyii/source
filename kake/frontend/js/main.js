@@ -547,9 +547,9 @@ app.directive('kkTap', ['$parse', function ($parse) {
         restrict: 'A'
     };
 
-    command.compile = function ($element, attr) {
-        var fn = $parse(attr.kkTap);
-        return function ngEventHandler(scope, element) {
+    command.compile = function ($elem, attrs) {
+        var fn = $parse(attrs.kkTap);
+        return function ngEventHandler(scope, elem) {
             var alloy = {};
             alloy.tap = function (event) {
                 window.event = event;
@@ -560,7 +560,7 @@ app.directive('kkTap', ['$parse', function ($parse) {
                 };
                 scope.$apply(callback);
             };
-            new AlloyFinger(element[0], alloy);
+            new AlloyFinger(elem[0], alloy);
         };
     };
 
@@ -628,13 +628,13 @@ app.directive('kkFocus', ['genericService', function (genericService) {
 
         var changeCurrent = function (index) {
             index = index || 0;
-            var tpl = attrs.focusNumberTpl;
+            var tpl = attrs.numberTpl;
             if (tpl) {
                 tpl = tpl.replace(/\{TOTAL\}/g, that.imageObject.length);
                 tpl = tpl.replace(/\{NOW\}/g, index + 1);
                 that.pointObject.html(tpl);
             } else {
-                var currentCss = attrs.focusPointCurrent || 'current';
+                var currentCss = attrs.pointCurrent || 'current';
                 that.pointObject.children().removeClass(currentCss);
                 that.pointObject.children().eq(index).addClass(currentCss);
             }
@@ -693,8 +693,8 @@ app.directive('kkFocus', ['genericService', function (genericService) {
         });
 
         // plan
-        this.stayTime = attrs.focusStayTime || 5000;
-        this.playTime = attrs.focusPlayTime || 500;
+        this.stayTime = attrs.stayTime || 5000;
+        this.playTime = attrs.playTime || 500;
 
         this.auto = function (v) {
 
@@ -747,7 +747,6 @@ app.directive('kkScroll', ['genericService', function (genericService) {
             target: that.scrollObject[0],
             property: 'translateX',
             min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - this.marginAndPadding,
-            //min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - 15 * that.scrollObject.children().length,
             max: 0,
             sensitivity: 1,
 
@@ -843,8 +842,8 @@ app.directive('kkSms', ['genericService', 'genericFactory', function (genericSer
 
     command.link = function (scope, elem, attrs) {
 
-        var time = attrs.smsTime || 60;
-        var type = attrs.smsType;
+        var time = attrs.time || 60;
+        var type = attrs.type;
         var uri = 'general/ajax-sms';
 
         var alloy = {};
@@ -920,8 +919,8 @@ app.directive('kkMenu', ['genericService', function (genericService) {
                 var pos = genericService.offset(elem[0]);
                 var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
-                var posX = parseInt(attrs.menuPosX || 0);
-                var posY = parseInt(attrs.menuPosY || 0);
+                var posX = parseInt(attrs.posX || 0);
+                var posY = parseInt(attrs.posY || 0);
 
                 menu.css({
                     left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()) + posX,
@@ -955,7 +954,7 @@ app.directive('kkFixed', ['genericService', function (genericService) {
         var prefixHeight = parseInt(attrs.kkFixed) || 0;
         var pos = genericService.offset(elem[0]);
 
-        var fillBoxClass = attrs.fixedBox || 'fixed-fill-box';
+        var fillBoxClass = attrs.box || 'fixed-fill-box';
         var _fillBoxClass = '.' + fillBoxClass;
 
         $(window).scroll(function () {
@@ -994,11 +993,11 @@ app.directive('kkTabCard', function () {
     };
 
     command.link = function (scope, elem, attrs) {
-        var tabElements = elem.find(attrs.tabElement || '*');
+        var tabElements = elem.find(attrs.element || '*');
         var tab = [];
         var tabElement = [];
         tabElements.each(function () {
-            var tabDiv = $(this).attr('tab-card');
+            var tabDiv = $(this).attr('data-card');
 
             if (tabDiv) {
                 tab.push($(tabDiv)[0]);
@@ -1014,7 +1013,7 @@ app.directive('kkTabCard', function () {
                     $(this).addClass(attrs.kkTabCard);
 
                     // action card
-                    var tabDiv = $(this).attr('tab-card');
+                    var tabDiv = $(this).attr('data-card');
                     $(tab).hide();
                     $(tabDiv).fadeIn();
                 }
@@ -1067,17 +1066,17 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
     command.link = function (scope, elem, attrs) {
         genericService.reachBottom(function () {
 
-            if (elem.attr('data-over')) {
+            if (attrs.over) {
                 return null;
             }
 
-            var page = parseInt(elem.attr('data-page'));
+            var page = parseInt(attrs.page);
             page = page ? page : 2;
 
             var query = location.search.replace('?r=', '');
             query = query ? genericService.parseQueryString(query) : {};
 
-            var data = attrs.extraParams;
+            var data = attrs.params;
             data = data ? genericService.parseQueryString(data) : {};
             data.page = page;
 
@@ -1090,8 +1089,8 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
 
                     var over = function () {
                         elem.attr('data-over', true);
-                        if (attrs.blankMessage) {
-                            genericFactory.message = attrs.blankMessage;
+                        if (attrs.message) {
+                            genericFactory.message = attrs.message;
                         }
                         return null;
                     };
@@ -1105,6 +1104,45 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
                     res.data.over && over();
                 }
             });
+        });
+    };
+
+    return command;
+}]);
+
+/**
+ * Directive ajax upload
+ */
+app.directive('kkAjaxUpload', ['genericService', 'genericFactory', '$parse', function (genericService, genericFactory, $parse) {
+
+    var command = {
+        scope: false,
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+
+        var data = attrs.params ? genericService.parseQueryString(data) : {};
+        data[genericService.csrfKey] = genericService.csrfToken;
+        console.log(attrs);
+
+        new AjaxUpload($(attrs.kkAjaxUpload), {
+            action: requestUrl + attrs.action,
+            name: 'ajax',
+            autoSubmit: true,
+            responseType: 'json',
+            accept: '*',
+            data: data,
+            onComplete: function (file, response) {
+
+                if (!response.state) {
+                    genericFactory.message = response.info;
+                    return null;
+                }
+
+                var fn = eval('scope.' + attrs.callback);
+                fn && fn.apply(scope, [response.data]);
+            }
         });
     };
 
