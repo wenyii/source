@@ -62,7 +62,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
             }
         });
     };
-    
+
     // 立即付款
     $scope.paymentAgain = function (paymentMethod, orderNumber) {
         $scope.request({
@@ -100,8 +100,7 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         var refund = $scope.refund[id];
 
         if (!refund || $scope.service.isEmpty(refund.remark)) {
-            $scope.factory.message = '请填写退款申请原因';
-            return null;
+            return $scope.message('请填写退款申请原因');
         }
 
         refund.id = id;
@@ -118,18 +117,15 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         var order = $scope.order[id];
 
         if (!order || $scope.service.isEmpty(order.name)) {
-            $scope.factory.message = '请填写入住人姓名';
-            return null;
+            return $scope.message('请填写入住人姓名');
         }
 
         if (!order || $scope.service.isEmpty(order.phone) || !$scope.service.check(order.phone, 'phone')) {
-            $scope.factory.message = '请填写正确的入住人联系方式';
-            return null;
+            return $scope.message('请填写正确的入住人联系方式');
         }
 
         if (!order || $scope.service.isEmpty(order.date)) {
-            $scope.factory.message = '请选择入住日期';
-            return null;
+            return $scope.message('请选择入住日期');
         }
 
         order.id = id;
@@ -164,13 +160,11 @@ app.controller('order', ['$scope', '$controller', function ($scope, $controller)
         var bill = $scope.bill[id];
 
         if (!bill || bill.company && $scope.service.isEmpty(bill.company_name)) {
-            $scope.factory.message = '请填写发票抬头公司名称';
-            return null;
+            return $scope.message('请填写发票抬头公司名称');
         }
 
         if (!bill || $scope.service.isEmpty(bill.address)) {
-            $scope.factory.message = '请填写发票的邮寄地址';
-            return null;
+            return $scope.message('请填写发票的邮寄地址');
         }
 
         bill.id = id;
