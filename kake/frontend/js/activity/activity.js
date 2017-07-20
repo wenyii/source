@@ -41,29 +41,20 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
                     html2canvas(document.body, {
                         allowTaint: true,
                         useCORS: true,
+                        taintTest: false,
                         width: pos.w,
                         height: pos.h,
                         onrendered: function (canvas) {
                             $scope.message('提交成功，长按可保存图片');
 
-                            $scope.request({
-                                api: 'general/ajax-save-base64-png',
-                                post: {
-                                    base64: canvas.toDataURL()
-                                },
-                                success: function (data) {
-                                    console.log(data);
-                                }
-                            });
+                            var base64 = canvas.toDataURL('image/jpeg', .1);
 
-                            /*
                              var img = new Image(pos.w, pos.h);
-                             img.src = canvas.toDataURL();
+                             img.src = base64;
                              img.classList.add('screen-shot');
 
-                             console.log(img);
+                             console.log('Length: ' + base64.length);
                              $('body').append(img);
-                             */
                         }
                     });
                 }, 1000);
