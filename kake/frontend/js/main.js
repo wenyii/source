@@ -3,7 +3,7 @@ var app = angular.module('kkApp', []);
 /**
  * Service
  */
-app.service('genericService', ['$http', '$q', function ($http, $q) {
+app.service('service', ['$http', '$q', function ($http, $q) {
 
     var that = this;
 
@@ -12,10 +12,14 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
     this.csrfToken = document.getElementsByName('csrf-token')[0].getAttribute('content');
 
     // Show message
-    this.message = function (message, type) {
+    this.debug = function (message, type) {
+
         type = type || 'error';
+
         console.log('%c' + type.ucFirst() + ':', 'color:red;');
         console.log(message);
+
+        return false;
     };
 
     // Array.each
@@ -399,7 +403,7 @@ app.service('genericService', ['$http', '$q', function ($http, $q) {
             if (errorCallback) {
                 errorCallback(error);
             } else {
-                that.message(error);
+                that.debug(error);
             }
         });
 
@@ -568,36 +572,9 @@ app.directive('kkTap', ['$parse', function ($parse) {
 }]);
 
 /**
- * Directive css animation
- */
-app.directive('kkAnimation', function () {
-
-    var command = {
-        scope: {},
-        restrict: 'A',
-        template: '<i></i><span ng-transclude></span>',
-        transclude: true
-    };
-
-    command.link = function (scope, elem, attrs) {
-        var cls = attrs.kkAnimation;
-        new AlloyFinger(elem[0], {
-            tap: function () {
-                elem.addClass(cls);
-                setTimeout(function () {
-                    elem.removeClass(cls);
-                }, 500);
-            }
-        });
-    };
-
-    return command;
-});
-
-/**
  * Directive focus
  */
-app.directive('kkFocus', ['genericService', function (genericService) {
+app.directive('kkFocus', ['service', function (service) {
 
     var command = {
         scope: {},
@@ -623,7 +600,7 @@ app.directive('kkFocus', ['genericService', function (genericService) {
         this.scrollWidth = this.imageObject.width();
 
         if (!attrs.id) {
-            return genericService.message('[kk-focus] Current element must has attribute `id`!');
+            return service.debug('[kk-focus] Current element must has attribute `id`!');
         }
 
         var changeCurrent = function (index) {
@@ -716,7 +693,7 @@ app.directive('kkFocus', ['genericService', function (genericService) {
 /**
  * Directive scroll
  */
-app.directive('kkScroll', ['genericService', function (genericService) {
+app.directive('kkScroll', ['service', function (service) {
 
     var command = {
         scope: {},
@@ -728,7 +705,7 @@ app.directive('kkScroll', ['genericService', function (genericService) {
         var that = this;
 
         if (!attrs.id) {
-            return genericService.message('[kk-scroll] Current element must has attribute `id`!');
+            return service.debug('[kk-scroll] Current element must has attribute `id`!');
         }
 
         this.scrollObject = elem.children();
@@ -764,76 +741,9 @@ app.directive('kkScroll', ['genericService', function (genericService) {
 }]);
 
 /**
- * Directive message
- */
-app.directive('kkMessage', function () {
-    return {
-        scope: {
-            message: '='
-        },
-        restrict: 'E',
-        template: '' +
-        '<div class="message" ng-show="message" kk-tap="closeMessage()">' +
-        '   <div class="message-bar kk-animate" ng-class="{\'kk-t2b-show\': message}">' +
-        '       <p ng-bind="message"></p>' +
-        '       <button class="close hidden">' +
-        '           <span aria-hidden="true" kk-tap="closeMessage()">&times;</span>' +
-        '       </button>' +
-        '   </div>' +
-        '</div>',
-        replace: true,
-        link: function (scope) {
-            scope.closeMessage = function () {
-                scope.message = null;
-            };
-        }
-    }
-});
-
-/**
- * Directive loading
- */
-app.directive('kkLoading', function () {
-    return {
-        scope: {
-            loading: '='
-        },
-        restrict: 'E',
-        template: '' +
-        '<div class="loading" ng-show="loading">' +
-        '   <div class="loading-bar loading-bounce kk-animate" ng-class="{\'kk-t2b-show\': loading}">' +
-        '       <div class="in"></div>' +
-        '       <div class="out"></div>' +
-        '   </div>' +
-        '</div>',
-        replace: true
-    }
-});
-
-/**
- * Directive hit
- */
-app.directive('kkHit', function () {
-    return {
-        scope: {
-            hit: '='
-        },
-        restrict: 'E',
-        template: '' +
-        '<div class="hit" ng-show="hit">' +
-        '   <div class="hit-bar hit-bounce kk-animate">' +
-        '       <div class="in"></div>' +
-        '       <div class="out"></div>' +
-        '   </div>' +
-        '</div>',
-        replace: true
-    }
-});
-
-/**
  * Directive sms
  */
-app.directive('kkSms', ['genericService', 'genericFactory', function (genericService, genericFactory) {
+app.directive('kkSms', function () {
 
     var command = {
         scope: false,
@@ -855,7 +765,7 @@ app.directive('kkSms', ['genericService', 'genericFactory', function (genericSer
                 return null;
             }
 
-            genericFactory.loading = true;
+            scope.loading(true);
 
             var data = {
                 api: uri,
@@ -866,7 +776,7 @@ app.directive('kkSms', ['genericService', 'genericFactory', function (genericSer
             };
 
             data.success = function () {
-                genericFactory.loading = false;
+                scope.loading(false);
                 elem.attr('disabled', 'disabled');
 
                 var oldText = elem.html();
@@ -889,8 +799,7 @@ app.directive('kkSms', ['genericService', 'genericFactory', function (genericSer
             };
 
             data.fail = function (result) {
-                genericFactory.loading = false;
-                genericFactory.message = result.info;
+                scope.message(result.info);
             };
 
             scope.request(data);
@@ -899,12 +808,12 @@ app.directive('kkSms', ['genericService', 'genericFactory', function (genericSer
     };
 
     return command;
-}]);
+});
 
 /**
  * Directive menu
  */
-app.directive('kkMenu', ['genericService', function (genericService) {
+app.directive('kkMenu', ['service', function (service) {
 
     var command = {
         scope: {},
@@ -916,7 +825,7 @@ app.directive('kkMenu', ['genericService', function (genericService) {
 
         new AlloyFinger(elem[0], {
             tap: function () {
-                var pos = genericService.offset(elem[0]);
+                var pos = service.offset(elem[0]);
                 var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
                 var posX = parseInt(attrs.posX || 0);
@@ -942,7 +851,7 @@ app.directive('kkMenu', ['genericService', function (genericService) {
 /**
  * Directive fixed box
  */
-app.directive('kkFixed', ['genericService', function (genericService) {
+app.directive('kkFixed', ['service', function (service) {
 
     var command = {
         scope: {},
@@ -952,7 +861,7 @@ app.directive('kkFixed', ['genericService', function (genericService) {
     command.link = function (scope, elem, attrs) {
 
         var prefixHeight = parseInt(attrs.kkFixed) || 0;
-        var pos = genericService.offset(elem[0]);
+        var pos = service.offset(elem[0]);
 
         var fillBoxClass = attrs.box || 'fixed-fill-box';
         var _fillBoxClass = '.' + fillBoxClass;
@@ -1056,7 +965,7 @@ app.directive('kkInputCancel', function () {
 /**
  * Directive ajax load
  */
-app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', function (genericService, genericFactory, $compile) {
+app.directive('kkAjaxLoad', ['service', '$compile', function (service, $compile) {
 
     var command = {
         scope: false,
@@ -1064,7 +973,7 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
     };
 
     command.link = function (scope, elem, attrs) {
-        genericService.reachBottom(function () {
+        service.reachBottom(function () {
 
             if (attrs.over) {
                 return null;
@@ -1074,10 +983,10 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
             page = page ? page : 2;
 
             var query = location.search.replace('?r=', '');
-            query = query ? genericService.parseQueryString(query) : {};
+            query = query ? service.parseQueryString(query) : {};
 
             var data = attrs.params;
-            data = data ? genericService.parseQueryString(data) : {};
+            data = data ? service.parseQueryString(data) : {};
             data.page = page;
 
             data = $.extend({}, query, data);
@@ -1089,13 +998,11 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
 
                     var over = function () {
                         elem.attr('data-over', true);
-                        if (attrs.message) {
-                            genericFactory.message = attrs.message;
-                        }
+                        attrs.message && scope.message(attrs.message);
                         return null;
                     };
 
-                    genericService.isEmpty(res.data.html) && over();
+                    service.isEmpty(res.data.html) && over();
 
                     var tpl = $compile(res.data.html);
                     res.data.html = tpl(scope);
@@ -1113,7 +1020,7 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
 /**
  * Directive ajax upload
  */
-app.directive('kkAjaxUpload', ['genericService', 'genericFactory', '$parse', function (genericService, genericFactory, $parse) {
+app.directive('kkAjaxUpload', ['service', function (service) {
 
     var command = {
         scope: false,
@@ -1122,9 +1029,8 @@ app.directive('kkAjaxUpload', ['genericService', 'genericFactory', '$parse', fun
 
     command.link = function (scope, elem, attrs) {
 
-        var data = attrs.params ? genericService.parseQueryString(data) : {};
-        data[genericService.csrfKey] = genericService.csrfToken;
-        console.log(attrs);
+        var data = attrs.params ? service.parseQueryString(data) : {};
+        data[service.csrfKey] = service.csrfToken;
 
         new AjaxUpload($(attrs.kkAjaxUpload), {
             action: requestUrl + attrs.action,
@@ -1133,11 +1039,15 @@ app.directive('kkAjaxUpload', ['genericService', 'genericFactory', '$parse', fun
             responseType: 'json',
             accept: '*',
             data: data,
+            onChange: function () {
+                scope.loading(true);
+            },
             onComplete: function (file, response) {
 
+                scope.loading(false);
+
                 if (!response.state) {
-                    genericFactory.message = response.info;
-                    return null;
+                    return scope.message(response.info);
                 }
 
                 var fn = eval('scope.' + attrs.callback);
@@ -1150,86 +1060,94 @@ app.directive('kkAjaxUpload', ['genericService', 'genericFactory', '$parse', fun
 }]);
 
 /**
- * Service for data
- */
-app.factory('genericFactory', function () {
-    return {
-        message: null,
-        loading: false,
-        hit: false
-    };
-});
-
-/**
  * Controller
  */
-app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'genericFactory', function ($scope, $q, $timeout, genericService, genericFactory) {
+app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $timeout, service) {
 
-    $scope.service = genericService;
-    $scope.factory = genericFactory;
-
+    $scope.timeout = $timeout;
+    $scope.service = service;
     $scope.conf = {
         ajaxLock: {},
         timeout: null
     };
 
-    $scope.common = function () {
-        $('a').on('tap click', function (e) {
-            var href = $(this).attr('href');
-            if (!href || href.indexOf('javascript:') === 0) {
-                return true;
-            }
+    /**
+     * 加载图
+     *
+     * @param load
+     * @param time
+     */
+    $scope.loading = function (load, time) {
 
-            if (href.indexOf('http') === 0 && href.indexOf(baseUrl) === -1) {
-                return true;
-            }
+        var hideTag;
+        load = (typeof load === 'undefined') ? true : load;
+        time = (parseInt(time) || 0) * 1000;
 
-            var _href = $scope.service.supplyParams(href, ['channel']);
-            if (href === _href) {
-                return true;
-            }
+        var box = $('#loading');
+        var bar = box.find('.loading-bar');
 
-            e && e.preventDefault && e.preventDefault();
-            location.href = _href;
-        });
+        if (load) {
+            box.removeClass('hidden');
+        } else {
+            $scope.hideAnimate(box, bar, 700, hideTag);
+        }
+
+        if (time) {
+            hideTag = setTimeout(function () {
+                $scope.loading(false);
+            }, time);
+        }
+
+        return null;
     };
 
-    $scope.wxSDK = function (conf, title, description, cover) {
+    /**
+     * 显示消息
+     *
+     * @param msg
+     * @param time
+     */
+    $scope.message = function (msg, time) {
 
-        wx.config(conf);
-        wx.ready(function () {
+        var hideTag;
+        $scope.loading(false);
+        time = (parseInt(time) || 10) * 1000;
 
-            wx.hideMenuItems({
-                menuList: [
-                    'menuItem:share:qq',
-                    'menuItem:share:weiboApp',
-                    'menuItem:share:facebook',
-                    'menuItem:share:QZone',
-                    'menuItem:editTag',
-                    'menuItem:delete',
-                    'menuItem:originPage',
-                    'menuItem:readMode',
-                    'menuItem:share:email',
-                    'menuItem:share:brand'
-                ]
-            });
+        var box = $('#message');
+        var bar = box.find('.message-bar');
 
-            var options = {
-                title: title,
-                link: location.href,
-                imgUrl: cover,
-                success: function () {
-                    $scope.factory.message = '分享成功';
-                }
-            };
+        var hide = function () {
+            $scope.hideAnimate(box, bar, 700, hideTag);
+        };
 
-            // 分享到朋友圈
-            wx.onMenuShareTimeline(options);
+        box.removeClass('hidden').on('click', hide).find('.message-box').html(msg);
+        hideTag = setTimeout(hide, time);
 
-            // 分享给朋友
-            options.desc = description;
-            wx.onMenuShareAppMessage(options);
-        });
+        return null;
+    };
+
+    /**
+     * 收起动画
+     *
+     * @param box
+     * @param bar
+     * @param time
+     * @param clear
+     */
+    $scope.hideAnimate = function (box, bar, time, clear) {
+
+        time += 10;
+
+        box.removeClass('kk-show').addClass('kk-hide');
+        bar.removeClass('kk-t2b-show').addClass('kk-b2t-hide');
+
+        clearTimeout(clear);
+
+        setTimeout(function () {
+            box.addClass('hidden');
+            box.removeClass('kk-hide').addClass('kk-show');
+            bar.removeClass('kk-b2t-hide').addClass('kk-t2b-show');
+        }, time);
     };
 
     /**
@@ -1244,8 +1162,8 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
             lock[api] = 0;
             return true;
         } else {
-            if (!lock[api] || genericService.time() > lock[api]) {
-                lock[api] = genericService.time() + 1000; // 1 second
+            if (!lock[api] || service.time() > lock[api]) {
+                lock[api] = service.time() + 1000; // 1 second
                 return true;
             }
             return false;
@@ -1268,20 +1186,19 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
         }
 
         if (option.loading) {
-            $scope.factory.loading = true;
+            $scope.loading(true);
         }
 
-        $scope.service.ajaxPost(option.api, option.post, function (error) {
+        service.ajaxPost(option.api, option.post, function (error) {
 
-            $scope.factory.loading = false;
-            $scope.factory.message = error;
+            $scope.message(error);
 
         }).then(function (result) {
 
             var handler = function () {
-                $scope.factory.loading = false;
-                if (!$scope.service.isEmpty(result.info)) {
-                    $scope.factory.message = result.info;
+                $scope.loading(false);
+                if (!service.isEmpty(result.info)) {
+                    $scope.message(result.info);
                 }
 
                 option.success && option.success(result);
@@ -1291,13 +1208,81 @@ app.controller('generic', ['$scope', '$q', '$timeout', 'genericService', 'generi
 
         }, function (result) {
 
-            $scope.factory.loading = false;
+            $scope.loading(false);
             if (option.fail) {
                 option.fail(result);
             } else {
-                $scope.factory.message = result.info;
+                $scope.message(result.info);
             }
         });
     };
 
+    /**
+     * 微信 SDK
+     *
+     * @param conf
+     * @param title
+     * @param description
+     * @param cover
+     */
+    $scope.wxSDK = function (conf, title, description, cover) {
+
+        wx.config(conf);
+        wx.ready(function () {
+
+            var hideList = [
+                'menuItem:share:qq',
+                'menuItem:share:weiboApp',
+                'menuItem:share:facebook',
+                'menuItem:share:QZone',
+                'menuItem:editTag',
+                'menuItem:delete',
+                'menuItem:originPage',
+                'menuItem:readMode',
+                'menuItem:share:email',
+                'menuItem:share:brand'
+            ];
+            wx.hideMenuItems({menuList: hideList});
+
+            var options = {
+                title: title,
+                link: location.href,
+                imgUrl: cover,
+                success: function () {
+                    $scope.message('分享成功');
+                }
+            };
+
+            // 分享到朋友圈
+            wx.onMenuShareTimeline(options);
+
+            // 分享给朋友
+            options.desc = description;
+            wx.onMenuShareAppMessage(options);
+        });
+    };
+
+    /**
+     * 公用内容
+     */
+    $scope.common = function () {
+        $('a').on('tap click', function (e) {
+            var href = $(this).attr('href');
+            if (!href || href.indexOf('javascript:') === 0) {
+                return true;
+            }
+
+            if (href.indexOf('http') === 0 && href.indexOf(baseUrl) === -1) {
+                return true;
+            }
+
+            var _href = service.supplyParams(href, ['channel']);
+            if (href === _href) {
+                return true;
+            }
+
+            e && e.preventDefault && e.preventDefault();
+            location.href = _href;
+        });
+    };
 }]);

@@ -39,7 +39,7 @@ app.controller('detail', ['$scope', '$controller', function ($scope, $controller
         if (limit >= 0) {
             var number = $scope.buy.package[key].number + 1;
             if (number > limit) {
-                $scope.factory.message = '该套餐本次购买最大限定' + limit + '次';
+                $scope.message('该套餐本次购买最大限定' + limit + '次');
                 return false;
             }
         }
@@ -66,29 +66,22 @@ app.controller('detail', ['$scope', '$controller', function ($scope, $controller
     // 立即购买
     $scope.goToPayment = function () {
 
-        var service = $scope.service;
-        var factory = $scope.factory;
-
         if ($scope.totalPrice <= 0) {
-            factory.message = '请先选择您要购买的套餐';
-            return null;
+            return $scope.message('请先选择您要购买的套餐');
         }
 
         var user = $scope.buy.user_info;
 
-        if (service.isEmpty(user.name)) {
-            factory.message = '请填写联系人姓名';
-            return null;
+        if ($scope.service.isEmpty(user.name)) {
+            return $scope.message('请填写联系人姓名');
         }
 
-        if (!service.check(user.phone, 'phone')) {
-            factory.message = '手机号码格式不正确';
-            return null;
+        if (!$scope.service.check(user.phone, 'phone')) {
+            return $scope.message('手机号码格式不正确');
         }
 
         if (!user.captcha || user.captcha.toString().length !== 4) {
-            factory.message = '手机验证码应是4位数字';
-            return null;
+            return $scope.message('手机验证码应是4位数字');
         }
 
         var url = requestUrl + 'detail/prefix-payment';

@@ -194,7 +194,7 @@ footer {
 /*
  * Message
  */
-.message {
+div#message {
   .shade;
   .message-bar {
     @height: 80px;
@@ -231,7 +231,7 @@ footer {
 /*
  * Loading
  */
-div.loading {
+div#loading {
   .shade;
   .loading-bar {
     width: 36px;
@@ -276,7 +276,7 @@ div.loading {
 /*
  * Hit
  */
-div.hit {
+div#hit {
   @size: 58px;
   width: @size;
   height: @size;
@@ -370,8 +370,8 @@ div.hit {
  */
 .kk-animate {
 
-  // big scale to small
-  @keyframes big-to-small {
+  // big scale to small (show)
+  @keyframes big-to-small-show {
     0% {
       transform: scale(1.2, 1.2);
       opacity: 0
@@ -383,14 +383,15 @@ div.hit {
     }
   }
 
-  &.kk-b2s {
-    animation: big-to-small .5s 1;
+  &.kk-b2s-show {
+    animation: big-to-small-show .7s 1;
+    animation-fill-mode: forwards;
   }
 
   // top move to bottom (show)
   @keyframes top-to-bottom-show {
     0% {
-      transform: translateY(-50px);
+      transform: translateY(-80px);
       opacity: 0;
     }
 
@@ -401,6 +402,57 @@ div.hit {
   }
 
   &.kk-t2b-show {
-    animation: top-to-bottom-show .5s 1;
+    animation: top-to-bottom-show .7s 1;
+    animation-fill-mode: forwards;
+  }
+
+  // bottom move to top (hide)
+  @keyframes bottom-to-top-hide {
+    0% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(-80px);
+      opacity: 0;
+    }
+  }
+
+  &.kk-b2t-hide {
+    animation: bottom-to-top-hide .7s 1;
+    animation-fill-mode: forwards;
+  }
+
+  // change opacity show
+  @keyframes opacity-show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  &.kk-show {
+    animation: opacity-show .7s 1;
+    animation-fill-mode: forwards;
+  }
+
+  // change opacity hide
+  @keyframes opacity-hide {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  &.kk-hide {
+    animation: opacity-hide .7s 1;
+    animation-fill-mode: forwards;
   }
 }

@@ -18,25 +18,26 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
         };
 
         if (!parseInt(data.attachment)) {
-            $scope.factory.message = '请先上传照片';
+            $scope.message('请先上传照片');
             return null;
         }
 
         if (data.story.length <= 0 || data.story.length > 100) {
-            $scope.factory.message = '故事内容控制在 0 ~ 100 字之间';
+            $scope.message('故事内容控制在 0 ~ 100 字之间');
             return null;
         }
 
         $scope.request({
             api: 'activity/ajax-story',
             post: data,
-            success: function (data) {
+            success: function () {
                 html2canvas(document.body, {
                     onrendered: function (canvas) {
+                        $scope.message('提交成功');
 
-                        $scope.factor.message = '提交成功';
+                        var img = new Image();
+                        img.src = canvas.toDataURL();
 
-                        var img = Canvas2Image.saveAsPNG(canvas, true);
                         console.log(img);
                     }
                 });
