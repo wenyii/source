@@ -46,12 +46,24 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
                         onrendered: function (canvas) {
                             $scope.message('提交成功，长按可保存图片');
 
-                            var img = new Image(pos.w, pos.h);
-                            img.src = canvas.toDataURL();
-                            img.classList.add('screen-shot');
+                            $scope.request({
+                                api: 'general/ajax-save-base64-png',
+                                post: {
+                                    base64: canvas.toDataURL()
+                                },
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
 
-                            console.log(img);
-                            $('body').append(img);
+                            /*
+                             var img = new Image(pos.w, pos.h);
+                             img.src = canvas.toDataURL();
+                             img.classList.add('screen-shot');
+
+                             console.log(img);
+                             $('body').append(img);
+                             */
                         }
                     });
                 }, 1000);
