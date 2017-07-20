@@ -31,21 +31,30 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
             api: 'activity/ajax-story',
             post: data,
             success: function () {
+
+                var pos = {
+                    w: document.body.offsetWidth,
+                    h: document.body.offsetHeight
+                };
+
                 setTimeout(function () {
                     html2canvas(document.body, {
                         allowTaint: true,
                         useCORS: true,
+                        width: pos.w,
+                        height: pos.h,
                         onrendered: function (canvas) {
-                            $scope.message('提交成功');
+                            $scope.message('提交成功，长按可保存图片');
 
-                            var img = new Image();
+                            var img = new Image(pos.w, pos.h);
                             img.src = canvas.toDataURL();
+                            img.classList.add('screen-shot');
 
                             console.log(img);
                             $('body').append(img);
                         }
                     });
-                }, 510);
+                }, 1000);
             }
         });
     };

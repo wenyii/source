@@ -1,107 +1,134 @@
 @import "../main";
+
 html, body {
-    background: url("@{img}/activity/bg.png") no-repeat center center/100% 100%;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  background: url("@{img}/activity/bg.png") no-repeat center center/100% 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
-#feedbackcontent::-webkit-input-placeholder{color:#000;}
-.kake-panel{
-    span{
-        margin-top: 73px;
-        width: 300px;
-        height: 171px;
-        display: flex;
-        margin-left: 10%;
-        align-items: center;
-        justify-content: center;
-        img{
-            max-width:100%; 
-            max-height:100%; 
-            display:block; 
-            margin:auto;
-            
-        }
+
+#feedbackcontent::-webkit-input-placeholder {
+  color: #000;
+}
+
+@keyframes screen-shot {
+  0% {
+    border: none;
+    border-radius: 0;
+    transform: scale(1);
+  }
+  100% {
+    border: 3px solid #5bc0de;
+    border-radius: 10px;
+    transform: scale(0.8);
+  }
+}
+
+img.screen-shot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: screen-shot .2s 1;
+  animation-fill-mode: forwards;
+}
+
+.kake-panel {
+  span {
+    margin-top: 73px;
+    width: 300px;
+    height: 171px;
+    display: flex;
+    margin-left: 10%;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      margin: auto;
+
     }
-    .file{
-        position: absolute;
-        padding: 0 10%;
-        top: 73px;
-        input{
-            width: 300px;
-            height: 171px;
-            font-size: 12px; 
-            padding: 7px 12px; 
-            display: block; 
-            color: transparent;
-        }
+  }
+  .file {
+    position: absolute;
+    padding: 0 10%;
+    top: 73px;
+    input {
+      width: 300px;
+      height: 171px;
+      font-size: 12px;
+      padding: 7px 12px;
+      display: block;
+      color: transparent;
     }
-    .diary{
-        position: absolute;
-        width: 149px;
-        height: 102px;
-        left: 20px;
-        top: 20px;
-        background: url("@{img}/activity/diary.png") no-repeat center center/100% 100%;
+  }
+  .diary {
+    position: absolute;
+    width: 149px;
+    height: 102px;
+    left: 20px;
+    top: 20px;
+    background: url("@{img}/activity/diary.png") no-repeat center center/100% 100%;
+  }
+  .plane {
+    position: absolute;
+    width: 134px;
+    height: 54px;
+    left: 57%;
+    margin-top: -587px;
+    background: url("@{img}/activity/plane.png") no-repeat center center/100% 100%;
+  }
+  .lcloud {
+    position: absolute;
+    width: 68px;
+    height: 52px;
+    top: 140px;
+    background: url("@{img}/activity/lcloud.png") no-repeat center center/100% 100%;
+  }
+  .rcloud {
+    position: absolute;
+    width: 57px;
+    height: 50px;
+    left: 84%;
+    top: 170px;
+    background: url("@{img}/activity/rcloud.png") no-repeat center center/100% 100%;
+  }
+  .train {
+    position: absolute;
+    width: 113px;
+    height: 25px;
+    top: 223px;
+    background: url("@{img}/activity/train.png") no-repeat center center/100% 100%;
+  }
+  textarea {
+    -webkit-appearance: textarea;
+    border-image: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    -webkit-box-orient: vertical;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-transform: none;
+    position: absolute;
+    top: 62%;
+    width: 235px;
+    height: 132px;
+    left: 20%;
+    border: 1px solid red;
+    color: #262626;
+    font-size: 14px;
+    line-height: 20px;
+    background: none;
+    border: none;
+  }
+  a.btn {
+    img {
+      width: 84px;
+      height: 25px;
+      left: 55%;
+      position: absolute;
+      top: 84%;
     }
-    .plane{
-        position: absolute;
-        width: 134px;
-        height: 54px;
-        left: 57%;
-        margin-top: -587px;
-        background: url("@{img}/activity/plane.png") no-repeat center center/100% 100%;
-    }
-    .lcloud{
-        position: absolute;
-        width: 68px;
-        height: 52px;
-        top: 140px;
-        background: url("@{img}/activity/lcloud.png") no-repeat center center/100% 100%;
-    }
-    .rcloud{
-        position: absolute;
-        width: 57px;
-        height: 50px;
-        left: 84%;
-        top: 170px;
-        background: url("@{img}/activity/rcloud.png") no-repeat center center/100% 100%;
-    }
-    .train{
-        position: absolute;
-        width: 113px;
-        height: 25px;
-        top:223px;
-        background: url("@{img}/activity/train.png") no-repeat center center/100% 100%;
-    }
-    textarea{
-        -webkit-appearance: textarea;
-        border-image: initial;
-        -webkit-rtl-ordering: logical;
-        -webkit-user-select: text;
-        -webkit-box-orient: vertical;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        text-transform: none;
-        position: absolute;
-        top: 62%;
-        width: 235px;
-        height: 132px;
-        left: 20%;
-        border: 1px solid red;
-        color: #262626;
-        font-size: 14px;
-        line-height: 20px;
-        background: none;
-        border: none;
-    }
-    a.btn{
-        img{
-            width: 84px;
-            height: 25px;
-            left: 55%;
-            position: absolute;
-            top: 84%;
-        }
-    }
+  }
 }
