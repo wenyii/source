@@ -1066,11 +1066,11 @@ app.directive('kkAjaxLoad', ['genericService', 'genericFactory', '$compile', fun
     command.link = function (scope, elem, attrs) {
         genericService.reachBottom(function () {
 
-            if (attrs.over) {
+            if (elem.attr('data-over')) {
                 return null;
             }
 
-            var page = parseInt(attrs.page);
+            var page = parseInt(elem.attr('data-page'));
             page = page ? page : 2;
 
             var query = location.search.replace('?r=', '');
