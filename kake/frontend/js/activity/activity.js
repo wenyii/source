@@ -31,16 +31,21 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
             api: 'activity/ajax-story',
             post: data,
             success: function () {
-                html2canvas(document.body, {
-                    onrendered: function (canvas) {
-                        $scope.message('提交成功');
+                setTimeout(function () {
+                    html2canvas(document.body, {
+                        allowTaint: true,
+                        useCORS: true,
+                        onrendered: function (canvas) {
+                            $scope.message('提交成功');
 
-                        var img = new Image();
-                        img.src = canvas.toDataURL();
+                            var img = new Image();
+                            img.src = canvas.toDataURL();
 
-                        console.log(img);
-                    }
-                });
+                            console.log(img);
+                            $('body').append(img);
+                        }
+                    });
+                }, 510);
             }
         });
     };
