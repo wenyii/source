@@ -32,32 +32,38 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
             post: data,
             success: function () {
 
+                $scope.message('提交成功');
+                return null;
+
+                var obj = $('body');
                 var pos = {
-                    w: document.body.offsetWidth,
-                    h: document.body.offsetHeight
+                    w: obj.width(),
+                    h: obj.height()
                 };
 
-                setTimeout(function () {
-                    html2canvas(document.body, {
-                        allowTaint: true,
-                        useCORS: true,
-                        taintTest: false,
-                        width: pos.w,
-                        height: pos.h,
-                        onrendered: function (canvas) {
-                            $scope.message('提交成功，长按可保存图片');
+                html2canvas(obj[0], {
+                    allowTaint: true,
+                    useCORS: true,
+                    taintTest: false,
+                    logging: true,
+                    width: pos.w,
+                    height: pos.h,
+                    onrendered: function (canvas) {
+                        $scope.message('提交成功，长按可保存图片');
 
-                            var base64 = canvas.toDataURL('image/jpeg', .1);
-
-                             var img = new Image(pos.w, pos.h);
-                             img.src = base64;
-                             img.classList.add('screen-shot');
-
-                             console.log('Length: ' + base64.length);
-                             $('body').append(img);
+                        try {
+                            var base64 = canvas.toDataURL('image/jpeg');
+                        } catch (e) {
+                            console.error(e);
                         }
-                    });
-                }, 1000);
+
+                        var img = new Image(pos.w, pos.h);
+                        img.src = base64;
+                        img.classList.add('screen-shot');
+
+                        $('body').append(img);
+                    }
+                });
             }
         });
     };
