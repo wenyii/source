@@ -32,38 +32,35 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
             post: data,
             success: function () {
 
-                $scope.message('提交成功');
-                return null;
-
                 var obj = $('body');
                 var pos = {
-                    w: obj.width(),
-                    h: obj.height()
+                    w: document.body.offsetWidth,
+                    h: document.body.offsetHeight
                 };
 
-                html2canvas(obj[0], {
-                    allowTaint: true,
-                    useCORS: true,
-                    taintTest: false,
-                    logging: true,
-                    width: pos.w,
-                    height: pos.h,
-                    onrendered: function (canvas) {
-                        $scope.message('提交成功，长按可保存图片');
+                setTimeout(function () {
+                    html2canvas(obj[0], {
+                        useCORS: true,
+                        width: pos.w,
+                        height: pos.h,
+                        onrendered: function (canvas) {
 
-                        try {
-                            var base64 = canvas.toDataURL('image/jpeg');
-                        } catch (e) {
-                            console.error(e);
+                            $scope.message('提交成功,长按保存图片');
+
+                            try {
+                                var base64 = canvas.toDataURL();
+                            } catch (e) {
+                                console.log(e);
+                            }
+
+                            var img = new Image(pos.w, pos.h);
+                            img.src = base64;
+                            img.classList.add('screen-shot');
+
+                            $('body').append(img);
                         }
-
-                        var img = new Image(pos.w, pos.h);
-                        img.src = base64;
-                        img.classList.add('screen-shot');
-
-                        $('body').append(img);
-                    }
-                });
+                    });
+                }, 850);
             }
         });
     };
