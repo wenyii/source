@@ -1268,7 +1268,7 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
     $scope.common = function () {
         $('a').on('tap click', function (e) {
             var href = $(this).attr('href');
-            if (!href || href.indexOf('javascript:') === 0) {
+            if (!href || href.indexOf('javascript:') === 0 || href.indexOf('tel:') === 0) {
                 return true;
             }
 

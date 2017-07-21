@@ -37,7 +37,7 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
                     w: document.body.offsetWidth,
                     h: document.body.offsetHeight
                 };
-
+				$('textarea').blur();
                 setTimeout(function () {
                     html2canvas(obj[0], {
                         useCORS: true,
