@@ -5,8 +5,11 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
 
     $controller('generic', {$scope: $scope});
 
+    $scope.img = null;
+
     // 上传后处理
     $scope.handleUpload = function (data) {
+        $scope.img = data.url;
         $('#preview').attr('src', data.url).attr('data-id', data.id);
     };
 
@@ -14,7 +17,8 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
     $scope.submitStory = function () {
         var data = {
             attachment: $('#preview').attr('data-id'),
-            story: $('textarea').val()
+            story: $('textarea').val(),
+            img: $scope.img
         };
 
         if (!parseInt(data.attachment)) {
