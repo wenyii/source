@@ -34,7 +34,7 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
         $scope.request({
             api: 'activity/ajax-story',
             post: data,
-            success: function () {
+            success: function (res) {
 
                 var obj = $('body');
                 var pos = {
@@ -42,6 +42,14 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
                     h: document.body.offsetHeight
                 };
 				$('textarea').blur();
+				
+				var img = new Image(pos.w, pos.h);
+                img.src = res.data.img;
+                img.classList.add('screen-shot');
+
+                $('body').append(img);
+                            
+				/*
                 setTimeout(function () {
                     html2canvas(obj[0], {
                         useCORS: true,
@@ -65,6 +73,7 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
                         }
                     });
                 }, 850);
+                */
             }
         });
     };
