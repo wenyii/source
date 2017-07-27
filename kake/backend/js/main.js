@@ -949,10 +949,12 @@ $(function () {
                 ' </div>';
         }
 
+        var url = options.data.url;
+        var url = url.indexOf('http') === 0 ? (url + '?' + $.time()) : url;
         previewObj.append('' +
             '<div class="col-sm-' + options.previewLabel + '">' +
             '   <a href="javascript:void(0)" class="thumbnail sortable-box">' + action +
-            '       <img src="' + options.data.url + '?' + $.time() + '">' +
+            '       <img src="' + url + '">' +
             '   </a>' +
             '</div>');
 
