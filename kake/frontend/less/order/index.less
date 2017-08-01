@@ -8,12 +8,17 @@ p {
   height: 20px;
   background-color: #f5f5f5;
 }
-input[type="date"]::-webkit-inner-spin-button { visibility: hidden; } 
-input[type="date"]:not(.has-value):before{
+
+input[type="date"]::-webkit-inner-spin-button {
+  visibility: hidden;
+}
+
+input[type="date"]:not(.has-value):before {
   color: #B3B3B6;
   content: attr(placeholder);
   font-size: 16px;
 }
+
 .classify {
   width: 100%;
   background-color: white;
@@ -275,13 +280,6 @@ input[type="date"]:not(.has-value):before{
     line-height: 28px;
     float: right;
     margin-right: 10px;
-    
-  }
-}
 
-.no-order {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 16px;
-  color: rgba(117, 117, 117, 0.4);
+  }
 }
