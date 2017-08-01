@@ -8,8 +8,11 @@
 @font-face {
   font-family: 'nexa';
   src: url("@{font}/nexa.ttf");
-  font-style: normal;
-  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'hanyi';
+  src: url("@{font}/hanyi.ttf");
 }
 
 .margin-top(@top) {
@@ -21,9 +24,8 @@
 }
 
 body {
-  font-family: "黑体", "宋体", "思源黑体";
+  font-family: "nexa","hanyi";
   max-width: 768px;
-
   margin: auto;
   color: #595959;
   position: relative;
@@ -355,11 +357,11 @@ div#hit {
 }
 
 .carousel {
-  height: 250px;
+  height: 195px;
   .product-focus {
     img {
       width: 100%;
-      height: 250px;
+      height: 195px;
       float: left;
     }
   }

@@ -1,2 +1,23 @@
 @import "../main";
-
+.allaim{
+        ul{
+            padding: 15px;
+            overflow: hidden;
+            a{
+                float: left;
+                width: 50%;
+                li{
+                    padding-bottom: 10px;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+            & a:nth-child(odd) li{
+                padding-right: 5px;
+            }
+            & a:nth-child(even) li{
+                padding-left: 5px;
+            }
+        }
+    }
