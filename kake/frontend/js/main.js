@@ -240,6 +240,33 @@ app.service('service', ['$http', '$q', function ($http, $q) {
         return fmt;
     };
 
+    // AlloyTouch.ratio
+    AlloyTouch.prototype.ratio = function (to, move) {
+
+        move = move || 30;
+
+        var baseTranX = this.currentPage * this.step * -1;
+        var delta = to - baseTranX;
+
+        if (to < this.min) {
+            to = this.min;
+        } else if (to > this.max) {
+            to = this.max;
+        } else if (Math.abs(delta) < move) {
+            to = baseTranX;
+        } else if (delta > 0) {
+            to = baseTranX + this.step;
+        } else {
+            to = baseTranX - this.step;
+        }
+
+        return {
+            to: to,
+            delta: delta,
+            index: to / this.step * -1
+        };
+    };
+
     // Is array
     this.isArray = function (val) {
         if (null === val) {
@@ -488,6 +515,24 @@ app.service('service', ['$http', '$q', function ($http, $q) {
             callback();
         });
     };
+
+    // Count px of margin and padding
+    this.MAP = function (obj, length, type, pos) {
+
+        length = length || 1;
+        type = type || ['margin', 'padding'];
+        pos = pos || ['left', 'right'];
+
+        var px = 0;
+
+        type.each(function (m) {
+            pos.each(function (n) {
+                px += parseInt(obj.css(m + '-' + n)) * length;
+            });
+        });
+
+        return px;
+    };
 }]);
 
 /**
@@ -599,6 +644,9 @@ app.directive('kkFocus', ['service', function (service) {
 
         this.scrollWidth = this.imageObject.width();
 
+        this.stayTime = attrs.stayTime || 5000;
+        this.playTime = attrs.playTime || 500;
+
         if (!attrs.id) {
             return service.debug('[kk-focus] Current element must has attribute `id`!');
         }
@@ -639,27 +687,13 @@ app.directive('kkFocus', ['service', function (service) {
                 this.preventDefault = true;
             },
 
-            touchEnd: function (event, v, index) {
+            touchEnd: function (event, to) {
 
                 this.preventDefault = false;
 
-                var step_v = index * this.step * -1;
-                var dx = v - step_v;
-
-                if (v < this.min) {
-                    v = this.min;
-                } else if (v > this.max) {
-                    v = this.max;
-                } else if (Math.abs(dx) < 30) {
-                    v = step_v;
-                } else if (dx > 0) {
-                    v = step_v + this.step;
-                } else {
-                    v = step_v - this.step;
-                }
-
-                this.to(v, that.playTime);
-                that.auto(v);
+                var obj = this.ratio(to);
+                this.to(obj.to, that.playTime);
+                that.auto(obj.to);
 
                 return false;
             },
@@ -668,10 +702,6 @@ app.directive('kkFocus', ['service', function (service) {
                 changeCurrent(this.currentPage);
             }
         });
-
-        // plan
-        this.stayTime = attrs.stayTime || 5000;
-        this.playTime = attrs.playTime || 500;
 
         this.auto = function (v) {
 
@@ -710,12 +740,12 @@ app.directive('kkScroll', ['service', function (service) {
 
         this.scrollObject = elem.children();
         this.imageObject = this.scrollObject.children();
-        this.marginAndPadding = parseInt(this.scrollObject.css('margin-left'))
-            + parseInt(this.scrollObject.css('padding-left')) * (that.scrollObject.children().length - 1)
-            + parseInt(this.imageObject.css('margin-right')) * (that.scrollObject.children().length - 1)
-            + parseInt(this.imageObject.css('padding-left')) * (that.scrollObject.children().length - 1)
-            + parseInt(this.imageObject.css('margin-left')) * (that.scrollObject.children().length - 1)
-            + parseInt(this.imageObject.css('padding-right')) * (that.scrollObject.children().length - 1);
+        this.MAP = 0
+            + service.MAP(this.scrollObject)
+            + service.MAP(this.imageObject, this.imageObject.length);
+
+        this.offset = parseInt(attrs.kkScroll) ? parseInt(attrs.kkScroll) : 0;
+        this.offset = window.innerWidth - this.MAP - this.offset;
 
         Transform(this.scrollObject[0]);
         new AlloyTouch({
@@ -723,7 +753,7 @@ app.directive('kkScroll', ['service', function (service) {
             vertical: false,
             target: that.scrollObject[0],
             property: 'translateX',
-            min: -that.scrollObject.children().width() * that.scrollObject.children().length + window.innerWidth - this.marginAndPadding,
+            min: that.imageObject.width() * -(that.imageObject.length) + this.offset,
             max: 0,
             sensitivity: 1,
 
@@ -733,6 +763,118 @@ app.directive('kkScroll', ['service', function (service) {
 
             touchEnd: function () {
                 this.preventDefault = false;
+            }
+        });
+    };
+
+    return command;
+}]);
+
+/**
+ * Directive camel
+ */
+app.directive('kkCamel', ['service', function (service) {
+
+    var command = {
+        scope: {},
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attrs) {
+
+        var that = this;
+
+        if (!attrs.id) {
+            return service.debug('[kk-camel] Current element must has attribute `id`!');
+        }
+
+        this.camelObject = elem.children();
+        this.imageObject = this.camelObject.children();
+
+        this.imageW = this.imageObject.width();
+        this.imageL = this.imageObject.length;
+        this.imageMAP = service.MAP(this.imageObject);
+
+        this.MAP = 0
+            + service.MAP(this.camelObject)
+            + this.imageMAP * this.imageL;
+
+        this.half = (window.innerWidth - this.imageW) / 2;
+        this.scale = parseFloat(attrs.scale) || .9;
+
+        this.first = -(this.imageW + this.imageMAP);
+        this.last = -(this.imageW + this.imageMAP) * (this.imageL - 2);
+
+        Transform(this.camelObject[0]);
+        this.camelObject[0].translateX = -(this.imageW + this.imageMAP);
+
+        this.imageObject.each(function (k, v) {
+            Transform(v);
+            v.translateX = that.half - service.MAP(that.imageObject, 1, null, ['left']);
+            v.scaleX = v.scaleY = that.scale;
+        });
+
+        this.imageObject[1].scaleX = this.imageObject[1].scaleY = 1;
+
+        new AlloyTouch({
+            touch: '#' + attrs.id,
+            vertical: false,
+            target: that.camelObject[0],
+            property: 'translateX',
+            min: that.imageW * -(that.imageL) + window.innerWidth - this.MAP,
+            max: 0,
+            sensitivity: 1,
+            step: that.imageW + that.imageMAP,
+            inertia: false,
+
+            pressMove: function (event, to) {
+
+                var obj = this.ratio(to, this.step);
+                if (obj.to > that.first) {
+                    obj.to = that.first;
+                    obj.index += 1;
+                } else if (obj.to < that.last) {
+                    obj.to = that.last;
+                    obj.index -= 1;
+                }
+
+                var percent = (1 - that.scale) * Math.abs(obj.delta) / this.step;
+                if (obj.delta < 0) { // touch to first
+                    that.imageObject.each(function (k, v) {
+                        var scale = (k === obj.index + 1) ? (that.scale + percent) : (1 - percent);
+                        v.scaleX = v.scaleY = scale;
+                    });
+                } else if (obj.delta > 0) { // touch to last
+                    that.imageObject.each(function (k, v) {
+                        var scale = (k === obj.index - 1) ? (that.scale + percent) : (1 - percent);
+                        v.scaleX = v.scaleY = scale;
+                    });
+                }
+            },
+
+            touchMove: function () {
+                this.preventDefault = true;
+            },
+
+            touchEnd: function (event, to) {
+                this.preventDefault = false;
+
+                var obj = this.ratio(to);
+                if (obj.to > that.first) {
+                    obj.to = that.first;
+                    obj.index += 1;
+                } else if (obj.to < that.last) {
+                    obj.to = that.last;
+                    obj.index -= 1;
+                }
+
+                this.to(obj.to, 200);
+
+                that.imageObject.each(function (k, v) {
+                    v.scaleX = v.scaleY = (k === obj.index ? 1 : that.scale);
+                });
+
+                return false;
             }
         });
     };
@@ -1072,6 +1214,22 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
     };
 
     /**
+     * 禁用滚动条
+     *
+     * @param scroll
+     */
+    $scope.scroll = function (scroll) {
+
+        var obj = $('html,body');
+
+        if (scroll) {
+            obj.removeClass('scroll-y');
+        } else {
+            obj.addClass('scroll-y');
+        }
+    };
+
+    /**
      * 加载图
      *
      * @param load
@@ -1087,8 +1245,10 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
         var bar = box.find('.loading-bar');
 
         if (load) {
+            $scope.scroll(false);
             box.removeClass('hidden');
         } else {
+            $scope.scroll(true);
             $scope.hideAnimate(box, bar, 700, hideTag);
         }
 
@@ -1116,7 +1276,9 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
         var box = $('#message');
         var bar = box.find('.message-bar');
 
+        $scope.scroll(false);
         var hide = function () {
+            $scope.scroll(true);
             $scope.hideAnimate(box, bar, 700, hideTag);
         };
 
@@ -1266,6 +1428,8 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
      * 公用内容
      */
     $scope.common = function () {
+
+        // 分销商标示
         $('a').on('tap click', function (e) {
             var href = $(this).attr('href');
             if (!href || href.indexOf('javascript:') === 0 || href.indexOf('tel:') === 0) {
@@ -1284,5 +1448,11 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
             e && e.preventDefault && e.preventDefault();
             location.href = _href;
         });
+
+        // 图片加载
+        $scope.loading(true);
+        var load = $('body').imagesLoaded({background: true}).always(function (instance) {
+            $scope.loading(false);
+        })
     };
 }]);
