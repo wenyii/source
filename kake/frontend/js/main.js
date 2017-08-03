@@ -241,28 +241,35 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     };
 
     // AlloyTouch.ratio
-    AlloyTouch.prototype.ratio = function (to, move) {
+    AlloyTouch.prototype.ratio = function (moveTo, changePx, minDelta) {
 
-        move = move || 30;
+        changePx = changePx || 30;
+        minDelta = minDelta || 0;
 
         var baseTranX = this.currentPage * this.step * -1;
-        var delta = to - baseTranX;
+        var delta = moveTo - baseTranX;
 
-        if (to < this.min) {
-            to = this.min;
-        } else if (to > this.max) {
+        var to;
+        var moveStep = Math.abs(Math.floor(delta / this.step));
+        moveStep = moveStep || 1;
+
+        if (moveTo < this.min) {
+            to = this.min + minDelta;
+        } else if (moveTo > this.max) {
             to = this.max;
-        } else if (Math.abs(delta) < move) {
+        } else if (Math.abs(delta) < changePx) {
             to = baseTranX;
         } else if (delta > 0) {
-            to = baseTranX + this.step;
+            to = baseTranX + this.step * moveStep;
         } else {
-            to = baseTranX - this.step;
+            to = baseTranX - this.step * moveStep;
         }
 
         return {
+            moveTo: moveTo,
             to: to,
-            delta: delta,
+            realDelta: delta,
+            delta: delta % this.step,
             index: to / this.step * -1
         };
     };
@@ -490,7 +497,7 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     };
 
     // Image load completed
-    this.imageLoaded = function (box, callback) {
+    this.numberoaded = function (box, callback) {
 
         box = box || $('body');
         var imgDeferred = [];
@@ -516,8 +523,8 @@ app.service('service', ['$http', '$q', function ($http, $q) {
         });
     };
 
-    // Count px of margin and padding
-    this.MAP = function (obj, length, type, pos) {
+    // Count px of padding and margin
+    this.pam = function (obj, length, type, pos) {
 
         length = length || 1;
         type = type || ['margin', 'padding'];
@@ -630,19 +637,19 @@ app.directive('kkFocus', ['service', function (service) {
 
         var that = this;
 
-        this.scrollObject = elem.children();
-        this.imageObject = this.scrollObject.find('img');
-        this.pointObject = $(attrs.kkFocus);
+        this.scroll = elem.children();
+        this.img = this.scroll.find('img');
+        this.point = $(attrs.kkFocus);
 
-        this.scrollObject.css({
-            width: 100 * that.imageObject.length + '%'
+        this.scroll.css({
+            width: 100 * that.img.length + '%'
         });
 
-        this.imageObject.css({
-            width: 100 / that.imageObject.length + '%'
+        this.img.css({
+            width: 100 / that.img.length + '%'
         });
 
-        this.scrollWidth = this.imageObject.width();
+        this.scrollWidth = this.img.width();
 
         this.stayTime = attrs.stayTime || 5000;
         this.playTime = attrs.playTime || 500;
@@ -655,25 +662,25 @@ app.directive('kkFocus', ['service', function (service) {
             index = index || 0;
             var tpl = attrs.numberTpl;
             if (tpl) {
-                tpl = tpl.replace(/\{TOTAL\}/g, that.imageObject.length);
+                tpl = tpl.replace(/\{TOTAL\}/g, that.img.length);
                 tpl = tpl.replace(/\{NOW\}/g, index + 1);
-                that.pointObject.html(tpl);
+                that.point.html(tpl);
             } else {
                 var currentCss = attrs.pointCurrent || 'current';
-                that.pointObject.children().removeClass(currentCss);
-                that.pointObject.children().eq(index).addClass(currentCss);
+                that.point.children().removeClass(currentCss);
+                that.point.children().eq(index).addClass(currentCss);
             }
         };
 
         changeCurrent();
-        Transform(this.scrollObject[0]);
+        Transform(this.scroll[0], true);
 
         var touch = new AlloyTouch({
             touch: '#' + attrs.id,
             vertical: false,
-            target: that.scrollObject[0],
+            target: that.scroll[0],
             property: 'translateX',
-            min: that.scrollWidth * -(that.imageObject.length - 1),
+            min: that.scrollWidth * -(that.img.length - 1),
             max: 0,
             step: that.scrollWidth,
             inertia: false,
@@ -738,22 +745,20 @@ app.directive('kkScroll', ['service', function (service) {
             return service.debug('[kk-scroll] Current element must has attribute `id`!');
         }
 
-        this.scrollObject = elem.children();
-        this.imageObject = this.scrollObject.children();
-        this.MAP = 0
-            + service.MAP(this.scrollObject)
-            + service.MAP(this.imageObject, this.imageObject.length);
+        this.scroll = elem.children();
+        this.img = this.scroll.children();
+        this.pam = service.pam(this.scroll) + service.pam(this.img, this.img.length);
 
         this.offset = parseInt(attrs.kkScroll) ? parseInt(attrs.kkScroll) : 0;
-        this.offset = window.innerWidth - this.MAP - this.offset;
+        this.offset = window.innerWidth - this.pam - this.offset;
 
-        Transform(this.scrollObject[0]);
+        Transform(this.scroll[0], true);
         new AlloyTouch({
             touch: '#' + attrs.id,
             vertical: false,
-            target: that.scrollObject[0],
+            target: that.scroll[0],
             property: 'translateX',
-            min: that.imageObject.width() * -(that.imageObject.length) + this.offset,
+            min: that.img.width() * -(that.img.length) + this.offset,
             max: 0,
             sensitivity: 1,
 
@@ -788,67 +793,59 @@ app.directive('kkCamel', ['service', function (service) {
             return service.debug('[kk-camel] Current element must has attribute `id`!');
         }
 
-        this.camelObject = elem.children();
-        this.imageObject = this.camelObject.children();
+        this.camel = elem.children();
+        this.img = this.camel.children();
 
-        this.imageW = this.imageObject.width();
-        this.imageL = this.imageObject.length;
-        this.imageMAP = service.MAP(this.imageObject);
+        this.width = this.img.width();
+        this.number = this.img.length;
+        this.pam = service.pam(this.img);
 
-        this.MAP = 0
-            + service.MAP(this.camelObject)
-            + this.imageMAP * this.imageL;
-
-        this.half = (window.innerWidth - this.imageW) / 2;
+        this.allPam = service.pam(this.camel) + this.pam * this.number;
+        this.half = (window.innerWidth - this.width) / 2;
         this.scale = parseFloat(attrs.scale) || .9;
 
-        this.first = -(this.imageW + this.imageMAP);
-        this.last = -(this.imageW + this.imageMAP) * (this.imageL - 2);
+        this.first = -(this.width + this.pam);
+        this.last = -(this.width + this.pam) * (this.number - 2);
 
-        Transform(this.camelObject[0]);
-        this.camelObject[0].translateX = -(this.imageW + this.imageMAP);
+        Transform(this.camel[0], true);
+        this.camel[0].translateX = -(this.width + this.pam);
 
-        this.imageObject.each(function (k, v) {
-            Transform(v);
-            v.translateX = that.half - service.MAP(that.imageObject, 1, null, ['left']);
+        this.img.each(function (k, v) {
+            Transform(v, true);
+            v.translateX = that.half - service.pam(that.img, 1, null, ['left']);
             v.scaleX = v.scaleY = that.scale;
         });
 
-        this.imageObject[1].scaleX = this.imageObject[1].scaleY = 1;
+        this.img[1].scaleX = this.img[1].scaleY = 1;
 
-        new AlloyTouch({
+        var touch = new AlloyTouch({
             touch: '#' + attrs.id,
             vertical: false,
-            target: that.camelObject[0],
+            target: that.camel[0],
             property: 'translateX',
-            min: that.imageW * -(that.imageL) + window.innerWidth - this.MAP,
+            min: that.width * -(that.number) - this.allPam,
             max: 0,
             sensitivity: 1,
-            step: that.imageW + that.imageMAP,
+            step: that.width + that.pam,
             inertia: false,
 
             pressMove: function (event, to) {
 
                 var obj = this.ratio(to, this.step);
-                if (obj.to > that.first) {
-                    obj.to = that.first;
-                    obj.index += 1;
-                } else if (obj.to < that.last) {
-                    obj.to = that.last;
-                    obj.index -= 1;
+                if (!obj.delta) {
+                    return false;
                 }
 
+                var current = obj.index;
+                var next = obj.delta < 0 ? (current + 1) : (current - 1);
                 var percent = (1 - that.scale) * Math.abs(obj.delta) / this.step;
-                if (obj.delta < 0) { // touch to first
-                    that.imageObject.each(function (k, v) {
-                        var scale = (k === obj.index + 1) ? (that.scale + percent) : (1 - percent);
-                        v.scaleX = v.scaleY = scale;
-                    });
-                } else if (obj.delta > 0) { // touch to last
-                    that.imageObject.each(function (k, v) {
-                        var scale = (k === obj.index - 1) ? (that.scale + percent) : (1 - percent);
-                        v.scaleX = v.scaleY = scale;
-                    });
+
+                if (that.img[current]) {
+                    that.img[current].scaleX = that.img[current].scaleY = 1 - percent;
+                }
+
+                if (that.img[next]) {
+                    that.img[next].scaleX = that.img[next].scaleY = that.scale + percent;
                 }
             },
 
@@ -859,7 +856,7 @@ app.directive('kkCamel', ['service', function (service) {
             touchEnd: function (event, to) {
                 this.preventDefault = false;
 
-                var obj = this.ratio(to);
+                var obj = this.ratio(to, null, this.step);
                 if (obj.to > that.first) {
                     obj.to = that.first;
                     obj.index += 1;
@@ -870,12 +867,18 @@ app.directive('kkCamel', ['service', function (service) {
 
                 this.to(obj.to, 200);
 
-                that.imageObject.each(function (k, v) {
+                that.img.each(function (k, v) {
                     v.scaleX = v.scaleY = (k === obj.index ? 1 : that.scale);
                 });
 
                 return false;
             }
+        });
+
+        // init
+        touch.to(-touch.step * 2, 200);
+        that.img.each(function (k, v) {
+            v.scaleX = v.scaleY = (k === 2 ? 1 : that.scale);
         });
     };
 
