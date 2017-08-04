@@ -85,19 +85,19 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     // String.trim
     String.prototype.trim = function (str) {
         str = str ? ('\\s' + str) : '\\s';
-        return this.replace(eval('/(^[' + str + ']*)|([' + str + ']*$)/g'), '');
+        return this.replace(new RegExp('(^[' + str + ']*)|([' + str + ']*$)', 'g'), '');
     };
 
     // String.leftTrim
     String.prototype.leftTrim = function (str) {
         str = str ? ('\\s' + str) : '\\s';
-        return this.replace(eval('/(^[' + str + ']*)/g'), '');
+        return this.replace(new RegExp('(^[' + str + ']*)', 'g'), '');
     };
 
     // String.rightTrim
     String.prototype.rightTrim = function (str) {
         str = str ? ('\\s' + str) : '\\s';
-        return this.replace(eval('/([' + str + ']*$)/g'), '');
+        return this.replace(new RegExp('([' + str + ']*$)', 'g'), '');
     };
 
     // String.lengths (mb length)
@@ -115,35 +115,37 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     };
 
     // String.pad
-    String.prototype.pad = function (padstr, length, type) {
+    String.prototype.pad = function (padStr, length, type) {
 
-        padstr = padstr.toString();
+        padStr = padStr.toString();
         type = type || 'left';
 
         if (this.length >= length || !['left', 'right', 'both'].exists(type)) {
             return this;
         }
-        var last = (length - this.length) % padstr.length;
-        var padnum = _padnum = Math.floor((length - this.length) / padstr.length);
+        var last = (length - this.length) % padStr.length;
+
+        var padNum, _padNum;
+        padNum = _padNum = Math.floor((length - this.length) / padStr.length);
 
         if (last > 0) {
-            padnum += 1;
+            padNum += 1;
         }
 
         var _that = this;
-        for (i = 0; i < padnum; i++) {
-            if (i === _padnum) {
-                padstr = padstr.substr(0, last);
+        for (var i = 0; i < padNum; i++) {
+            if (i === _padNum) {
+                padStr = padStr.substr(0, last);
             }
             switch (type) {
                 case 'left':
-                    _that = padstr + _that;
+                    _that = padStr + _that;
                     break;
                 case 'right':
-                    _that += padstr;
+                    _that += padStr;
                     break;
                 case 'both':
-                    _that = (0 === i % 2) ? (padstr + _that) : (_that + padstr);
+                    _that = (0 === i % 2) ? (padStr + _that) : (_that + padStr);
                     break;
             }
         }
@@ -162,7 +164,7 @@ app.service('service', ['$http', '$q', function ($http, $q) {
         }
 
         var _that = this;
-        for (i = 0; i < length; i++) {
+        for (var i = 0; i < length; i++) {
             switch (type) {
                 case 'left':
                     _that = fillstr + _that;
@@ -392,10 +394,8 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     // Listen scroll for to top
     this.goToTop = function (button, screenNum, time) {
 
-        new AlloyFinger(button, {
-            tap: function () {
-                $('body, html').animate({scrollTop: 0}, time || 500);
-            }
+        that.tap(button, function () {
+            $('body, html').animate({scrollTop: 0}, time || 500);
         });
 
         button = $(button);
@@ -448,7 +448,7 @@ app.service('service', ['$http', '$q', function ($http, $q) {
     this.check = function (param, type) {
 
         var items = {
-            phone: /^[\d]([\d\-\ ]+)?[\d]$/
+            phone: /^[\d]([\d\- ]+)?[\d]$/
         };
 
         return !!items[type].test(param);
@@ -496,33 +496,6 @@ app.service('service', ['$http', '$q', function ($http, $q) {
         return href;
     };
 
-    // Image load completed
-    this.numberoaded = function (box, callback) {
-
-        box = box || $('body');
-        var imgDeferred = [];
-
-        box.find('img').each(function () {
-
-            var deferred = $.Deferred();
-            $(this).bind('load', function () {
-                deferred.resolve();
-            }).bind('error', function () {
-                deferred.reject();
-            });
-
-            if (this.complete) {
-                deferred.resolve();
-            }
-
-            imgDeferred.push(deferred);
-        });
-
-        $.when(imgDeferred).done(function () {
-            callback();
-        });
-    };
-
     // Count px of padding and margin
     this.pam = function (obj, length, type, pos) {
 
@@ -539,6 +512,33 @@ app.service('service', ['$http', '$q', function ($http, $q) {
         });
 
         return px;
+    };
+
+    // Get device version
+    this.device = function () {
+        var u = navigator.userAgent;
+        return {
+            ie: u.indexOf('Trident') > -1,
+            opera: u.indexOf('Presto') > -1,
+            chrome: u.indexOf('AppleWebKit') > -1,
+            firefox: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1,
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+            iPhone: u.indexOf('iPhone') > -1,
+            iPad: u.indexOf('iPad') > -1,
+            webApp: u.indexOf('Safari') === -1,
+            version: navigator.appVersion
+        };
+    }();
+
+    // Tap
+    this.tap = function (target, action) {
+        if (that.device.mobile) {
+            new AlloyFinger(target, {tap: action});
+        } else {
+            $(target).click(action);
+        }
     };
 }]);
 
@@ -597,17 +597,19 @@ app.config(['$httpProvider', function ($httpProvider) {
 /**
  * Directive tap replace ng-click
  */
-app.directive('kkTap', ['$parse', function ($parse) {
+app.directive('kkTap', ['service', '$parse', function (service, $parse) {
 
     var command = {
         restrict: 'A'
     };
 
-    command.compile = function ($elem, attrs) {
-        var fn = $parse(attrs.kkTap);
+    command.compile = function ($elem, attr) {
+        /**
+         * @param attr.kkTap
+         */
+        var fn = $parse(attr.kkTap);
         return function ngEventHandler(scope, elem) {
-            var alloy = {};
-            alloy.tap = function (event) {
+            service.tap(elem[0], function (event) {
                 window.event = event;
                 var callback = function () {
                     fn(scope, {
@@ -615,8 +617,7 @@ app.directive('kkTap', ['$parse', function ($parse) {
                     });
                 };
                 scope.$apply(callback);
-            };
-            new AlloyFinger(elem[0], alloy);
+            });
         };
     };
 
@@ -633,13 +634,21 @@ app.directive('kkFocus', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
+        /**
+         * @param attr.kkFocus
+         * @param attr.stayTime
+         * @param attr.playTime
+         * @param attr.id
+         * @param attr.numberTpl
+         * @param attr.pointCurrent
+         */
         var that = this;
 
         this.scroll = elem.children();
         this.img = this.scroll.find('img');
-        this.point = $(attrs.kkFocus);
+        this.point = $(attr.kkFocus);
 
         this.scroll.css({
             width: 100 * that.img.length + '%'
@@ -651,22 +660,22 @@ app.directive('kkFocus', ['service', function (service) {
 
         this.scrollWidth = this.img.width();
 
-        this.stayTime = attrs.stayTime || 5000;
-        this.playTime = attrs.playTime || 500;
+        this.stayTime = attr.stayTime || 5000;
+        this.playTime = attr.playTime || 500;
 
-        if (!attrs.id) {
+        if (!attr.id) {
             return service.debug('[kk-focus] Current element must has attribute `id`!');
         }
 
         var changeCurrent = function (index) {
             index = index || 0;
-            var tpl = attrs.numberTpl;
+            var tpl = attr.numberTpl;
             if (tpl) {
-                tpl = tpl.replace(/\{TOTAL\}/g, that.img.length);
-                tpl = tpl.replace(/\{NOW\}/g, index + 1);
+                tpl = tpl.replace(/{TOTAL}/g, that.img.length);
+                tpl = tpl.replace(/{NOW}/g, index + 1);
                 that.point.html(tpl);
             } else {
-                var currentCss = attrs.pointCurrent || 'current';
+                var currentCss = attr.pointCurrent || 'current';
                 that.point.children().removeClass(currentCss);
                 that.point.children().eq(index).addClass(currentCss);
             }
@@ -675,40 +684,44 @@ app.directive('kkFocus', ['service', function (service) {
         changeCurrent();
         Transform(this.scroll[0], true);
 
-        var touch = new AlloyTouch({
-            touch: '#' + attrs.id,
-            vertical: false,
-            target: that.scroll[0],
-            property: 'translateX',
-            min: that.scrollWidth * -(that.img.length - 1),
-            max: 0,
-            step: that.scrollWidth,
-            inertia: false,
-            sensitivity: 1,
+        try {
+            var touch = new AlloyTouch({
+                touch: '#' + attr.id,
+                vertical: false,
+                target: that.scroll[0],
+                property: 'translateX',
+                min: that.scrollWidth * -(that.img.length - 1),
+                max: 0,
+                step: that.scrollWidth,
+                inertia: false,
+                sensitivity: 1,
 
-            touchStart: function () {
-                clearInterval(that.plan);
-            },
+                touchStart: function () {
+                    clearInterval(that.plan);
+                },
 
-            touchMove: function () {
-                this.preventDefault = true;
-            },
+                touchMove: function () {
+                    this.preventDefault = true;
+                },
 
-            touchEnd: function (event, to) {
+                touchEnd: function (event, to) {
 
-                this.preventDefault = false;
+                    this.preventDefault = false;
 
-                var obj = this.ratio(to);
-                this.to(obj.to, that.playTime);
-                that.auto(obj.to);
+                    var obj = this.ratio(to);
+                    this.to(obj.to, that.playTime);
+                    that.auto(obj.to);
 
-                return false;
-            },
+                    return false;
+                },
 
-            animationEnd: function () {
-                changeCurrent(this.currentPage);
-            }
-        });
+                animationEnd: function () {
+                    changeCurrent(this.currentPage);
+                }
+            });
+        } catch (e) {
+            service.debug(e, 'error');
+        }
 
         this.auto = function (v) {
 
@@ -737,11 +750,15 @@ app.directive('kkScroll', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
+        /**
+         * @param attr.id
+         * @param attr.kkScroll
+         */
         var that = this;
 
-        if (!attrs.id) {
+        if (!attr.id) {
             return service.debug('[kk-scroll] Current element must has attribute `id`!');
         }
 
@@ -749,27 +766,31 @@ app.directive('kkScroll', ['service', function (service) {
         this.img = this.scroll.children();
         this.pam = service.pam(this.scroll) + service.pam(this.img, this.img.length);
 
-        this.offset = parseInt(attrs.kkScroll) ? parseInt(attrs.kkScroll) : 0;
+        this.offset = parseInt(attr.kkScroll) ? parseInt(attr.kkScroll) : 0;
         this.offset = window.innerWidth - this.pam - this.offset;
 
         Transform(this.scroll[0], true);
-        new AlloyTouch({
-            touch: '#' + attrs.id,
-            vertical: false,
-            target: that.scroll[0],
-            property: 'translateX',
-            min: that.img.width() * -(that.img.length) + this.offset,
-            max: 0,
-            sensitivity: 1,
+        try {
+            new AlloyTouch({
+                touch: '#' + attr.id,
+                vertical: false,
+                target: that.scroll[0],
+                property: 'translateX',
+                min: that.img.width() * -(that.img.length) + this.offset,
+                max: 0,
+                sensitivity: 1,
 
-            touchMove: function () {
-                this.preventDefault = true;
-            },
+                touchMove: function () {
+                    this.preventDefault = true;
+                },
 
-            touchEnd: function () {
-                this.preventDefault = false;
-            }
-        });
+                touchEnd: function () {
+                    this.preventDefault = false;
+                }
+            });
+        } catch (e) {
+            service.debug(e, 'error');
+        }
     };
 
     return command;
@@ -785,11 +806,15 @@ app.directive('kkCamel', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
+        /**
+         * @param attr.id
+         * @param attr.scale
+         */
         var that = this;
 
-        if (!attrs.id) {
+        if (!attr.id) {
             return service.debug('[kk-camel] Current element must has attribute `id`!');
         }
 
@@ -802,7 +827,7 @@ app.directive('kkCamel', ['service', function (service) {
 
         this.allPam = service.pam(this.camel) + this.pam * this.number;
         this.half = (window.innerWidth - this.width) / 2;
-        this.scale = parseFloat(attrs.scale) || .9;
+        this.scale = parseFloat(attr.scale) || .9;
 
         this.first = -(this.width + this.pam);
         this.last = -(this.width + this.pam) * (this.number - 2);
@@ -818,62 +843,66 @@ app.directive('kkCamel', ['service', function (service) {
 
         this.img[1].scaleX = this.img[1].scaleY = 1;
 
-        var touch = new AlloyTouch({
-            touch: '#' + attrs.id,
-            vertical: false,
-            target: that.camel[0],
-            property: 'translateX',
-            min: that.width * -(that.number) - this.allPam,
-            max: 0,
-            sensitivity: 1,
-            step: that.width + that.pam,
-            inertia: false,
+        try {
+            var touch = new AlloyTouch({
+                touch: '#' + attr.id,
+                vertical: false,
+                target: that.camel[0],
+                property: 'translateX',
+                min: that.width * -(that.number) - this.allPam,
+                max: 0,
+                sensitivity: 1,
+                step: that.width + that.pam,
+                inertia: false,
 
-            pressMove: function (event, to) {
+                pressMove: function (event, to) {
 
-                var obj = this.ratio(to, this.step);
-                if (!obj.delta) {
+                    var obj = this.ratio(to, this.step);
+                    if (!obj.delta) {
+                        return false;
+                    }
+
+                    var current = obj.index;
+                    var next = obj.delta < 0 ? (current + 1) : (current - 1);
+                    var percent = (1 - that.scale) * Math.abs(obj.delta) / this.step;
+
+                    if (that.img[current]) {
+                        that.img[current].scaleX = that.img[current].scaleY = 1 - percent;
+                    }
+
+                    if (that.img[next]) {
+                        that.img[next].scaleX = that.img[next].scaleY = that.scale + percent;
+                    }
+                },
+
+                touchMove: function () {
+                    this.preventDefault = true;
+                },
+
+                touchEnd: function (event, to) {
+                    this.preventDefault = false;
+
+                    var obj = this.ratio(to, null, this.step);
+                    if (obj.to > that.first) {
+                        obj.to = that.first;
+                        obj.index += 1;
+                    } else if (obj.to < that.last) {
+                        obj.to = that.last;
+                        obj.index -= 1;
+                    }
+
+                    this.to(obj.to, 200);
+
+                    that.img.each(function (k, v) {
+                        v.scaleX = v.scaleY = (k === obj.index ? 1 : that.scale);
+                    });
+
                     return false;
                 }
-
-                var current = obj.index;
-                var next = obj.delta < 0 ? (current + 1) : (current - 1);
-                var percent = (1 - that.scale) * Math.abs(obj.delta) / this.step;
-
-                if (that.img[current]) {
-                    that.img[current].scaleX = that.img[current].scaleY = 1 - percent;
-                }
-
-                if (that.img[next]) {
-                    that.img[next].scaleX = that.img[next].scaleY = that.scale + percent;
-                }
-            },
-
-            touchMove: function () {
-                this.preventDefault = true;
-            },
-
-            touchEnd: function (event, to) {
-                this.preventDefault = false;
-
-                var obj = this.ratio(to, null, this.step);
-                if (obj.to > that.first) {
-                    obj.to = that.first;
-                    obj.index += 1;
-                } else if (obj.to < that.last) {
-                    obj.to = that.last;
-                    obj.index -= 1;
-                }
-
-                this.to(obj.to, 200);
-
-                that.img.each(function (k, v) {
-                    v.scaleX = v.scaleY = (k === obj.index ? 1 : that.scale);
-                });
-
-                return false;
-            }
-        });
+            });
+        } catch (e) {
+            service.debug(e, 'error');
+        }
 
         // init
         touch.to(-touch.step * 2, 200);
@@ -888,22 +917,25 @@ app.directive('kkCamel', ['service', function (service) {
 /**
  * Directive sms
  */
-app.directive('kkSms', function () {
+app.directive('kkSms', ['service', function (service) {
 
     var command = {
         scope: false,
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
-        var time = attrs.time || 60;
-        var type = attrs.type;
+        /**
+         * @param attr.time
+         * @param attr.type
+         * @param attr.kkSms
+         */
+        var time = attr.time || 60;
+        var type = attr.type;
         var uri = 'general/ajax-sms';
 
-        var alloy = {};
-
-        alloy.tap = function () {
+        service.tap(elem[0], function () {
 
             // disabled
             if (typeof elem.attr('disabled') !== 'undefined') {
@@ -915,7 +947,7 @@ app.directive('kkSms', function () {
             var data = {
                 api: uri,
                 post: {
-                    phone: attrs.kkSms,
+                    phone: attr.kkSms,
                     type: type
                 }
             };
@@ -948,12 +980,11 @@ app.directive('kkSms', function () {
             };
 
             scope.request(data);
-        };
-        new AlloyFinger(elem[0], alloy);
+        });
     };
 
     return command;
-});
+}]);
 
 /**
  * Directive menu
@@ -965,24 +996,28 @@ app.directive('kkMenu', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
-        var menu = $(attrs.kkMenu);
+    command.link = function (scope, elem, attr) {
 
-        new AlloyFinger(elem[0], {
-            tap: function () {
-                var pos = service.offset(elem[0]);
-                var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
+        /**
+         * @param attr.posX
+         * @param attr.posY
+         * @param attr.kkMenu
+         */
+        var menu = $(attr.kkMenu);
 
-                var posX = parseInt(attrs.posX || 0);
-                var posY = parseInt(attrs.posY || 0);
+        service.tap(elem[0], function () {
+            var pos = service.offset(elem[0]);
+            var padding = parseInt(menu.css('paddingLeft')) + parseInt(menu.css('paddingRight'));
 
-                menu.css({
-                    left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()) + posX,
-                    top: pos.top + pos.height + 15 + posY
-                });
+            var posX = parseInt(attr.posX || 0);
+            var posY = parseInt(attr.posY || 0);
 
-                menu.fadeToggle();
-            }
+            menu.css({
+                left: pos.left - parseInt(menu.width()) - padding + parseInt(elem.width()) + posX,
+                top: pos.top + pos.height + 15 + posY
+            });
+
+            menu.fadeToggle();
         });
 
         $(window).scroll(function () {
@@ -1003,12 +1038,16 @@ app.directive('kkFixed', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
-        var prefixHeight = parseInt(attrs.kkFixed) || 0;
+        /**
+         * @param attr.box
+         * @param attr.kkFixed
+         */
+        var prefixHeight = parseInt(attr.kkFixed) || 0;
         var pos = service.offset(elem[0]);
 
-        var fillBoxClass = attrs.box || 'fixed-fill-box';
+        var fillBoxClass = attr.box || 'fixed-fill-box';
         var _fillBoxClass = '.' + fillBoxClass;
 
         $(window).scroll(function () {
@@ -1039,15 +1078,20 @@ app.directive('kkFixed', ['service', function (service) {
 /**
  * Directive table card
  */
-app.directive('kkTabCard', function () {
+app.directive('kkTabCard', ['service', function (service) {
 
     var command = {
         scope: {},
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
-        var tabElements = elem.find(attrs.element || '*');
+    command.link = function (scope, elem, attr) {
+
+        /**
+         * @param attr.element
+         * @param attr.kkTabCard
+         */
+        var tabElements = elem.find(attr.element || '*');
         var tab = [];
         var tabElement = [];
         tabElements.each(function () {
@@ -1060,52 +1104,51 @@ app.directive('kkTabCard', function () {
         });
 
         $.each(tabElement, function () {
-            new AlloyFinger(this, {
-                tap: function () {
-                    // action tab
-                    $(tabElement).removeClass(attrs.kkTabCard);
-                    $(this).addClass(attrs.kkTabCard);
+            service.tap(this, function () {
+                // action tab
+                $(tabElement).removeClass(attr.kkTabCard);
+                $(this).addClass(attr.kkTabCard);
 
-                    // action card
-                    var tabDiv = $(this).attr('data-card');
-                    $(tab).hide();
-                    $(tabDiv).fadeIn();
-                }
+                // action card
+                var tabDiv = $(this).attr('data-card');
+                $(tab).hide();
+                $(tabDiv).fadeIn();
             });
         });
     };
 
     return command;
-});
+}]);
 
 /**
  * Directive input cancel
  */
-app.directive('kkInputCancel', function () {
+app.directive('kkInputCancel', ['service', function (service) {
 
     var command = {
         scope: {},
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
-        var input = $(attrs.kkInputCancel);
+    command.link = function (scope, elem, attr) {
+
+        /**
+         * @param attr.kkInputCancel
+         */
+        var input = $(attr.kkInputCancel);
 
         input.bind('focus', function () {
             elem.show();
         });
 
-        var alloy = {};
-
-        alloy.tap = function () {
+        service.tap(elem[0], function () {
             input.val(null).blur();
             elem.hide();
-        };
-        new AlloyFinger(elem[0], alloy);
+        });
     };
 
     return command;
-});
+}]);
 
 /**
  * Directive ajax load
@@ -1117,7 +1160,13 @@ app.directive('kkAjaxLoad', ['service', '$compile', function (service, $compile)
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
+
+        /**
+         * @param attr.params
+         * @param attr.kkAjaxLoad
+         * @param attr.message
+         */
         service.reachBottom(function () {
 
             if (elem.attr('data-over')) {
@@ -1130,20 +1179,24 @@ app.directive('kkAjaxLoad', ['service', '$compile', function (service, $compile)
             var query = location.search.replace('?r=', '');
             query = query ? service.parseQueryString(query) : {};
 
-            var data = attrs.params;
+            var data = attr.params;
             data = data ? service.parseQueryString(data) : {};
             data.page = page;
 
             data = $.extend({}, query, data);
 
             scope.request({
-                api: attrs.kkAjaxLoad,
+                api: attr.kkAjaxLoad,
                 post: data,
-                success: function (res) {
 
+                /**
+                 * @param res.data.html
+                 * @param res.data.over
+                 */
+                success: function (res) {
                     var over = function () {
                         elem.attr('data-over', true);
-                        attrs.message && scope.message(attrs.message);
+                        attr.message && scope.message(attr.message);
                         return null;
                     };
 
@@ -1172,13 +1225,19 @@ app.directive('kkAjaxUpload', ['service', function (service) {
         restrict: 'A'
     };
 
-    command.link = function (scope, elem, attrs) {
+    command.link = function (scope, elem, attr) {
 
-        var data = attrs.params ? service.parseQueryString(data) : {};
+        /**
+         * @param attr.params
+         * @param attr.kkAjaxUpload
+         * @param attr.action
+         * @param attr.callback
+         */
+        var data = attr.params ? service.parseQueryString(data) : {};
         data[service.csrfKey] = service.csrfToken;
 
-        new AjaxUpload($(attrs.kkAjaxUpload), {
-            action: requestUrl + attrs.action,
+        new AjaxUpload($(attr.kkAjaxUpload), {
+            action: requestUrl + attr.action,
             name: 'ajax',
             autoSubmit: true,
             responseType: 'json',
@@ -1195,7 +1254,7 @@ app.directive('kkAjaxUpload', ['service', function (service) {
                     return scope.message(response.info);
                 }
 
-                var fn = eval('scope.' + attrs.callback);
+                var fn = eval('scope.' + attr.callback);
                 fn && fn.apply(scope, [response.data]);
             }
         });
@@ -1454,8 +1513,8 @@ app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $t
 
         // 图片加载
         $scope.loading(true);
-        var load = $('body').imagesLoaded({background: true}).always(function (instance) {
+        $('body').imagesLoaded({background: true}).always(function () {
             $scope.loading(false);
-        })
+        });
     };
 }]);
