@@ -1,10 +1,16 @@
 @import "../main";
+body {
+    background-color: #2c3e50;
+}
+
 .margin-top(@top) {
     margin-top: @top;
 }
+
 .font-size(@size) {
     font-size: @size;
 }
+
 .banner {
     img {
         height: 251px;
@@ -17,13 +23,12 @@
         position: fixed;
         z-index: 20;
         .menu {
-            line-height: 36px;
             width: 36px;
             height: 36px;
             position: absolute;
             right: 22px;
             top: 22px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #ffd000;
             border-radius: 50%;
             z-index: 20;
             text-align: center;
@@ -37,7 +42,7 @@
     .focus-point {
         width: 100%;
         position: absolute;
-        top: 220px;
+        top: 195px;
         z-index: 20;
         text-align: center;
         li {
@@ -55,147 +60,193 @@
         }
     }
 }
-.experience {
-    height: 328px;
-    .experience-1 {
-        padding: 30px 10px 20px 0;
-        .font-size(20px);       
-        margin-left: 15px;
-        color: #000;
-        span {
-            width: 10px;
-            height: 19px;
-            display: inline-block;
-            img {
-                width: 100%;
-                height: 100%;
-                margin-top: -3px;
-            }
-        }
-        .experience-1-more {
-            margin-left: 15px;
-            float: right;
-            display: inline;
-            color: #333333;
-            .font-size(14px);
-            line-height: 24px;
-            
-            img {
-                display: inline-block;
-                width: 13px;
-                
-                height: 10px;
-                margin-top: -1px;
-            }
-        }
-    }
-}
+
 .carousel {
-    overflow: hidden;
     position: relative;
-    .scroll {
-        margin-left: 15px;
-    }
+    overflow-x: hidden;
+    .scroll {}
     .carousel-scroller {
         position: relative;
         white-space: nowrap;
         font-size: 0;
         div {
             position: relative;
-            padding-right: 11px;
-            width: 305px;
             display: inline-block;
-            p {
-                .font-size(16px);
-                color: #333;
-                .margin-top(11px);
-            }
         }
-        div.flashsales-icon {
-            position: absolute;
-            top: 13px;
-            left: 13px;
-            width: 88.5px;
-            height: 90.5px;
-            background: url("@{img}/flashsales-icon.png") no-repeat;
-            line-height: 99.5px;
-            background-size: 100%;
-            text-align: center;
-            vertical-align: middle;
-            color: #fff;
-            span {
-                .font-size(20px);
-            }
-            i {
-                .font-size(14px);
-            }
+        .top20{
+            transform: translateY(25px);
         }
     }
 }
-.activity {
-    margin: 12px 0;
-    font-size: 0;
-    img {
-        display: inline-block;
-        width: 100%;
-        height: 80px;
-    }
-}
-.recommend {
-    margin: 0 15px;
-    p {
-        height: 30px;
-        text-align: center;
-        border-bottom: 1px solid #acacac;
-        position: relative;
-        margin-bottom: 30px;
-        .recommend2 {
-            .font-size(20px);
-            display: inline-block;
-            width: 88px;
-            height: 30px;
-            background-color: white;
-            color: #3c3c3c;
-            position: relative;
-            top: 15px;
-        }
-    }
-    .recommend3 {
-        .margin-top(30px);
-        border-bottom: 1px solid #f5f5f5;
-        padding-bottom: 27px;
-        .recommend3-1 {
-            position: relative;
-            img {
-                width: 100%;
-                height: 100%;
+
+.kake-box {
+    color: #ffd000;
+    &.hot-aim {
+        .kake-title {
+            overflow: hidden;
+            margin: 5px 0 18px 0;
+            h3 {
+                img {
+                    display: inline-block;
+                    height: 20px;
+                    margin-right: 3px;
+                }
+                float: left;
+                font-size: 18px;
+                margin-left: 14px;
             }
-            .recommend3-1-1 {
-                height: 27px;
-                text-align: center;
-                line-height: 27px;
-                color: #fafafa;
-                .font-size(14px);
-                background-color: rgba(34, 34, 34, 0.8);
-                position: absolute;
-                padding: 0 14px 0 10px;
-                bottom: 23px;
-                span {
-                    .font-size(22px);
+            a {
+                float: right;
+                display: block;
+                margin-top: 20px;
+                color: #fff;
+                img {
+                    width: 7px;
+                    height: 10px;
+                    margin: 0 9px 0 7px;
                 }
             }
         }
-        .recommend3-2 {
-            .font-size(20px);
-            color: #000;
-            .margin-top(20px);
-            font-weight: 450;
+        .kake-theme{
+            height: 245px;
         }
-        .recommend3-3 {
-            padding-left: 2px;
-            .font-size(17px);
-            color: #757575;
-            .margin-top(6px);
+        .carousel img {
+            width: 104px;
+            box-shadow: 0 0 10px rgba(8, 10, 10, 0.5);
+        }
+    }
+    
+    &.flash-shopping-zone {
+        .kake-title {
+            overflow: hidden;
+            margin: 10px 0 28px 0;
+            h3 {
+                img {
+                    display: inline-block;
+                    height: 22px;
+                }
+                float: left;
+                font-size: 18px;
+                margin-left: 14px;
+            }
+            a {
+                float: right;
+                display: block;
+                margin-top: 20px;
+                color: #fff;
+                img {
+                    width: 7px;
+                    height: 10px;
+                    margin: 0 9px 0 7px;
+                }
+            }
+        }
+        .kake-theme {
+            .product_image{
+                width: 300px;
+                position: relative;
+                margin: 0 5px;
+                a{
+                    img{
+                        width: 300px;
+                    }
+                    
+                }
+                p{
+                    position: absolute;
+                    width: 300px;
+                    bottom: 0;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 14px;
+                    margin: 0;
+                    padding: 8px 0 6px 0;
+                    background: rgba(16,31,49,0.7);
+                }
+            }
+        }
+    }
+    
+    &.activity{
+        margin-top: 30px;
+    }
+
+    &.product{
+        .title{
+            margin: 22px 0 42px 0;
+            img{
+                width: 100%;
+                padding: 0 25px;
+            }
+        }
+        .list{
+            ul{
+                overflow: hidden;
+                margin: 0 15px;
+                li{
+                    margin-bottom: 25px;
+                    a{
+                        outline: 0;
+                        text-decoration: none;
+                        .photo{
+                            img{
+                                position: relative;
+                                width: 100%;
+                                box-shadow: 0 0 10px rgba(8, 10, 10, 0.5);
+                            }
+                        }
+                        span{
+                            height: 27px;
+                            text-align: center;
+                            line-height: 30px;
+                            color: #fafafa;
+                            .font-size(14px);
+                            background-color: rgba(34, 34, 34, 0.8);
+                            position: absolute;
+                            padding: 0 14px 0 10px;
+                            font-size: 22px;
+                            margin-top: -45px;
+                            i{
+                                font-size: 14px;
+                                margin-right: 1px;
+                            }
+                        }
+                        .text{
+                            h2 {
+                                display: inline-block;
+                                font-size: 20px;
+                                color: #fff;
+                                margin: 18px 0 5px 0;
+                            }
+                            small {
+                                display: block;
+                                line-height: 1rem;
+                                font-size: 16px;
+                                color: #969696;
+                                margin: 10px 0 30px 0;
+                            }
+                        }
+                    }
+                    
+                    &.thinner-border {
+                        position: relative;
+                        width: 100%;
+                        height: 1px;
+                    }
+                    &.thinner-border:after {
+                        content: '';
+                        position: absolute;
+                        width: 500%;
+                        height: 500%;
+                        border: 1px solid #ffd000;
+                        transform-origin: 0 0;
+                        transform: scale(0.2, 0.2);
+                        box-sizing: border-box;
+                    }
+                }
+                
+                & li:last-child{border-bottom:none;}
+            }
         }
     }
 }
