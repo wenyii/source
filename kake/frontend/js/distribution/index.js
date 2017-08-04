@@ -115,8 +115,7 @@ app.controller('distribution', ['$scope', '$controller', '$timeout', function ($
         };
     };
 
-    $scope.service.imageLoaded($('.distri_ani'), function () {
-
+    $('.distri_ani').imagesLoaded({background: true}).always(function (instance) {
         var car = new $scope.Car($('.box-false'));
         car.sleep(1500);
         car.move(-60, 300).then(function () {
@@ -142,5 +141,4 @@ app.controller('distribution', ['$scope', '$controller', '$timeout', function ($
             });
         });
     });
-
 }]);
