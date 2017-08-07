@@ -818,6 +818,7 @@ app.directive('kkCamel', ['service', function (service) {
             return service.debug('[kk-camel] Current element must has attribute `id`!');
         }
 
+        // Var
         this.camel = elem.children();
         this.img = this.camel.children();
 
@@ -832,6 +833,7 @@ app.directive('kkCamel', ['service', function (service) {
         this.first = -(this.width + this.pam);
         this.last = -(this.width + this.pam) * (this.number - 2);
 
+        // Transform
         Transform(this.camel[0], true);
         this.camel[0].translateX = -(this.width + this.pam);
 
@@ -843,6 +845,25 @@ app.directive('kkCamel', ['service', function (service) {
 
         this.img[1].scaleX = this.img[1].scaleY = 1;
 
+        // Diy to
+        var moveTo = function (index, time) {
+
+            time = time || 200;
+            index = index || 2;
+
+            if (index < 1) {
+                index = 1;
+            } else if (index >= that.number) {
+                index = that.number - 1;
+            }
+
+            touch.to(-touch.step * index, time);
+            that.img.each(function (k, v) {
+                v.scaleX = v.scaleY = (k === index ? 1 : that.scale);
+            });
+        };
+
+        // Core
         try {
             var touch = new AlloyTouch({
                 touch: '#' + attr.id,
@@ -891,11 +912,7 @@ app.directive('kkCamel', ['service', function (service) {
                         obj.index -= 1;
                     }
 
-                    this.to(obj.to, 200);
-
-                    that.img.each(function (k, v) {
-                        v.scaleX = v.scaleY = (k === obj.index ? 1 : that.scale);
-                    });
+                    moveTo(obj.index);
 
                     return false;
                 }
@@ -904,11 +921,8 @@ app.directive('kkCamel', ['service', function (service) {
             service.debug(e, 'error');
         }
 
-        // init
-        touch.to(-touch.step * 2, 200);
-        that.img.each(function (k, v) {
-            v.scaleX = v.scaleY = (k === 2 ? 1 : that.scale);
-        });
+        // Init
+        moveTo(2);
     };
 
     return command;
