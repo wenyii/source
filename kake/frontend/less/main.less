@@ -5,15 +5,7 @@
 /*
  * Generic
  */
-@font-face {
-  font-family: 'nexa';
-  src: url("@{font}/nexa.ttf");
-}
-
-@font-face {
-  font-family: 'hanyi';
-  src: url("@{font}/hanyi.ttf");
-}
+@font-face { font-family: 'nexa'; src: url("@{font}/nexa.ttf"); font-style: normal; font-weight: normal; }
 
 .margin-top(@top) {
   margin-top: @top;
@@ -24,10 +16,10 @@
 }
 
 body {
-  font-family: "nexa","hanyi";
+  font-family: nexa, PingFangSC-Regular, sans-serif, "Noto SansCJK";
   max-width: 768px;
   margin: auto;
-  color: #000;
+  color: #000000;
   position: relative;
   input, button, select, textarea, input:focus, span:focus {
     outline: none;
