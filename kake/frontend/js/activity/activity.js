@@ -36,7 +36,6 @@ app.controller('activity', ['$scope', '$controller', function ($scope, $controll
             post: data,
             success: function (res) {
 
-                var obj = $('body');
                 var pos = {
                     w: document.body.offsetWidth,
                     h: document.body.offsetHeight
