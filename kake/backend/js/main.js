@@ -1416,17 +1416,14 @@ $(function () {
         $('span.sort-btn').each(function () {
             var name = $(this).attr('sort-name');
             var sortNo = parseInt($(this).attr('sort-index'));
-            var sort = index[sortNo];
 
-            if (sortNo > 0) {
-                sortQuery += ',' + name + ' ' + sort;
-            }
+            sortQuery += ',' + name + ' ' + index[sortNo];
         });
 
         sortQuery = encodeURI(sortQuery.substring(1));
 
         var url = $('input[name="current-url"]').val();
-        sortQuery = sortQuery.trim() === '' ? '' : ('&sorter=' + sortQuery);
+        sortQuery = '&sorter=' + sortQuery.trim();
 
         if (url.indexOf('sorter=') !== -1) {
             url = url.replace(/[?|&]sorter=([^&]*)/, sortQuery)

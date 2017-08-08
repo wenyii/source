@@ -444,11 +444,11 @@ input[type="file"] {
 #menu-toggle {
     float: left;
     cursor: pointer;
-    width: 32px;
+    width: 36px;
     height: 50px;
     line-height: 50px;
-    font-size: 24px;
-    color: #eeeeee;
+    font-size: 26px;
+    color: #cccccc;
 }
 
 #menu-toggle:hover {
