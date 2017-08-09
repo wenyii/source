@@ -501,3 +501,11 @@ a.thumbnail .action-btn {
 #crop-box .assist .crop-preview {
     overflow: hidden;
 }
+
+.modal-body {
+    padding: 20px 15px;
+}
+
+.modal-footer {
+    padding: 0 15px 15px 15px;
+}

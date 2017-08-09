@@ -777,7 +777,8 @@ $(function () {
     $.placeModal = function (options) {
 
         options.size = options.size || 'lg';
-        if ($.inArray(options.size, ['xs', 'sm', 'md', 'lg']) === false) {
+
+        if ($.inArray(options.size, ['xs', 'sm', 'md', 'lg']) === -1) {
             $.alert('模态框 size 参数不在可选范围内');
             return null;
         }
@@ -1140,7 +1141,7 @@ $(function () {
     // ajax 排序
     $.ajaxSorterList = function (action) {
         body.on('click', 'span.sort-btn', function () {
-            var url = $.sorter($(this), true);
+            var url = $.sortList($(this), true);
             $.sendGetAsync(url, function (data) {
                 $('#' + action).html(data.data.message);
             });
@@ -1393,11 +1394,11 @@ $(function () {
 
     // 各字段综合排序
     $('span.sort-btn').click(function () {
-        $.sorter($(this));
+        $.sortList($(this));
     });
 
-    // 排序核心
-    $.sorter = function (that, ajaxModel) {
+    // 查询列表排序核心
+    $.sortList = function (that, ajaxModel) {
 
         ajaxModel = ajaxModel || false;
 
@@ -1436,5 +1437,41 @@ $(function () {
         }
 
         location.href = url;
+    };
+
+    // 设置字段排序
+    $.sortField = function (api, id, defaultSort) {
+
+        defaultSort = typeof defaultSort === 'undefined' ? '' : defaultSort;
+
+        $.placeModal({
+            size: 'sm',
+            title: '手动排序',
+            message: '' +
+                '<input class="form-control" value="' + defaultSort + '"><h4><small>大于零的整数，越小越靠前</small></h4>',
+            yes: '提交',
+            yesCallback: function (obj) {
+                var sort = parseInt(obj.find('input').val());
+                if (!$._isNumeric(sort)) {
+                    $.alert('请输入大于零的整数');
+                    return null;
+                }
+
+                // 组织请求数据
+                var postData = {
+                    id: id,
+                    sort: sort
+                };
+                postData[csrfKey] = csrfToken;
+
+                $.sendPost(requestUrl + api.replace('.', '/'), postData, function (data) {
+                    if (!data.state) {
+                        $.alert(data.info, 'danger');
+                    } else {
+                        history.go(0);
+                    }
+                });
+            }
+        }).modal();
     };
 });
