@@ -1278,6 +1278,32 @@ app.directive('kkAjaxUpload', ['service', function (service) {
 }]);
 
 /**
+ * Directive pull up
+ */
+app.directive('kkPullUp', ['service', function (service) {
+
+    var command = {
+        scope: {},
+        restrict: 'A'
+    };
+
+    command.link = function (scope, elem, attr) {
+
+        /**
+         * @param attr.id
+         * @param attr.kkScroll
+         */
+        var that = this;
+        
+        service.reachBottom(function(a, b, c) {
+        		console.log(a, b, c);
+        });        
+    };
+
+    return command;
+}]);
+
+/**
  * Controller
  */
 app.controller('generic', ['$scope', '$timeout', 'service', function ($scope, $timeout, service) {
